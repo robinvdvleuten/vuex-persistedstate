@@ -12,12 +12,24 @@
   "bugs": {
     "url": "https://github.com/robinvdvleuten/vuex-persistedstate/issues"
   },
-  "main": "src/plugin.js",
+  "main": "dist/vuex-persistedstate.js",
   "files": [
+    "dist/vuex-persistedstate.js",
+    "dist/vuex-persistedstate.min.js",
     "src"
   ],
+  "scripts": {
+    "build": "rollup --environment NODE_ENV:production -c build/rollup.config.js && uglifyjs dist/vuex-persistedstate.js -cm --comments -o dist/vuex-persistedstate.min.js"
+  },
   "dependencies": {
     "lodash.merge": "^4.6.0",
     "object-path": "^0.11.2"
+  },
+  "devDependencies": {
+    "rollup": "^0.36.0",
+    "rollup-plugin-babel": "^2.6.1",
+    "rollup-plugin-buble": "^0.14.0",
+    "rollup-plugin-commonjs": "^5.0.4",
+    "uglify-js": "^2.7.3"
   }
 }
