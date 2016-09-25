@@ -4,6 +4,11 @@
   "version": "0.1.0",
   "license": "MIT",
   "author": "Robin van der Vleuten <robin@webstronauts.co>",
+  "keywords": [
+    "vue",
+    "vuex",
+    "plugin"
+  ],
   "homepage": "https://github.com/robinvdvleuten/vuex-persistedstate#readme",
   "repository": {
     "type": "git",
