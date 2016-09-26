@@ -6,6 +6,7 @@ module.exports = function (config) {
     preprocessors: {
       'test/**/*.spec.js': ['browserify']
     },
+    reporters: ['spec'],
     singleRun: true
   })
 }
