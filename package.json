@@ -38,7 +38,7 @@
     "karma-browserify": "^5.1.0",
     "karma-jasmine": "^1.0.2",
     "karma-phantomjs-launcher": "^1.0.2",
-    "phantomjs": "^2.1.7",
+    "phantomjs-prebuilt": "^2.1.12",
     "rollup": "^0.36.0",
     "rollup-plugin-buble": "^0.14.0",
     "uglify-js": "^2.7.3",
