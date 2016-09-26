@@ -1,8 +1,11 @@
 module.exports = function (config) {
   config.set({
     browsers: ['PhantomJS'],
-    frameworks: ['jasmine'],
-    files: ['test/index.js'],
+    frameworks: ['browserify', 'jasmine'],
+    files: ['test/**/*.spec.js'],
+    preprocessors: {
+      'test/**/*.spec.js': ['browserify']
+    },
     singleRun: true
   })
 }
