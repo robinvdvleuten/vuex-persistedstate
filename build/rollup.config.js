@@ -3,7 +3,7 @@ const cjs = require('rollup-plugin-commonjs')
 const version = process.env.VERSION || require('../package.json').version
 
 module.exports = {
-  entry: 'src/index.js',
+  entry: 'src/plugin.js',
   dest: 'dist/vuex-persistedstate.js',
   format: 'umd',
   moduleName: 'VuexPersistedstate',
