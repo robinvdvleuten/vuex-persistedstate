@@ -15,7 +15,7 @@ import createPersistedState from 'vuex-persistedstate'
 
 const store = new Vuex.Store({
   // ...
-  plugins: [createcreatePersistedState()]
+  plugins: [createPersistedState()]
 })
 ```
 
