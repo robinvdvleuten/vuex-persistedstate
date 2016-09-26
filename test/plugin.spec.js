@@ -70,4 +70,25 @@ describe('vuex-persistedstate', function () {
     expect(persisted).toEqual(jasmine.any(String))
     expect(JSON.parse(persisted)).toEqual({ changed: 'state' })
   })
+
+  it('rehydrates store\'s state through the configured getter', function () {
+    store = jasmine.createSpyObj('store', ['replaceState', 'subscribe'])
+    store.state = {}
+
+    plugin = createPersistedState({ getState: function (key) { return { getter: 'item' } }})
+    plugin(store)
+
+    expect(store.replaceState).toHaveBeenCalledWith({ getter: 'item' })
+  })
+
+  it('persist the changed state back through the configured setter', function () {
+    store = jasmine.createSpyObj('store', ['replaceState', 'subscribe'])
+    store.state = {}
+
+    plugin = createPersistedState({ setItem: function (key, state) { expect(state).toEqual({ setter: 'item' }) }})
+    plugin(store)
+
+    const subscriber = store.subscribe.calls.argsFor(0)[0]
+    subscriber('mutation', { setter: 'item' })
+  })
 })

@@ -19,10 +19,12 @@ function createPersistedState (ref) {
   if ( ref === void 0 ) ref = {};
   var key = ref.key; if ( key === void 0 ) key = 'vuex';
   var paths = ref.paths; if ( paths === void 0 ) paths = [];
+  var getState = ref.getState; if ( getState === void 0 ) getState = function (key) { return JSON.parse(localStorage.getItem(key)); };
+  var setState = ref.setState; if ( setState === void 0 ) setState = function (key, state) { return localStorage.setItem(key, JSON.stringify(state)); };
 
   return function (store) {
     store.replaceState(
-      merge({}, store.state, JSON.parse(localStorage.getItem(key)))
+      merge({}, store.state, getState(key))
     )
 
     store.subscribe(function (mutation, state) {
@@ -31,7 +33,7 @@ function createPersistedState (ref) {
         return substate
       }, {})
 
-      localStorage.setItem(key, JSON.stringify(persistedState))
+      setState(key, persistedState)
     })
   }
 }

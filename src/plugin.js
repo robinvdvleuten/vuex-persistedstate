@@ -3,11 +3,13 @@ import objectPath from 'object-path'
 
 export default function createPersistedState ({
   key = 'vuex',
-  paths = []
+  paths = [],
+  getState = (key) => JSON.parse(localStorage.getItem(key)),
+  setState = (key, state) => localStorage.setItem(key, JSON.stringify(state))
 } = {}) {
   return store => {
     store.replaceState(
-      merge({}, store.state, JSON.parse(localStorage.getItem(key)))
+      merge({}, store.state, getState(key))
     )
 
     store.subscribe((mutation, state) => {
@@ -16,7 +18,7 @@ export default function createPersistedState ({
         return substate
       }, {})
 
-      localStorage.setItem(key, JSON.stringify(persistedState))
+      setState(key, persistedState)
     })
   }
 }
