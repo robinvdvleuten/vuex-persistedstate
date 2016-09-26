@@ -21,13 +21,12 @@ function createPersistedState (ref) {
   var paths = ref.paths; if ( paths === void 0 ) paths = [];
 
   return function (store) {
-    var persistedPaths = ['auth0.idToken']
-    var persistedState = JSON.parse(localStorage.getItem(key))
-
-    store.replaceState(merge({}, store.state, persistedState))
+    store.replaceState(
+      merge({}, store.state, JSON.parse(localStorage.getItem(key)))
+    )
 
     store.subscribe(function (mutation, state) {
-      localStorage.setItem('vuex', JSON.stringify(persistedPaths.reduce(function (substate, path) {
+      localStorage.setItem(key, JSON.stringify(paths.reduce(function (substate, path) {
         objectPath.set(substate, path, objectPath.get(state, path))
         return substate
       }, {})))

@@ -6,13 +6,12 @@ export default function createPersistedState ({
   paths = []
 } = {}) {
   return store => {
-    const persistedPaths = ['auth0.idToken']
-    const persistedState = JSON.parse(localStorage.getItem(key))
-
-    store.replaceState(merge({}, store.state, persistedState))
+    store.replaceState(
+      merge({}, store.state, JSON.parse(localStorage.getItem(key)))
+    )
 
     store.subscribe((mutation, state) => {
-      localStorage.setItem('vuex', JSON.stringify(persistedPaths.reduce((substate, path) => {
+      localStorage.setItem(key, JSON.stringify(paths.reduce((substate, path) => {
         objectPath.set(substate, path, objectPath.get(state, path))
         return substate
       }, {})))
