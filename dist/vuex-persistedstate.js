@@ -1,5 +1,5 @@
 /**
- * vuex-persistedstate v0.1.0
+ * vuex-persistedstate v0.2.0
  *
  * (c) 2016 Robin van der Vleuten <robin@webstronauts.co>
  *
@@ -9,7 +9,7 @@
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory(require('lodash.merge'), require('object-path')) :
   typeof define === 'function' && define.amd ? define(['lodash.merge', 'object-path'], factory) :
-  (global.VuexPersistedstate = factory(global.merge,global.objectPath));
+  (global.createPersistedState = factory(global.merge,global.objectPath));
 }(this, (function (merge,objectPath) { 'use strict';
 
 merge = 'default' in merge ? merge['default'] : merge;

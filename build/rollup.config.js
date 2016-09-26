@@ -1,16 +1,15 @@
 const buble = require('rollup-plugin-buble')
-const cjs = require('rollup-plugin-commonjs')
-const version = process.env.VERSION || require('../package.json').version
+const pkg = require('../package.json')
 
 module.exports = {
   entry: 'src/plugin.js',
-  dest: 'dist/vuex-persistedstate.js',
+  dest: pkg['main'],
   format: 'umd',
-  moduleName: 'VuexPersistedstate',
-  plugins: [cjs(), buble()],
+  plugins: [buble()],
+  moduleName: 'createPersistedState',
   banner:
 `/**
- * vuex-persistedstate v${version}
+ * vuex-persistedstate v${process.env.VERSION || pkg.version}
  *
  * (c) ${new Date().getFullYear()} Robin van der Vleuten <robin@webstronauts.co>
  *
