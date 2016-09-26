@@ -2,7 +2,7 @@ const buble = require('rollup-plugin-buble')
 const pkg = require('../package.json')
 
 module.exports = {
-  entry: 'src/index.js',
+  entry: 'src/plugin.js',
   dest: pkg['main'],
   format: 'umd',
   plugins: [buble()],

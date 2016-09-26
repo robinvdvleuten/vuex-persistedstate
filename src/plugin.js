@@ -11,10 +11,12 @@ export default function createPersistedState ({
     )
 
     store.subscribe((mutation, state) => {
-      localStorage.setItem(key, JSON.stringify(paths.reduce((substate, path) => {
+      const persistedState = paths.length === 0 ? state : paths.reduce((substate, path) => {
         objectPath.set(substate, path, objectPath.get(state, path))
         return substate
-      }, {})))
+      }, {})
+
+      localStorage.setItem(key, JSON.stringify(persistedState))
     })
   }
 }
