@@ -1,5 +1,5 @@
 /**
- * vuex-persistedstate v0.2.0
+ * vuex-persistedstate v0.3.0
  *
  * (c) 2016 Robin van der Vleuten <robin@webstronauts.co>
  *
