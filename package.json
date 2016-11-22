@@ -21,7 +21,9 @@
   "files": [
     "dist/vuex-persistedstate.js",
     "dist/vuex-persistedstate.min.js",
-    "src"
+    "src",
+    "LICENSE",
+    "README.md"
   ],
   "scripts": {
     "build": "rollup --environment NODE_ENV:production -c build/rollup.config.js && uglifyjs dist/vuex-persistedstate.js -cm --comments -o dist/vuex-persistedstate.min.js",
