@@ -9,6 +9,8 @@ module.exports = {
   moduleName: 'createPersistedState',
   banner:
 `/**
+ * @license
+ *
  * vuex-persistedstate v${process.env.VERSION || pkg.version}
  *
  * (c) ${new Date().getFullYear()} Robin van der Vleuten <robin@webstronauts.co>

@@ -26,7 +26,7 @@
     "README.md"
   ],
   "scripts": {
-    "build": "rollup --environment NODE_ENV:production -c build/rollup.config.js && uglifyjs dist/vuex-persistedstate.js -cm --comments -o dist/vuex-persistedstate.min.js",
+    "build": "rollup --environment NODE_ENV:production -c build/rollup.config.js && uglifyjs dist/vuex-persistedstate.js --comments -o dist/vuex-persistedstate.min.js",
     "test": "npm run build && karma start karma.conf.js"
   },
   "dependencies": {

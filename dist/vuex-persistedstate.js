@@ -1,4 +1,6 @@
 /**
+ * @license
+ *
  * vuex-persistedstate v0.3.0
  *
  * (c) 2016 Robin van der Vleuten <robin@webstronauts.co>
@@ -25,16 +27,16 @@ function createPersistedState (ref) {
   return function (store) {
     store.replaceState(
       merge({}, store.state, getState(key))
-    )
+    );
 
     store.subscribe(function (mutation, state) {
       var persistedState = paths.length === 0 ? state : paths.reduce(function (substate, path) {
-        objectPath.set(substate, path, objectPath.get(state, path))
+        objectPath.set(substate, path, objectPath.get(state, path));
         return substate
-      }, {})
+      }, {});
 
-      setState(key, persistedState)
-    })
+      setState(key, persistedState);
+    });
   }
 }
 
