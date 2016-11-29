@@ -29,33 +29,33 @@
     "esnext": true,
     "space": true,
     "semicolon": false,
-    "envs": ["browser", "jasmine"],
+    "envs": [
+      "browser",
+      "jasmine"
+    ],
     "rules": {
       "object-curly-spacing": 0
     }
   },
   "scripts": {
     "build": "rollup --environment NODE_ENV:production -c build/rollup.config.js && uglifyjs dist/vuex-persistedstate.js --comments -o dist/vuex-persistedstate.min.js",
-    "test": "xo && npm run build && karma start karma.conf.js"
+    "test": "xo && npm run build && ava --serial"
   },
   "dependencies": {
     "lodash.merge": "^4.6.0",
     "object-path": "^0.11.2"
   },
   "devDependencies": {
-    "browserify": "^13.1.0",
+    "ava": "^0.17.0",
+    "browser-env": "^2.0.16",
+    "dom-storage": "^2.0.2",
     "eslint": "^3.11.1",
-    "jasmine-core": "^2.5.2",
-    "karma": "^1.3.0",
-    "karma-browserify": "^5.1.0",
-    "karma-jasmine": "^1.0.2",
-    "karma-phantomjs-launcher": "^1.0.2",
-    "karma-spec-reporter": "0.0.26",
-    "phantomjs-prebuilt": "^2.1.12",
     "rollup": "^0.36.0",
     "rollup-plugin-buble": "^0.14.0",
+    "sinon": "^1.17.6",
     "uglify-js": "^2.7.3",
-    "watchify": "^3.7.0",
+    "vue": "^2.0.0",
+    "vuex": "^2.0.0",
     "xo": "^0.17.1"
   },
   "peerDependencies": {
