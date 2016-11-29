@@ -3,7 +3,7 @@ const pkg = require('../package.json')
 
 module.exports = {
   entry: 'src/plugin.js',
-  dest: pkg['main'],
+  dest: pkg.main,
   format: 'umd',
   plugins: [buble()],
   moduleName: 'createPersistedState',

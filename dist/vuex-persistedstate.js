@@ -24,12 +24,12 @@ var defaultReducer = function (state, paths) { return (
   }, {})
 ); };
 
-function createPersistedState (ref) {
+function createPersistedState(ref) {
   if ( ref === void 0 ) ref = {};
   var key = ref.key; if ( key === void 0 ) key = 'vuex';
   var paths = ref.paths; if ( paths === void 0 ) paths = [];
-  var getState = ref.getState; if ( getState === void 0 ) getState = function (key) { return JSON.parse(localStorage.getItem(key)); };
-  var setState = ref.setState; if ( setState === void 0 ) setState = function (key, state) { return localStorage.setItem(key, JSON.stringify(state)); };
+  var getState = ref.getState; if ( getState === void 0 ) getState = function (key) { return JSON.parse(window.localStorage.getItem(key)); };
+  var setState = ref.setState; if ( setState === void 0 ) setState = function (key, state) { return window.localStorage.setItem(key, JSON.stringify(state)); };
   var reducer = ref.reducer; if ( reducer === void 0 ) reducer = defaultReducer;
 
   return function (store) {

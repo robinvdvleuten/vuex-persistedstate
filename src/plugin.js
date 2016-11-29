@@ -6,13 +6,13 @@ const defaultReducer = (state, paths) => (
     objectPath.set(substate, path, objectPath.get(state, path))
     return substate
   }, {})
-);
+)
 
-export default function createPersistedState ({
+export default function createPersistedState({
   key = 'vuex',
   paths = [],
-  getState = (key) => JSON.parse(localStorage.getItem(key)),
-  setState = (key, state) => localStorage.setItem(key, JSON.stringify(state)),
+  getState = key => JSON.parse(window.localStorage.getItem(key)),
+  setState = (key, state) => window.localStorage.setItem(key, JSON.stringify(state)),
   reducer = defaultReducer
 } = {}) {
   return store => {
