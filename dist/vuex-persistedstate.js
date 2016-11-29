@@ -17,12 +17,20 @@
 merge = 'default' in merge ? merge['default'] : merge;
 objectPath = 'default' in objectPath ? objectPath['default'] : objectPath;
 
+var defaultReducer = function (state, paths) { return (
+  paths.length === 0 ? state : paths.reduce(function (substate, path) {
+    objectPath.set(substate, path, objectPath.get(state, path));
+    return substate
+  }, {})
+); };
+
 function createPersistedState (ref) {
   if ( ref === void 0 ) ref = {};
   var key = ref.key; if ( key === void 0 ) key = 'vuex';
   var paths = ref.paths; if ( paths === void 0 ) paths = [];
   var getState = ref.getState; if ( getState === void 0 ) getState = function (key) { return JSON.parse(localStorage.getItem(key)); };
   var setState = ref.setState; if ( setState === void 0 ) setState = function (key, state) { return localStorage.setItem(key, JSON.stringify(state)); };
+  var reducer = ref.reducer; if ( reducer === void 0 ) reducer = defaultReducer;
 
   return function (store) {
     store.replaceState(
@@ -30,12 +38,7 @@ function createPersistedState (ref) {
     );
 
     store.subscribe(function (mutation, state) {
-      var persistedState = paths.length === 0 ? state : paths.reduce(function (substate, path) {
-        objectPath.set(substate, path, objectPath.get(state, path));
-        return substate
-      }, {});
-
-      setState(key, persistedState);
+      setState(key, reducer(state, paths));
     });
   }
 }

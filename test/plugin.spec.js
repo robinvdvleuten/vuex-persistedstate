@@ -60,7 +60,7 @@ describe('vuex-persistedstate', function () {
     store = jasmine.createSpyObj('store', ['replaceState', 'subscribe'])
     store.state = {}
 
-    plugin = createPersistedState({ paths: [] })
+    plugin = createPersistedState()
     plugin(store)
 
     const subscriber = store.subscribe.calls.argsFor(0)[0]
@@ -90,5 +90,20 @@ describe('vuex-persistedstate', function () {
 
     const subscriber = store.subscribe.calls.argsFor(0)[0]
     subscriber('mutation', { setter: 'item' })
+  })
+
+  it('uses the configured reducer when persisting the state', function () {
+    store = jasmine.createSpyObj('store', ['replaceState', 'subscribe'])
+    store.state = {}
+
+    const customReducer = jasmine.createSpy()
+
+    plugin = createPersistedState({ paths: ['custom'], reducer: customReducer })
+    plugin(store)
+
+    const subscriber = store.subscribe.calls.argsFor(0)[0]
+    subscriber('mutation', { custom: 'value' })
+
+    expect(customReducer).toHaveBeenCalledWith({ custom: 'value' }, ['custom'])
   })
 })
