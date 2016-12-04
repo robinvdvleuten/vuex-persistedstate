@@ -35,6 +35,26 @@ can be provided to configure the plugin for your specific needs:
 - `setState <Function>`: A function that will be called to persist the given state. Defaults to localStorage.
 - `reducer <Function>`: A function that will be called to reduce the state to persist based on the given paths. Defaults to include the values.
 
+### Customization
+
+If it's not ideal to have the state of the Vuex store inside localstorage. One can easily implement the functionality to use [cookies](https://github.com/js-cookie/js-cookie) for that (or any other you can think of);
+
+```js
+import { Store } from 'vuex'
+import createPersistedState from 'vuex-persistedstate'
+import * as Cookies from 'js-cookie'
+
+const store = new Store({
+  // ...
+  plugins: [
+    createPersistedState({
+      getState: (key) => Cookies.getJSON(key),
+      setState: (key, state) => Cookies.set(key, state, { expires: 3, secure: true })
+    })
+  ]
+})
+```
+
 ### License
 
 [MIT](http://opensource.org/licenses/MIT)
