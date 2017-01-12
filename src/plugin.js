@@ -14,7 +14,7 @@ export default function createPersistedState({
   paths = [],
   getState = key => {
     if (inBrowser) {
-      JSON.parse(window.localStorage.getItem(key))
+      return JSON.parse(window.localStorage.getItem(key))
     }
   },
   setState = (key, state) => {
