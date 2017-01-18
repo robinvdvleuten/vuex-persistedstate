@@ -57,4 +57,4 @@ const store = new Store({
 
 ### License
 
-[MIT](http://opensource.org/licenses/MIT)
+MIT, see LICENSE.
