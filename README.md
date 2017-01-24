@@ -5,13 +5,13 @@ Persist [Vuex](http://vuex.vuejs.org/) state with [localStorage](https://develop
 [![NPM version](https://img.shields.io/npm/v/vuex-persistedstate.svg?style=flat-square)](https://www.npmjs.com/package/vuex-persistedstate)
 [![Build Status](https://img.shields.io/travis/robinvdvleuten/vuex-persistedstate.svg?style=flat-square)](https://travis-ci.org/robinvdvleuten/vuex-persistedstate)
 
-### Installation
+## Installation
 
 ```bash
 $ npm install vuex-persistedstate
 ```
 
-### Usage
+## Usage
 
 ```js
 import createPersistedState from 'vuex-persistedstate'
@@ -22,9 +22,9 @@ const store = new Vuex.Store({
 })
 ```
 
-### API
+## API
 
-#### `createPersistedState([options])`
+### `createPersistedState([options])`
 
 Creates a new instance of the plugin with the given options. The following options
 can be provided to configure the plugin for your specific needs:
@@ -35,7 +35,7 @@ can be provided to configure the plugin for your specific needs:
 - `setState <Function>`: A function that will be called to persist the given state. Defaults to localStorage.
 - `reducer <Function>`: A function that will be called to reduce the state to persist based on the given paths. Defaults to include the values.
 
-### Customization
+## Customization
 
 If it's not ideal to have the state of the Vuex store inside localstorage. One can easily implement the functionality to use [cookies](https://github.com/js-cookie/js-cookie) for that (or any other you can think of);
 
@@ -55,6 +55,6 @@ const store = new Store({
 })
 ```
 
-### License
+## License
 
-MIT, see LICENSE.
+MIT © [Robin van der Vleuten](https://www.robinvdvleuten.nl)
