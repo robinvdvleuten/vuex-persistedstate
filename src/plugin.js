@@ -1,5 +1,6 @@
 import merge from 'lodash.merge'
 import objectPath from 'object-path'
+const inBrowser = typeof window !== 'undefined'
 
 const defaultReducer = (state, paths) => (
   paths.length === 0 ? state : paths.reduce((substate, path) => {
@@ -11,8 +12,16 @@ const defaultReducer = (state, paths) => (
 export default function createPersistedState({
   key = 'vuex',
   paths = [],
-  getState = key => JSON.parse(window.localStorage.getItem(key)),
-  setState = (key, state) => window.localStorage.setItem(key, JSON.stringify(state)),
+  getState = key => {
+    if (inBrowser) {
+      return JSON.parse(window.localStorage.getItem(key))
+    }
+  },
+  setState = (key, state) => {
+    if (inBrowser) {
+      window.localStorage.setItem(key, JSON.stringify(state))
+    }
+  },
   reducer = defaultReducer
 } = {}) {
   return store => {
