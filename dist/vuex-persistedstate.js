@@ -62,13 +62,14 @@ function createPersistedState(ref) {
   var setState = ref.setState; if ( setState === void 0 ) setState = function (key, state, storage) { return storage.setItem(key, JSON.stringify(state)); };
   var reducer = ref.reducer; if ( reducer === void 0 ) reducer = defaultReducer;
   var storage = ref.storage; if ( storage === void 0 ) storage = defaultStorage;
+  var subscriber = ref.subscriber; if ( subscriber === void 0 ) subscriber = function (store) { return function (handler) { return store.subscribe(handler); }; };
 
   return function (store) {
     store.replaceState(
       merge({}, store.state, getState(key, storage))
     );
 
-    store.subscribe(function (mutation, state) {
+    subscriber(store)(function (mutation, state) {
       setState(key, reducer(state, paths), storage);
     });
   }

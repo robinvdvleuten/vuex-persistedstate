@@ -75,7 +75,7 @@ test('persist the changed full state back to serialized JSON when no paths are g
   sinon.spy(store, 'replaceState')
   sinon.spy(store, 'subscribe')
 
-  const plugin = createPersistedState({ storage: window.localStorage })
+  const plugin = createPersistedState()
   plugin(store)
 
   const subscriber = store.subscribe.getCall(0).args[0]
@@ -109,8 +109,7 @@ test('persist the changed state back through the configured setter', t => {
   const plugin = createPersistedState({
     setState: (key, state) => {
       t.deepEqual(state, { setter: 'item' })
-    },
-    storage: window.localStorage
+    }
   })
 
   plugin(store)
