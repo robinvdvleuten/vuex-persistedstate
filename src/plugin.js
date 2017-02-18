@@ -38,7 +38,7 @@ export default function createPersistedState({
   paths = [],
   getState = (key, storage) => {
     const value = storage.getItem(key)
-    return value ? JSON.parse(value) : undefined
+    return value && value !== 'undefined' ? JSON.parse(value) : undefined
   },
   setState = (key, state, storage) => storage.setItem(key, JSON.stringify(state)),
   reducer = defaultReducer,
@@ -46,9 +46,12 @@ export default function createPersistedState({
   subscriber = store => handler => store.subscribe(handler)
 } = {}) {
   return store => {
-    store.replaceState(
-      merge({}, store.state, getState(key, storage))
-    )
+    const savedState = getState(key, storage)
+    if (typeof savedState === 'object') {
+      store.replaceState(
+        merge({}, store.state, savedState)
+      )
+    }
 
     subscriber(store)((mutation, state) => {
       setState(key, reducer(state, paths), storage)
