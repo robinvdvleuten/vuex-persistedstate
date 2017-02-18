@@ -8,20 +8,53 @@ const defaultReducer = (state, paths) => (
   }, {})
 )
 
+const defaultStorage = (() => {
+  const hasLocalStorage = typeof window !== 'undefined' && window.localStorage
+  if (hasLocalStorage) {
+    return window.localStorage
+  }
+
+  class InternalStorage {
+    setItem(key, item) {
+      this[key] = item
+      return item
+    }
+    getItem(key) {
+      return this[key]
+    }
+    removeItem(key) {
+      delete this[key]
+    }
+    clear() {
+      Object.keys(this).forEach(key => delete this[key])
+    }
+  }
+
+  return new InternalStorage()
+})()
+
 export default function createPersistedState({
   key = 'vuex',
   paths = [],
-  getState = key => JSON.parse(window.localStorage.getItem(key)),
-  setState = (key, state) => window.localStorage.setItem(key, JSON.stringify(state)),
-  reducer = defaultReducer
+  getState = (key, storage) => {
+    const value = storage.getItem(key)
+    return value && value !== 'undefined' ? JSON.parse(value) : undefined
+  },
+  setState = (key, state, storage) => storage.setItem(key, JSON.stringify(state)),
+  reducer = defaultReducer,
+  storage = defaultStorage,
+  subscriber = store => handler => store.subscribe(handler)
 } = {}) {
   return store => {
-    store.replaceState(
-      merge({}, store.state, getState(key))
-    )
+    const savedState = getState(key, storage)
+    if (typeof savedState === 'object') {
+      store.replaceState(
+        merge({}, store.state, savedState)
+      )
+    }
 
-    store.subscribe((mutation, state) => {
-      setState(key, reducer(state, paths))
+    subscriber(store)((mutation, state) => {
+      setState(key, reducer(state, paths), storage)
     })
   }
 }

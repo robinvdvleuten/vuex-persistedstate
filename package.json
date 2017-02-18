@@ -37,6 +37,11 @@
       "object-curly-spacing": 0
     }
   },
+  "ava": {
+    "require": [
+      "./test/helpers/setup.js"
+    ]
+  },
   "scripts": {
     "build": "rollup --environment NODE_ENV:production -c build/rollup.config.js && uglifyjs dist/vuex-persistedstate.js --comments -o dist/vuex-persistedstate.min.js",
     "test": "xo && npm run build && ava --serial"

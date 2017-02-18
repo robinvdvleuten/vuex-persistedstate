@@ -1,17 +1,13 @@
 import test from 'ava'
-import Storage from 'dom-storage'
 import Vue from 'vue'
 import Vuex, { Store } from 'vuex'
-import browserEnv from 'browser-env'
 import sinon from 'sinon'
 import createPersistedState from '../dist/vuex-persistedstate'
-
-browserEnv(['window'])
 
 Vue.use(Vuex)
 
 test('replaces store\'s state and subscribes to changes when initializing', t => {
-  window.localStorage = new Storage()
+  window.localStorage.clear()
   window.localStorage.setItem('vuex', JSON.stringify({ persisted: 'json' }))
 
   const store = new Store({ state: { original: 'state' } })
@@ -26,7 +22,7 @@ test('replaces store\'s state and subscribes to changes when initializing', t =>
 })
 
 test('respects nested values when it replaces store\'s state on initializing', t => {
-  window.localStorage = new Storage()
+  window.localStorage.clear()
   window.localStorage.setItem('vuex', JSON.stringify({ nested: { persisted: 'json' }}))
 
   const store = new Store({ state: { nested: { original: 'state' } }})
@@ -41,7 +37,7 @@ test('respects nested values when it replaces store\'s state on initializing', t
 })
 
 test('persist the changed parial state back to serialized JSON', t => {
-  window.localStorage = new Storage()
+  window.localStorage.clear()
 
   const store = new Store({ state: {} })
   sinon.spy(store, 'replaceState')
@@ -57,7 +53,7 @@ test('persist the changed parial state back to serialized JSON', t => {
 })
 
 test('persist the changed partial state back to serialized JSON under a configured key', t => {
-  window.localStorage = new Storage()
+  window.localStorage.clear()
 
   const store = new Store({ state: {} })
   sinon.spy(store, 'replaceState')
@@ -73,7 +69,7 @@ test('persist the changed partial state back to serialized JSON under a configur
 })
 
 test('persist the changed full state back to serialized JSON when no paths are given', t => {
-  window.localStorage = new Storage()
+  window.localStorage.clear()
 
   const store = new Store({ state: {} })
   sinon.spy(store, 'replaceState')
@@ -89,7 +85,7 @@ test('persist the changed full state back to serialized JSON when no paths are g
 })
 
 test('rehydrates store\'s state through the configured getter', t => {
-  window.localStorage = new Storage()
+  window.localStorage.clear()
 
   const store = new Store({ state: {} })
   sinon.spy(store, 'replaceState')
@@ -104,7 +100,7 @@ test('rehydrates store\'s state through the configured getter', t => {
 test('persist the changed state back through the configured setter', t => {
   t.plan(1)
 
-  window.localStorage = new Storage()
+  window.localStorage.clear()
 
   const store = new Store({ state: {} })
   sinon.spy(store, 'replaceState')
@@ -123,7 +119,7 @@ test('persist the changed state back through the configured setter', t => {
 })
 
 test('uses the configured reducer when persisting the state', t => {
-  window.localStorage = new Storage()
+  window.localStorage.clear()
 
   const store = new Store({ state: {} })
   sinon.spy(store, 'replaceState')

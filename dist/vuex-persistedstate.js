@@ -1,9 +1,9 @@
 /**
  * @license
  *
- * vuex-persistedstate v1.0.0
+ * vuex-persistedstate v1.1.0
  *
- * (c) 2016 Robin van der Vleuten <robin@webstronauts.co>
+ * (c) 2017 Robin van der Vleuten <robin@webstronauts.co>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -24,21 +24,56 @@ var defaultReducer = function (state, paths) { return (
   }, {})
 ); };
 
+var defaultStorage = (function () {
+  var hasLocalStorage = typeof window !== 'undefined' && window.localStorage;
+  if (hasLocalStorage) {
+    return window.localStorage
+  }
+
+  var InternalStorage = function InternalStorage () {};
+
+  InternalStorage.prototype.setItem = function setItem (key, item) {
+    this[key] = item;
+    return item
+  };
+  InternalStorage.prototype.getItem = function getItem (key) {
+    return this[key]
+  };
+  InternalStorage.prototype.removeItem = function removeItem (key) {
+    delete this[key];
+  };
+  InternalStorage.prototype.clear = function clear () {
+      var this$1 = this;
+
+    Object.keys(this).forEach(function (key) { return delete this$1[key]; });
+  };
+
+  return new InternalStorage()
+})();
+
 function createPersistedState(ref) {
   if ( ref === void 0 ) ref = {};
   var key = ref.key; if ( key === void 0 ) key = 'vuex';
   var paths = ref.paths; if ( paths === void 0 ) paths = [];
-  var getState = ref.getState; if ( getState === void 0 ) getState = function (key) { return JSON.parse(window.localStorage.getItem(key)); };
-  var setState = ref.setState; if ( setState === void 0 ) setState = function (key, state) { return window.localStorage.setItem(key, JSON.stringify(state)); };
+  var getState = ref.getState; if ( getState === void 0 ) getState = function (key, storage) {
+    var value = storage.getItem(key);
+    return value && value !== 'undefined' ? JSON.parse(value) : undefined
+  };
+  var setState = ref.setState; if ( setState === void 0 ) setState = function (key, state, storage) { return storage.setItem(key, JSON.stringify(state)); };
   var reducer = ref.reducer; if ( reducer === void 0 ) reducer = defaultReducer;
+  var storage = ref.storage; if ( storage === void 0 ) storage = defaultStorage;
+  var subscriber = ref.subscriber; if ( subscriber === void 0 ) subscriber = function (store) { return function (handler) { return store.subscribe(handler); }; };
 
   return function (store) {
-    store.replaceState(
-      merge({}, store.state, getState(key))
-    );
+    var savedState = getState(key, storage);
+    if (typeof savedState === 'object') {
+      store.replaceState(
+        merge({}, store.state, savedState)
+      );
+    }
 
-    store.subscribe(function (mutation, state) {
-      setState(key, reducer(state, paths));
+    subscriber(store)(function (mutation, state) {
+      setState(key, reducer(state, paths), storage);
     });
   }
 }
