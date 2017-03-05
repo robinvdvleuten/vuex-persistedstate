@@ -43,6 +43,7 @@ export default function createPersistedState({
   setState = (key, state, storage) => storage.setItem(key, JSON.stringify(state)),
   reducer = defaultReducer,
   storage = defaultStorage,
+  filter = () => true,
   subscriber = store => handler => store.subscribe(handler)
 } = {}) {
   return store => {
@@ -54,7 +55,9 @@ export default function createPersistedState({
     }
 
     subscriber(store)((mutation, state) => {
-      setState(key, reducer(state, paths), storage)
+      if (filter(mutation)) {
+        setState(key, reducer(state, paths), storage)
+      }
     })
   }
 }

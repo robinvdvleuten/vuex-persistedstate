@@ -37,6 +37,7 @@ can be provided to configure the plugin for your specific needs:
 - `storage <Storage>`: Instead for (or in combination with) `getState` and `setState`. Defaults to localStorage (or internal storage for Server Side Rendering).
 - `getState <Function>`: A function that will be called to rehydrate a previously persisted state. Defaults to using `storage`.
 - `setState <Function>`: A function that will be called to persist the given state. Defaults to using `storage`.
+- `filter <Function>`: A function that will be called to filter to specific mumations with which will trigger `setState` on storage. Defaults to `() => true`
 
 ## Customization
 
