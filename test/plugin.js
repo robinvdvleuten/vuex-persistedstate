@@ -135,3 +135,23 @@ test('uses the configured reducer when persisting the state', t => {
 
   t.true(customReducer.calledWith({ custom: 'value' }, ['custom']))
 })
+
+test('filters to specific mutations', t => {
+  window.localStorage.clear()
+
+  const store = new Store({ state: {} })
+  sinon.spy(store, 'replaceState')
+  sinon.spy(store, 'subscribe')
+
+  const plugin = createPersistedState({ filter: mutation => ['filter'].indexOf(mutation) !== -1 })
+  plugin(store)
+
+  const subscriber = store.subscribe.getCall(0).args[0]
+  subscriber('mutation', { changed: 'state' })
+
+  t.is(window.localStorage.getItem('vuex'), null)
+
+  subscriber('filter', { changed: 'state' })
+
+  t.is(window.localStorage.getItem('vuex'), JSON.stringify({changed: 'state'}))
+})
