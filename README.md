@@ -2,8 +2,8 @@
 
 Persist [Vuex](http://vuex.vuejs.org/) state with [localStorage](https://developer.mozilla.org/nl/docs/Web/API/Window/localStorage).
 
-[![NPM version](https://img.shields.io/npm/v/vuex-persistedstate.svg?style=flat-square)](https://www.npmjs.com/package/vuex-persistedstate)
-[![Build Status](https://img.shields.io/travis/robinvdvleuten/vuex-persistedstate.svg?style=flat-square)](https://travis-ci.org/robinvdvleuten/vuex-persistedstate)
+[![NPM version](https://img.shields.io/npm/v/vuex-persistedstate.svg)](https://www.npmjs.com/package/vuex-persistedstate)
+[![Build Status](https://img.shields.io/travis/robinvdvleuten/vuex-persistedstate.svg)](https://travis-ci.org/robinvdvleuten/vuex-persistedstate)
 [![Standard - JavaScript Style Guide](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](http://standardjs.com/)
 
 ## Installation
