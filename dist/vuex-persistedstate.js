@@ -25,8 +25,7 @@ var defaultReducer = function (state, paths) { return (
 ); };
 
 var defaultStorage = (function () {
-  var hasLocalStorage = typeof window !== 'undefined' && window.localStorage;
-  if (hasLocalStorage) {
+  if (typeof window !== 'undefined' && window.localStorage) {
     return window.localStorage
   }
 
@@ -36,12 +35,15 @@ var defaultStorage = (function () {
     this[key] = item;
     return item
   };
+
   InternalStorage.prototype.getItem = function getItem (key) {
     return this[key]
   };
+
   InternalStorage.prototype.removeItem = function removeItem (key) {
     delete this[key];
   };
+
   InternalStorage.prototype.clear = function clear () {
       var this$1 = this;
 
@@ -51,7 +53,7 @@ var defaultStorage = (function () {
   return new InternalStorage()
 })();
 
-function createPersistedState(ref) {
+function createPersistedState (ref) {
   if ( ref === void 0 ) ref = {};
   var key = ref.key; if ( key === void 0 ) key = 'vuex';
   var paths = ref.paths; if ( paths === void 0 ) paths = [];

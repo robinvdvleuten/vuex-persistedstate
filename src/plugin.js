@@ -9,23 +9,25 @@ const defaultReducer = (state, paths) => (
 )
 
 const defaultStorage = (() => {
-  const hasLocalStorage = typeof window !== 'undefined' && window.localStorage
-  if (hasLocalStorage) {
+  if (typeof window !== 'undefined' && window.localStorage) {
     return window.localStorage
   }
 
   class InternalStorage {
-    setItem(key, item) {
+    setItem (key, item) {
       this[key] = item
       return item
     }
-    getItem(key) {
+
+    getItem (key) {
       return this[key]
     }
-    removeItem(key) {
+
+    removeItem (key) {
       delete this[key]
     }
-    clear() {
+
+    clear () {
       Object.keys(this).forEach(key => delete this[key])
     }
   }
@@ -33,7 +35,7 @@ const defaultStorage = (() => {
   return new InternalStorage()
 })()
 
-export default function createPersistedState({
+export default function createPersistedState ({
   key = 'vuex',
   paths = [],
   getState = (key, storage) => {
