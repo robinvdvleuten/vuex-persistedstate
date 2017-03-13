@@ -6,6 +6,11 @@ Persist [Vuex](http://vuex.vuejs.org/) state with [localStorage](https://develop
 [![Build Status](https://img.shields.io/travis/robinvdvleuten/vuex-persistedstate.svg)](https://travis-ci.org/robinvdvleuten/vuex-persistedstate)
 [![Standard - JavaScript Style Guide](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](http://standardjs.com/)
 
+## Requirements
+
+- [Vue.js](https://vuejs.org) (v2.0.0+)
+- [Vuex](http://vuex.vuejs.org) (v2.0.0+)
+
 ## Installation
 
 ```bash
