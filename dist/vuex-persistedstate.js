@@ -26,8 +26,8 @@ var defaultReducer = function (state, paths) { return (
 
 var canWriteToLocalStorage = function () {
   try {
-    localStorage.setItem('_canWriteToLocalStorage', 1);
-    localStorage.removeItem('_canWriteToLocalStorage');
+    window.localStorage.setItem('_canWriteToLocalStorage', 1);
+    window.localStorage.removeItem('_canWriteToLocalStorage');
     return true
   } catch (e) {
     return false
