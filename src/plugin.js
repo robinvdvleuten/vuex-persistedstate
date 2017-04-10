@@ -8,8 +8,18 @@ const defaultReducer = (state, paths) => (
   }, {})
 )
 
+const canWriteToLocalStorage = () => {
+  try {
+    localStorage.setItem('_canWriteToLocalStorage', 1)
+    localStorage.removeItem('_canWriteToLocalStorage')
+    return true
+  } catch (e) {
+    return false
+  }
+}
+
 const defaultStorage = (() => {
-  if (typeof window !== 'undefined' && window.localStorage) {
+  if (typeof window !== 'undefined' && window.localStorage && canWriteToLocalStorage()) {
     return window.localStorage
   }
 
