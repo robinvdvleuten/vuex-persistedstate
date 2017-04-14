@@ -19,7 +19,7 @@ const canWriteToLocalStorage = () => {
 }
 
 const defaultStorage = (() => {
-  if (typeof window !== 'undefined' && window.localStorage && canWriteToLocalStorage()) {
+  if (typeof window !== 'undefined' && 'localStorage' in window && canWriteToLocalStorage()) {
     return window.localStorage
   }
 
