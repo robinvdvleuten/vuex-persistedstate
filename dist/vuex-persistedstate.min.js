@@ -1,7 +1,7 @@
 /**
  * @license
  *
- * vuex-persistedstate v1.3.0
+ * vuex-persistedstate v1.4.0
  *
  * (c) 2017 Robin van der Vleuten <robin@webstronauts.co>
  *
