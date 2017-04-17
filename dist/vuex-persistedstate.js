@@ -24,8 +24,18 @@ var defaultReducer = function (state, paths) { return (
   }, {})
 ); };
 
+var canWriteToLocalStorage = function () {
+  try {
+    window.localStorage.setItem('_canWriteToLocalStorage', 1);
+    window.localStorage.removeItem('_canWriteToLocalStorage');
+    return true
+  } catch (e) {
+    return false
+  }
+};
+
 var defaultStorage = (function () {
-  if (typeof window !== 'undefined' && window.localStorage) {
+  if (typeof window !== 'undefined' && 'localStorage' in window && canWriteToLocalStorage()) {
     return window.localStorage
   }
 
