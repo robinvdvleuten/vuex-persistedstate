@@ -17,37 +17,41 @@
 merge = 'default' in merge ? merge['default'] : merge;
 objectPath = 'default' in objectPath ? objectPath['default'] : objectPath;
 
-var defaultReducer = function (state, paths) { return (
-  paths.length === 0 ? state : paths.reduce(function (substate, path) {
-    objectPath.set(substate, path, objectPath.get(state, path));
-    return substate
-  }, {})
-); };
+var defaultReducer = function (state, paths) { return (paths.length === 0
+    ? state
+    : paths.reduce(function (substate, path) {
+        objectPath.set(substate, path, objectPath.get(state, path));
+        return substate;
+      }, {})); };
 
 var canWriteToLocalStorage = function () {
   try {
     window.localStorage.setItem('_canWriteToLocalStorage', 1);
     window.localStorage.removeItem('_canWriteToLocalStorage');
-    return true
+    return true;
   } catch (e) {
-    return false
+    return false;
   }
 };
 
 var defaultStorage = (function () {
-  if (typeof window !== 'undefined' && 'localStorage' in window && canWriteToLocalStorage()) {
-    return window.localStorage
+  if (
+    typeof window !== 'undefined' &&
+    'localStorage' in window &&
+    canWriteToLocalStorage()
+  ) {
+    return window.localStorage;
   }
 
   var InternalStorage = function InternalStorage () {};
 
   InternalStorage.prototype.setItem = function setItem (key, item) {
     this[key] = item;
-    return item
+    return item;
   };
 
   InternalStorage.prototype.getItem = function getItem (key) {
-    return this[key]
+    return this[key];
   };
 
   InternalStorage.prototype.removeItem = function removeItem (key) {
@@ -60,17 +64,19 @@ var defaultStorage = (function () {
     Object.keys(this).forEach(function (key) { return delete this$1[key]; });
   };
 
-  return new InternalStorage()
+  return new InternalStorage();
 })();
 
-function createPersistedState (ref) {
+function createPersistedState(
+  ref
+) {
   if ( ref === void 0 ) ref = {};
   var key = ref.key; if ( key === void 0 ) key = 'vuex';
   var paths = ref.paths; if ( paths === void 0 ) paths = [];
   var getState = ref.getState; if ( getState === void 0 ) getState = function (key, storage) {
-    var value = storage.getItem(key);
-    return value && value !== 'undefined' ? JSON.parse(value) : undefined
-  };
+      var value = storage.getItem(key);
+      return value && value !== 'undefined' ? JSON.parse(value) : undefined;
+    };
   var setState = ref.setState; if ( setState === void 0 ) setState = function (key, state, storage) { return storage.setItem(key, JSON.stringify(state)); };
   var reducer = ref.reducer; if ( reducer === void 0 ) reducer = defaultReducer;
   var storage = ref.storage; if ( storage === void 0 ) storage = defaultStorage;
@@ -80,9 +86,7 @@ function createPersistedState (ref) {
   return function (store) {
     var savedState = getState(key, storage);
     if (typeof savedState === 'object') {
-      store.replaceState(
-        merge({}, store.state, savedState)
-      );
+      store.replaceState(merge({}, store.state, savedState));
     }
 
     subscriber(store)(function (mutation, state) {
@@ -90,7 +94,7 @@ function createPersistedState (ref) {
         setState(key, reducer(state, paths), storage);
       }
     });
-  }
+  };
 }
 
 return createPersistedState;

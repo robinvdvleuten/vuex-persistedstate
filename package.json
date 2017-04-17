@@ -25,16 +25,25 @@
     "LICENSE",
     "README.md"
   ],
+  "scripts": {
+    "build": "rollup --environment NODE_ENV:production -c build/rollup.config.js && uglifyjs dist/vuex-persistedstate.js --comments -o dist/vuex-persistedstate.min.js",
+    "test": "npm run build && ava --serial",
+    "precommit": "npm run build && lint-staged",
+    "prepublish": "npm run build"
+  },
+  "lint-staged": {
+    "src/**/*.js": [
+      "prettier --single-quote --write",
+      "git add"
+    ]
+  },
   "ava": {
     "require": [
       "./test/helpers/setup.js"
     ]
   },
-  "scripts": {
-    "build": "rollup --environment NODE_ENV:production -c build/rollup.config.js && uglifyjs dist/vuex-persistedstate.js --comments -o dist/vuex-persistedstate.min.js",
-    "test": "standard src/**/*.js test/**/*.js && npm run build && ava --serial"
-  },
   "dependencies": {
+    "husky": "^0.13.3",
     "lodash.merge": "^4.6.0",
     "object-path": "^0.11.2"
   },
@@ -43,10 +52,11 @@
     "browser-env": "^2.0.16",
     "dom-storage": "^2.0.2",
     "eslint": "^3.11.1",
+    "lint-staged": "^3.4.0",
+    "prettier": "^1.1.0",
     "rollup": "^0.36.0",
     "rollup-plugin-buble": "^0.14.0",
     "sinon": "^1.17.6",
-    "standard": "^9.0.0",
     "uglify-js": "^2.7.3",
     "vue": "^2.0.0",
     "vuex": "^2.0.0"
