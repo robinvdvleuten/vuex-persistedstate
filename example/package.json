@@ -1,0 +1,16 @@
+{
+  "scripts": {
+    "start": "webpack-dev-server"
+  },
+  "dependencies": {
+    "vue": "^2.0.0",
+    "vuex": "^2.0.0"
+  },
+  "devDependencies": {
+    "babel-core": "^6.23.1",
+    "babel-loader": "^6.4.0",
+    "babel-preset-env": "^1.4.0",
+    "webpack": "^2.2.0",
+    "webpack-dev-server": "^2.2.0"
+  }
+}
