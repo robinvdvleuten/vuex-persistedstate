@@ -43,6 +43,7 @@ can be provided to configure the plugin for your specific needs:
 - `getState <Function>`: A function that will be called to rehydrate a previously persisted state. Defaults to using `storage`.
 - `setState <Function>`: A function that will be called to persist the given state. Defaults to using `storage`.
 - `filter <Function>`: A function that will be called to filter any mutations which will trigger `setState` on storage eventually. Defaults to `() => true`
+- `noJSON <Boolean>`: Whether de/encoding values from/to JSON before saving them to storage should be skipped. Defaults to false
 
 ## Customization
 
@@ -68,6 +69,17 @@ Alternatively, an object following the Storage protocol (getItem, setItem, remov
 
 ```js
 createPersistedState({ storage: window.sessionStorage })
+```
+
+Support for asynchronous (Promise-based) storage is also given (in combination with the 'noJSON' option):
+
+```js
+import localforage from "localforage"
+
+createPersistedState({
+  storage: localforage,
+  noJSON: true
+})
 ```
 
 ## License
