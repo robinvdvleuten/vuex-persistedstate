@@ -54,12 +54,19 @@ export default function createPersistedState(
   {
     key = 'vuex',
     paths = [],
-    getState = (key, storage) => {
-      const value = storage.getItem(key);
-      return value && value !== 'undefined' ? JSON.parse(value) : undefined;
-    },
-    setState = (key, state, storage) =>
-      storage.setItem(key, JSON.stringify(state)),
+    noJSON = false,
+    getState = noJSON
+      ? (key, storage) => {
+          const value = storage.getItem(key);
+          return value && value !== 'undefined' ? value : undefined;
+        }
+      : (key, storage) => {
+          const value = storage.getItem(key);
+          return value && value !== 'undefined' ? JSON.parse(value) : undefined;
+        },
+    setState = noJSON
+      ? (key, state, storage) => storage.setItem(key, state)
+      : (key, state, storage) => storage.setItem(key, JSON.stringify(state)),
     reducer = defaultReducer,
     storage = defaultStorage,
     filter = () => true,
@@ -69,7 +76,13 @@ export default function createPersistedState(
   return store => {
     const savedState = getState(key, storage);
     if (typeof savedState === 'object') {
-      store.replaceState(merge({}, store.state, savedState));
+      if (typeof Promise !== 'undefined' && savedState instanceof Promise) {
+        savedState.then(asyncSavedState => {
+          store.replaceState(merge({}, store.state, asyncSavedState));
+        });
+      } else {
+        store.replaceState(merge({}, store.state, savedState));
+      }
     }
 
     subscriber(store)((mutation, state) => {

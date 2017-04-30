@@ -155,3 +155,47 @@ test('filters to specific mutations', t => {
 
   t.is(window.localStorage.getItem('vuex'), JSON.stringify({changed: 'state'}))
 })
+
+test('does not try en-/decode JSON when used with \'noJSON: true\'', t => {
+  const store = new Store({ state: { original: 'state' } })
+  sinon.spy(store, 'replaceState')
+  sinon.spy(store, 'subscribe')
+
+  const plugin = createPersistedState({
+    noJSON: true,
+    storage: {
+      setItem(name, value) {
+        t.deepEqual(value, { changed: 'state' })
+      },
+      getItem(name) {
+        return { persisted: 'json' }
+      },
+    },
+  })
+  plugin(store)
+
+  const subscriber = store.subscribe.getCall(0).args[0]
+  subscriber('mutation', { changed: 'state' })
+
+  t.true(store.replaceState.calledWith({ original: 'state', persisted: 'json' }))
+})
+
+test('allows storage.getItem to return a Promise', t => {
+  const store = new Store({ state: { original: 'state' } })
+  sinon.spy(store, 'replaceState')
+
+  const plugin = createPersistedState({
+    noJSON: true,
+    storage: {
+      setItem(name, value) { },
+      getItem(name) {
+        return new Promise((resolve, reject) => resolve({ persisted: 'json' }))
+      },
+    },
+  })
+  plugin(store)
+
+  setTimeout(() => {
+    t.true(store.replaceState.calledWith({ original: 'state', persisted: 'json' }))
+  })
+})

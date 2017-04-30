@@ -73,11 +73,19 @@ function createPersistedState(
   if ( ref === void 0 ) ref = {};
   var key = ref.key; if ( key === void 0 ) key = 'vuex';
   var paths = ref.paths; if ( paths === void 0 ) paths = [];
-  var getState = ref.getState; if ( getState === void 0 ) getState = function (key, storage) {
-      var value = storage.getItem(key);
-      return value && value !== 'undefined' ? JSON.parse(value) : undefined;
-    };
-  var setState = ref.setState; if ( setState === void 0 ) setState = function (key, state, storage) { return storage.setItem(key, JSON.stringify(state)); };
+  var noJSON = ref.noJSON; if ( noJSON === void 0 ) noJSON = false;
+  var getState = ref.getState; if ( getState === void 0 ) getState = noJSON
+      ? function (key, storage) {
+          var value = storage.getItem(key);
+          return value && value !== 'undefined' ? value : undefined;
+        }
+      : function (key, storage) {
+          var value = storage.getItem(key);
+          return value && value !== 'undefined' ? JSON.parse(value) : undefined;
+        };
+  var setState = ref.setState; if ( setState === void 0 ) setState = noJSON
+      ? function (key, state, storage) { return storage.setItem(key, state); }
+      : function (key, state, storage) { return storage.setItem(key, JSON.stringify(state)); };
   var reducer = ref.reducer; if ( reducer === void 0 ) reducer = defaultReducer;
   var storage = ref.storage; if ( storage === void 0 ) storage = defaultStorage;
   var filter = ref.filter; if ( filter === void 0 ) filter = function () { return true; };
@@ -86,7 +94,13 @@ function createPersistedState(
   return function (store) {
     var savedState = getState(key, storage);
     if (typeof savedState === 'object') {
-      store.replaceState(merge({}, store.state, savedState));
+      if (typeof Promise !== 'undefined' && savedState instanceof Promise) {
+        savedState.then(function (asyncSavedState) {
+          store.replaceState(merge({}, store.state, asyncSavedState));
+        });
+      } else {
+        store.replaceState(merge({}, store.state, savedState));
+      }
     }
 
     subscriber(store)(function (mutation, state) {
