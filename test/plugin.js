@@ -23,7 +23,7 @@ test('replaces store\'s state and subscribes to changes when initializing', t =>
 
 test('respects nested values when it replaces store\'s state on initializing', t => {
   window.localStorage.clear()
-  window.localStorage.setItem('vuex', JSON.stringify({ nested: { persisted: 'json' }}))
+  window.localStorage.setItem('vuex', '<invalid JSON>')
 
   const store = new Store({ state: { nested: { original: 'state' } }})
   sinon.spy(store, 'replaceState')
@@ -32,7 +32,22 @@ test('respects nested values when it replaces store\'s state on initializing', t
   const plugin = createPersistedState()
   plugin(store)
 
-  t.true(store.replaceState.calledWith({ nested: { persisted: 'json', original: 'state' }}))
+  t.false(store.replaceState.called)
+  t.true(store.subscribe.called)
+})
+
+test('does not replaces store\'s state when receiving invalid JSON', t => {
+  window.localStorage.clear()
+  window.localStorage.setItem('vuex', JSON.stringify({ persisted: 'json' }))
+
+  const store = new Store({ state: { original: 'state' } })
+  sinon.spy(store, 'replaceState')
+  sinon.spy(store, 'subscribe')
+
+  const plugin = createPersistedState()
+  plugin(store)
+
+  t.true(store.replaceState.calledWith({ original: 'state', persisted: 'json' }))
   t.true(store.subscribe.called)
 })
 
