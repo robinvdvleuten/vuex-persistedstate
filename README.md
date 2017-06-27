@@ -70,6 +70,8 @@ Alternatively, an object following the Storage protocol (getItem, setItem, remov
 createPersistedState({ storage: window.sessionStorage })
 ```
 
+This is especially useful when you are using this plugin in combination with server-side rendering, where one could pass an instanceo of [dom-storage](https://www.npmjs.com/package/dom-storage).
+
 ## License
 
 MIT © [Robin van der Vleuten](https://www.robinvdvleuten.nl)

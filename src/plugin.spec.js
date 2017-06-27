@@ -118,6 +118,7 @@ it('persist the changed state back through the configured setter', () => {
   const store = new Store({ state: {} });
 
   const plugin = createPersistedState({
+    storage,
     setState: (key, state) => {
       expect(state).toEqual({ setter: 'item' });
     }
@@ -135,6 +136,7 @@ it('uses the configured reducer when persisting the state', () => {
   const customReducer = jest.fn();
 
   const plugin = createPersistedState({
+    storage,
     paths: ['custom'],
     reducer: customReducer
   });
