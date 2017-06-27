@@ -27,7 +27,7 @@
   ],
   "scripts": {
     "build": "rollup --environment NODE_ENV:production -c build/rollup.config.js && uglifyjs dist/vuex-persistedstate.js --comments -o dist/vuex-persistedstate.min.js",
-    "test": "npm run build && ava --serial",
+    "test": "npm run build && jest --env=jsdom",
     "precommit": "npm run build && lint-staged",
     "prepublish": "npm run build"
   },
@@ -41,26 +41,21 @@
       "git add"
     ]
   },
-  "ava": {
-    "require": [
-      "./test/helpers/setup.js"
-    ]
-  },
   "dependencies": {
     "lodash.merge": "^4.6.0",
     "object-path": "^0.11.2"
   },
   "devDependencies": {
-    "ava": "^0.17.0",
-    "browser-env": "^2.0.16",
+    "babel-jest": "^20.0.3",
+    "babel-preset-env": "^1.5.2",
     "dom-storage": "^2.0.2",
     "eslint": "^3.11.1",
     "husky": "^0.13.3",
+    "jest": "^20.0.4",
     "lint-staged": "^3.4.0",
     "prettier": "^1.1.0",
     "rollup": "^0.36.0",
     "rollup-plugin-buble": "^0.14.0",
-    "sinon": "^1.17.6",
     "uglify-js": "^2.7.3",
     "vue": "^2.0.0",
     "vuex": "^2.0.0"
