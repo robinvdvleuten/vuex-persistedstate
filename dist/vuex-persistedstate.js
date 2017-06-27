@@ -75,7 +75,12 @@ function createPersistedState(
   var paths = ref.paths; if ( paths === void 0 ) paths = [];
   var getState = ref.getState; if ( getState === void 0 ) getState = function (key, storage) {
       var value = storage.getItem(key);
-      return value && value !== 'undefined' ? JSON.parse(value) : undefined;
+
+      try {
+        return value && value !== 'undefined' ? JSON.parse(value) : undefined;
+      } catch (err) {
+        return undefined;
+      }
     };
   var setState = ref.setState; if ( setState === void 0 ) setState = function (key, state, storage) { return storage.setItem(key, JSON.stringify(state)); };
   var reducer = ref.reducer; if ( reducer === void 0 ) reducer = defaultReducer;

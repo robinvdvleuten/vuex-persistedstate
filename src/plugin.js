@@ -56,7 +56,12 @@ export default function createPersistedState(
     paths = [],
     getState = (key, storage) => {
       const value = storage.getItem(key);
-      return value && value !== 'undefined' ? JSON.parse(value) : undefined;
+
+      try {
+        return value && value !== 'undefined' ? JSON.parse(value) : undefined;
+      } catch (err) {
+        return undefined;
+      }
     },
     setState = (key, state, storage) =>
       storage.setItem(key, JSON.stringify(state)),
