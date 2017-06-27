@@ -24,48 +24,15 @@ var defaultReducer = function (state, paths) { return (paths.length === 0
         return substate;
       }, {})); };
 
-var canWriteToLocalStorage = function () {
+var canWriteStorage = function (storage) {
   try {
-    window.localStorage.setItem('_canWriteToLocalStorage', 1);
-    window.localStorage.removeItem('_canWriteToLocalStorage');
+    storage.setItem('_canWriteToLocalStorage', 1);
+    storage.removeItem('_canWriteToLocalStorage');
     return true;
   } catch (e) {
     return false;
   }
 };
-
-var defaultStorage = (function () {
-  if (
-    typeof window !== 'undefined' &&
-    'localStorage' in window &&
-    canWriteToLocalStorage()
-  ) {
-    return window.localStorage;
-  }
-
-  var InternalStorage = function InternalStorage () {};
-
-  InternalStorage.prototype.setItem = function setItem (key, item) {
-    this[key] = item;
-    return item;
-  };
-
-  InternalStorage.prototype.getItem = function getItem (key) {
-    return this[key];
-  };
-
-  InternalStorage.prototype.removeItem = function removeItem (key) {
-    delete this[key];
-  };
-
-  InternalStorage.prototype.clear = function clear () {
-      var this$1 = this;
-
-    Object.keys(this).forEach(function (key) { return delete this$1[key]; });
-  };
-
-  return new InternalStorage();
-})();
 
 function createPersistedState(
   ref
@@ -84,9 +51,13 @@ function createPersistedState(
     };
   var setState = ref.setState; if ( setState === void 0 ) setState = function (key, state, storage) { return storage.setItem(key, JSON.stringify(state)); };
   var reducer = ref.reducer; if ( reducer === void 0 ) reducer = defaultReducer;
-  var storage = ref.storage; if ( storage === void 0 ) storage = defaultStorage;
+  var storage = ref.storage; if ( storage === void 0 ) storage = window && window.localStorage;
   var filter = ref.filter; if ( filter === void 0 ) filter = function () { return true; };
   var subscriber = ref.subscriber; if ( subscriber === void 0 ) subscriber = function (store) { return function (handler) { return store.subscribe(handler); }; };
+
+  if (!canWriteStorage(storage)) {
+    throw new Error('Invalid storage instance given');
+  }
 
   return function (store) {
     var savedState = getState(key, storage);

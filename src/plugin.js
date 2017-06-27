@@ -9,46 +9,15 @@ const defaultReducer = (state, paths) =>
         return substate;
       }, {}));
 
-const canWriteToLocalStorage = () => {
+const canWriteStorage = storage => {
   try {
-    window.localStorage.setItem('_canWriteToLocalStorage', 1);
-    window.localStorage.removeItem('_canWriteToLocalStorage');
+    storage.setItem('_canWriteToLocalStorage', 1);
+    storage.removeItem('_canWriteToLocalStorage');
     return true;
   } catch (e) {
     return false;
   }
 };
-
-const defaultStorage = (() => {
-  if (
-    typeof window !== 'undefined' &&
-    'localStorage' in window &&
-    canWriteToLocalStorage()
-  ) {
-    return window.localStorage;
-  }
-
-  class InternalStorage {
-    setItem(key, item) {
-      this[key] = item;
-      return item;
-    }
-
-    getItem(key) {
-      return this[key];
-    }
-
-    removeItem(key) {
-      delete this[key];
-    }
-
-    clear() {
-      Object.keys(this).forEach(key => delete this[key]);
-    }
-  }
-
-  return new InternalStorage();
-})();
 
 export default function createPersistedState(
   {
@@ -66,11 +35,15 @@ export default function createPersistedState(
     setState = (key, state, storage) =>
       storage.setItem(key, JSON.stringify(state)),
     reducer = defaultReducer,
-    storage = defaultStorage,
+    storage = window && window.localStorage,
     filter = () => true,
     subscriber = store => handler => store.subscribe(handler)
   } = {}
 ) {
+  if (!canWriteStorage(storage)) {
+    throw new Error('Invalid storage instance given');
+  }
+
   return store => {
     const savedState = getState(key, storage);
     if (typeof savedState === 'object') {
