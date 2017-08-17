@@ -23,7 +23,7 @@ it("replaces store's state and subscribes to changes when initializing", () => {
   expect(store.subscribe).toBeCalled();
 });
 
-it("respects nested values when it replaces store's state on initializing", () => {
+it("does not replaces store's state when receiving invalid JSON", () => {
   const storage = new Storage();
   storage.setItem('vuex', '<invalid JSON>');
 
@@ -38,7 +38,7 @@ it("respects nested values when it replaces store's state on initializing", () =
   expect(store.subscribe).toBeCalled();
 });
 
-it("does not replaces store's state when receiving invalid JSON", () => {
+it("respects nested values when it replaces store's state on initializing", () => {
   const storage = new Storage();
   storage.setItem('vuex', JSON.stringify({ persisted: 'json' }));
 
