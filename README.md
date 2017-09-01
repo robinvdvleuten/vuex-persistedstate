@@ -39,12 +39,12 @@ can be provided to configure the plugin for your specific needs:
 - `reducer <Function>`: A function that will be called to reduce the state to persist based on the given paths. Defaults to include the values.
 - `subscriber <Function>`: A function called to setup mutation subscription. Defaults to `store => handler => store.subscribe(handler)`
 
-- `storage <Storage>`: Instead for (or in combination with) `getState` and `setState`. Defaults to localStorage.
+- `storage <Object>`: Instead for (or in combination with) `getState` and `setState`. Defaults to localStorage.
 - `getState <Function>`: A function that will be called to rehydrate a previously persisted state. Defaults to using `storage`.
 - `setState <Function>`: A function that will be called to persist the given state. Defaults to using `storage`.
 - `filter <Function>`: A function that will be called to filter any mutations which will trigger `setState` on storage eventually. Defaults to `() => true`
 
-## Customization
+## Customize Storage
 
 If it's not ideal to have the state of the Vuex store inside localstorage. One can easily implement the functionality to use [cookies](https://github.com/js-cookie/js-cookie) for that (or any other you can think of);
 
@@ -57,14 +57,17 @@ const store = new Store({
   // ...
   plugins: [
     createPersistedState({
-      getState: (key) => Cookies.getJSON(key),
-      setState: (key, state) => Cookies.set(key, state, { expires: 3, secure: true })
+      storage: {
+        getItem: (key) => Cookies.getJSON(key),
+        setItem: (key, value) => Cookies.set(key, value, { expires: 3, secure: true }),
+        removeItem: (key) => Cookies.remove(key);
+      }
     })
   ]
 })
 ```
 
-Alternatively, an object following the Storage protocol (getItem, setItem, removeItem, clear, etc) could be passed:
+Alternatively, an object following the Storage protocol (getItem, setItem, removeItem, etc) could be passed:
 
 ```js
 createPersistedState({ storage: window.sessionStorage })
