@@ -26,7 +26,7 @@
     "README.md"
   ],
   "scripts": {
-    "build": "rollup --environment NODE_ENV:production -c build/rollup.config.js && uglifyjs dist/vuex-persistedstate.js --comments -o dist/vuex-persistedstate.min.js",
+    "build": "rollup -c --environment NODE_ENV:production && uglifyjs dist/vuex-persistedstate.js --comments -o dist/vuex-persistedstate.min.js",
     "test": "npm run build && jest --env=jsdom",
     "precommit": "npm run build && lint-staged",
     "prepublish": "npm run build"
