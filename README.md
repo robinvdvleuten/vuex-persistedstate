@@ -67,7 +67,7 @@ const store = new Store({
 })
 ```
 
-Alternatively, an object following the Storage protocol (getItem, setItem, removeItem, etc) could be passed:
+In fact, any object following the Storage protocol (getItem, setItem, removeItem, etc) could be passed:
 
 ```js
 createPersistedState({ storage: window.sessionStorage })
