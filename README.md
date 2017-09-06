@@ -60,7 +60,7 @@ const store = new Store({
       storage: {
         getItem: (key) => Cookies.getJSON(key),
         setItem: (key, value) => Cookies.set(key, value, { expires: 3, secure: true }),
-        removeItem: (key) => Cookies.remove(key);
+        removeItem: (key) => Cookies.remove(key)
       }
     })
   ]
