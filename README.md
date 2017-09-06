@@ -51,7 +51,7 @@ If it's not ideal to have the state of the Vuex store inside localstorage. One c
 ```js
 import { Store } from 'vuex'
 import createPersistedState from 'vuex-persistedstate'
-import * as Cookies from 'js-cookie'
+import * as Cookies from 'js-cookies'
 
 const store = new Store({
   // ...
