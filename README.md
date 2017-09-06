@@ -58,9 +58,9 @@ const store = new Store({
   plugins: [
     createPersistedState({
       storage: {
-        getItem: (key) => Cookies.getJSON(key),
-        setItem: (key, value) => Cookies.set(key, value, { expires: 3, secure: true }),
-        removeItem: (key) => Cookies.remove(key)
+        getItem: key => Cookies.get(key),
+        setItem: (key, value) => Cookies.set(key, value),
+        removeItem: key => Cookies.remove(key),
       }
     })
   ]
