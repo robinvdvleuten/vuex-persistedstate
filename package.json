@@ -35,10 +35,6 @@
     "src/**/*.js": [
       "prettier --single-quote --write",
       "git add"
-    ],
-    "example/**/*.js": [
-      "prettier --single-quote --write",
-      "git add"
     ]
   },
   "dependencies": {
