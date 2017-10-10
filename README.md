@@ -79,6 +79,10 @@ createPersistedState({ storage: window.sessionStorage })
 
 This is especially useful when you are using this plugin in combination with server-side rendering, where one could pass an instance of [dom-storage](https://www.npmjs.com/package/dom-storage).
 
+### ⚠️ LocalForage ⚠️
+
+As it maybe seems at first sight, it's not possible to pass a [LocalForage](https://github.com/localForage/localForage) instance as `storage` property. This is due the fact that all getters and setters must be synchronous and [LocalForage's methods](https://github.com/localForage/localForage#callbacks-vs-promises) are asynchronous.
+
 ## License
 
 MIT © [Robin van der Vleuten](https://www.robinvdvleuten.nl)
