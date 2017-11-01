@@ -20,10 +20,9 @@ module.exports = {
   useStrict: false,
   format: 'umd',
   globals: {
-    'lodash.merge': 'merge',
-    'object-path': 'objectPath'
+    'lodash.merge': 'merge'
   },
-  external: ['lodash.merge', 'object-path'],
+  external: ['lodash.merge'],
   plugins: [buble()],
   banner
 }
