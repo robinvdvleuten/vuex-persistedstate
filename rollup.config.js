@@ -1,28 +1,17 @@
-const buble = require('rollup-plugin-buble')
-const pkg = require('./package.json')
+import buble from 'rollup-plugin-buble';
+import fs from 'fs';
 
-const banner =
-  `/**
-    * @license
-    *
-    * vuex-persistedstate v${pkg.version}
-    *
-    * (c) ${new Date().getFullYear()} Robin van der Vleuten <robin@webstronauts.co>
-    *
-    * For the full copyright and license information, please view the LICENSE
-    * file that was distributed with this source code.
-    */`
+const pkg = JSON.parse(fs.readFileSync('./package.json'));
 
-module.exports = {
-  entry: 'src/plugin.js',
-  moduleName: 'createPersistedState',
-  dest: pkg.main,
-  useStrict: false,
-  format: 'umd',
-  globals: {
+export default {
+	entry: 'src/plugin.js',
+	useStrict: false,
+	sourceMap: false,
+	plugins: [
+		buble()
+	],
+	globals: {
     'lodash.merge': 'merge'
   },
   external: ['lodash.merge'],
-  plugins: [buble()],
-  banner
-}
+};
