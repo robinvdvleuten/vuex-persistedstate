@@ -26,8 +26,8 @@ const defaultReducer = (state, paths) =>
 
 const canWriteStorage = storage => {
   try {
-    storage.setItem('_canWriteToStorage', 1);
-    storage.removeItem('_canWriteToStorage');
+    storage.setItem('@@', 1);
+    storage.removeItem('@@');
     return true;
   } catch (e) {
     return false;

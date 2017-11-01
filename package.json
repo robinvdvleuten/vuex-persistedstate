@@ -18,18 +18,21 @@
     "url": "https://github.com/robinvdvleuten/vuex-persistedstate/issues"
   },
   "main": "dist/vuex-persistedstate.js",
+  "browser": "dist/vuex-persistedstate.umd.js",
+  "jsnext:main": "src/plugin.js",
   "files": [
-    "dist/vuex-persistedstate.js",
-    "dist/vuex-persistedstate.min.js",
+    "dist",
     "src",
     "LICENSE",
     "README.md"
   ],
   "scripts": {
-    "build": "rollup -c --environment NODE_ENV:production && uglifyjs dist/vuex-persistedstate.js --comments -o dist/vuex-persistedstate.min.js",
-    "test": "npm run build && jest --env=jsdom",
+    "build": "mkdir -p dist && npm run -s build:cjs && npm run -s build:umd",
+    "build:cjs": "rollup -c -f cjs | uglifyjs -cm -o $npm_package_main",
+    "build:umd": "rollup -c -n $npm_package_name -f umd | uglifyjs -cm -o $npm_package_browser",
     "precommit": "npm run build && lint-staged",
-    "prepublish": "npm run build"
+    "prepublish": "npm run build",
+    "test": "jest --env=jsdom"
   },
   "lint-staged": {
     "src/**/*.js": [

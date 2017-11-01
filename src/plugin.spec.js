@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import Vuex, { Store } from 'vuex';
 import Storage from 'dom-storage';
-import createPersistedState from '../dist/vuex-persistedstate';
+import createPersistedState from './plugin';
 
 Vue.use(Vuex);
 
