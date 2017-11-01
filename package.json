@@ -29,7 +29,7 @@
   "scripts": {
     "build": "mkdir -p dist && npm run -s build:cjs && npm run -s build:umd",
     "build:cjs": "rollup -c -f cjs | uglifyjs -cm -o $npm_package_main",
-    "build:umd": "rollup -c -n $npm_package_name -f umd | uglifyjs -cm -o $npm_package_browser",
+    "build:umd": "rollup -c -f umd | uglifyjs -cm -o $npm_package_browser",
     "precommit": "npm run build && lint-staged",
     "prepublish": "npm run build",
     "test": "jest --env=jsdom"
