@@ -1,18 +1,33 @@
 import merge from 'lodash.merge';
-import objectPath from 'object-path';
+
+const getPath = (obj, key, p) => {
+  p = 0;
+  key = key.split ? key.split('.') : key;
+  while (obj && p < key.length)
+    obj = obj[key[p++]];
+  return obj;
+};
+
+const setPath = (obj, key, val, k, res) => {
+  key = key.split('.');
+  k = key.pop();
+
+  return (res = getPath(obj, key)) && k ? (res[k] = val) : undefined;
+};
 
 const defaultReducer = (state, paths) =>
   (paths.length === 0
     ? state
-    : paths.reduce((substate, path) => {
-        objectPath.set(substate, path, objectPath.get(state, path));
-        return substate;
-      }, {}));
+    : paths.reduce(
+        (substate, path) =>
+          setPath(substate, path, getPath(state, path)) && substate,
+        {}
+      ));
 
 const canWriteStorage = storage => {
   try {
-    storage.setItem('_canWriteToLocalStorage', 1);
-    storage.removeItem('_canWriteToLocalStorage');
+    storage.setItem('_canWriteToStorage', 1);
+    storage.removeItem('_canWriteToStorage');
     return true;
   } catch (e) {
     return false;
@@ -46,6 +61,7 @@ export default function createPersistedState(
 
   return store => {
     const savedState = getState(key, storage);
+
     if (typeof savedState === 'object') {
       store.replaceState(merge({}, store.state, savedState));
     }
