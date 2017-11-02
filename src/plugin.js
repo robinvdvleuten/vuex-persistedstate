@@ -1,10 +1,12 @@
 import merge from 'lodash.merge';
 
-const getPath = (obj, key, p) => {
-  p = 0;
+const getPath = (obj, key, i = 0) => {
   key = key.split ? key.split('.') : key;
-  while (obj && p < key.length)
-    obj = obj[key[p++]];
+
+  for (; i < key.length; i++) {
+    obj = obj[key[i]] || (obj[key[i]] = !i && {});
+  }
+
   return obj;
 };
 
