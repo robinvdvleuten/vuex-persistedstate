@@ -1,20 +1,24 @@
 import merge from 'lodash.merge';
 
-const getPath = (obj, key, i = 0) => {
-  key = key.split ? key.split('.') : key;
+const getPath = (obj, path, def, i) => {
+  i = 0;
+  path = path.split ? path.split('.') : path;
 
-  for (; i < key.length; i++) {
-    obj = obj[key[i]] || (obj[key[i]] = !i && {});
-  }
+  while (obj && i < path.length)
+    obj = obj[path[i++]];
 
-  return obj;
+  return obj === undefined ? def : obj;
 };
 
-const setPath = (obj, key, val, k, res) => {
-  key = key.split('.');
-  k = key.pop();
+const setPath = (obj, path, val, i) => {
+  i = 0;
+  path = path.split ? path.split('.') : path;
 
-  return (res = getPath(obj, key)) && k ? (res[k] = val) : undefined;
+  for (; i < path.length - 1; i++) {
+    obj = obj[path[i]] = getPath(obj, path[i], {});
+  }
+
+  return (obj[path[i]] = val);
 };
 
 const defaultReducer = (state, paths) =>
