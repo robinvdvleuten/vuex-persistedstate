@@ -2,13 +2,13 @@ import merge from 'deepmerge';
 import shvl from 'shvl';
 
 const defaultReducer = (state, paths) =>
-  (paths.length === 0
+  paths.length === 0
     ? state
     : paths.reduce(
         (substate, path) =>
           shvl.set(substate, path, shvl.get(state, path)) && substate,
         {}
-      ));
+      );
 
 const canWriteStorage = storage => {
   try {
@@ -48,7 +48,7 @@ export default function createPersistedState(
   return store => {
     const savedState = getState(key, storage);
 
-    if (typeof savedState === 'object') {
+    if (typeof savedState === 'object' && savedState !== null) {
       store.replaceState(merge(store.state, savedState));
     }
 

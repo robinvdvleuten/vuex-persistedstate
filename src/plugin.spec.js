@@ -38,6 +38,21 @@ it("does not replaces store's state when receiving invalid JSON", () => {
   expect(store.subscribe).toBeCalled();
 });
 
+it("does not replaces store's state when receiving null", () => {
+  const storage = new Storage();
+  storage.setItem('vuex', JSON.stringify(null));
+
+  const store = new Store({ state: { nested: { original: 'state' } } });
+  store.replaceState = jest.fn();
+  store.subscribe = jest.fn();
+
+  const plugin = createPersistedState({ storage });
+  plugin(store);
+
+  expect(store.replaceState).not.toBeCalled();
+  expect(store.subscribe).toBeCalled();
+});
+
 it("respects nested values when it replaces store's state on initializing", () => {
   const storage = new Storage();
   storage.setItem('vuex', JSON.stringify({ persisted: 'json' }));
