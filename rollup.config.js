@@ -1,17 +1,17 @@
 import buble from 'rollup-plugin-buble';
+import commonjs from 'rollup-plugin-commonjs';
+import resolve from 'rollup-plugin-node-resolve';
 import fs from 'fs';
-
-const pkg = JSON.parse(fs.readFileSync('./package.json'));
 
 export default {
 	entry: 'src/plugin.js',
 	moduleName: 'createPersistedState',
-	useStrict: false,
 	plugins: [
+		resolve({
+			jsnext: true,
+      main: true
+		}),
+		commonjs(),
 		buble()
-	],
-	globals: {
-    'lodash.merge': 'merge'
-  },
-  external: ['lodash.merge'],
+	]
 };

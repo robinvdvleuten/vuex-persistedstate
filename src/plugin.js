@@ -1,32 +1,12 @@
-import merge from 'lodash.merge';
-
-const getPath = (obj, path, def, i) => {
-  i = 0;
-  path = path.split ? path.split('.') : path;
-
-  while (obj && i < path.length)
-    obj = obj[path[i++]];
-
-  return obj === undefined ? def : obj;
-};
-
-const setPath = (obj, path, val, i) => {
-  i = 0;
-  path = path.split ? path.split('.') : path;
-
-  for (; i < path.length - 1; i++) {
-    obj = obj[path[i]] = getPath(obj, path[i], {});
-  }
-
-  return (obj[path[i]] = val);
-};
+import merge from 'deepmerge';
+import shvl from 'shvl';
 
 const defaultReducer = (state, paths) =>
   (paths.length === 0
     ? state
     : paths.reduce(
         (substate, path) =>
-          setPath(substate, path, getPath(state, path)) && substate,
+          shvl.set(substate, path, shvl.get(state, path)) && substate,
         {}
       ));
 
@@ -69,7 +49,7 @@ export default function createPersistedState(
     const savedState = getState(key, storage);
 
     if (typeof savedState === 'object') {
-      store.replaceState(merge({}, store.state, savedState));
+      store.replaceState(merge(store.state, savedState));
     }
 
     subscriber(store)((mutation, state) => {
