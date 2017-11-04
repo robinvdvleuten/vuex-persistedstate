@@ -128,6 +128,26 @@ it('persist the changed partial state back to serialized JSON under a nested pat
   );
 });
 
+it('not persist null values', () => {
+  const storage = new Storage();
+  const store = new Store({
+    state: { alpha: { name: null, bravo: { name: null } } }
+  });
+
+  const plugin = createPersistedState({
+    storage,
+    paths: ['alpha.name', 'alpha.bravo.name']
+  });
+
+  plugin(store);
+
+  store._subscribers[0]('mutation', { charlie: { name: 'charlie' } });
+
+  expect(storage.getItem('vuex')).toBe(
+    JSON.stringify({ alpha: { bravo: {} } })
+  );
+});
+
 it("rehydrates store's state through the configured getter", () => {
   const storage = new Storage();
 

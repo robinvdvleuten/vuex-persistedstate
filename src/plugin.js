@@ -4,11 +4,10 @@ import shvl from 'shvl';
 const defaultReducer = (state, paths) =>
   paths.length === 0
     ? state
-    : paths.reduce(
-        (substate, path) =>
-          shvl.set(substate, path, shvl.get(state, path)) && substate,
-        {}
-      );
+    : paths.reduce((substate, path) => {
+        shvl.set(substate, path, shvl.get(state, path));
+        return substate;
+      }, {});
 
 const canWriteStorage = storage => {
   try {
