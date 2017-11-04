@@ -38,6 +38,21 @@ it("does not replaces store's state when receiving invalid JSON", () => {
   expect(store.subscribe).toBeCalled();
 });
 
+it("does not replaces store's state when receiving null", () => {
+  const storage = new Storage();
+  storage.setItem('vuex', JSON.stringify(null));
+
+  const store = new Store({ state: { nested: { original: 'state' } } });
+  store.replaceState = jest.fn();
+  store.subscribe = jest.fn();
+
+  const plugin = createPersistedState({ storage });
+  plugin(store);
+
+  expect(store.replaceState).not.toBeCalled();
+  expect(store.subscribe).toBeCalled();
+});
+
 it("respects nested values when it replaces store's state on initializing", () => {
   const storage = new Storage();
   storage.setItem('vuex', JSON.stringify({ persisted: 'json' }));
@@ -110,6 +125,26 @@ it('persist the changed partial state back to serialized JSON under a nested pat
 
   expect(storage.getItem('vuex')).toBe(
     JSON.stringify({ foo: { bar: 'baz' }, bar: 'baz' })
+  );
+});
+
+it('not persist null values', () => {
+  const storage = new Storage();
+  const store = new Store({
+    state: { alpha: { name: null, bravo: { name: null } } }
+  });
+
+  const plugin = createPersistedState({
+    storage,
+    paths: ['alpha.name', 'alpha.bravo.name']
+  });
+
+  plugin(store);
+
+  store._subscribers[0]('mutation', { charlie: { name: 'charlie' } });
+
+  expect(storage.getItem('vuex')).toBe(
+    JSON.stringify({ alpha: { bravo: {} } })
   );
 });
 
