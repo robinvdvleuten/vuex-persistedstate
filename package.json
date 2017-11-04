@@ -19,7 +19,7 @@
   },
   "main": "dist/vuex-persistedstate.js",
   "browser": "dist/vuex-persistedstate.umd.js",
-  "jsnext:main": "src/plugin.js",
+  "jsnext:main": "index.js",
   "files": [
     "dist",
     "src",
@@ -28,8 +28,8 @@
   ],
   "scripts": {
     "build": "mkdir -p dist && npm run -s build:cjs && npm run -s build:umd",
-    "build:cjs": "rollup -c -f cjs --no-strict | uglifyjs -cm -o $npm_package_main",
-    "build:umd": "rollup -c -f umd --no-strict | uglifyjs -cm -o $npm_package_browser",
+    "build:cjs": "rollup -c -i $npm_package_jsnext_main -f cjs --no-strict | uglifyjs -cm -o $npm_package_main",
+    "build:umd": "rollup -c -i $npm_package_jsnext_main -f umd -n createPersistedState --no-strict | uglifyjs -cm -o $npm_package_browser",
     "precommit": "npm run build && lint-staged",
     "prepublish": "npm run build",
     "test": "npm-run-all test:**",

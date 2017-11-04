@@ -3,8 +3,6 @@ import resolve from 'rollup-plugin-node-resolve';
 import fs from 'fs';
 
 export default {
-	entry: 'src/plugin.js',
-	moduleName: 'createPersistedState',
 	plugins: [
 		resolve({
 			jsnext: true,

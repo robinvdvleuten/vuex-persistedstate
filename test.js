@@ -1,7 +1,7 @@
 const Vue = require('vue');
 const Vuex = require('vuex');
 const Storage = require('dom-storage');
-const createPersistedState = require('./plugin');
+const createPersistedState = require('./index');
 
 Vue.use(Vuex);
 
