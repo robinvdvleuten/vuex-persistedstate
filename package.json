@@ -50,11 +50,9 @@
   ],
   "dependencies": {
     "deepmerge": "^2.0.1",
-    "shvl": "^1.0.0"
+    "shvl": "^1.1.1"
   },
   "devDependencies": {
-    "babel-jest": "^20.0.3",
-    "babel-preset-env": "^1.5.2",
     "bundlesize": "^0.15.3",
     "dom-storage": "^2.0.2",
     "eslint": "^3.11.1",
@@ -64,7 +62,6 @@
     "npm-run-all": "^4.1.1",
     "prettier": "^1.1.0",
     "rollup": "^0.36.0",
-    "rollup-plugin-buble": "^0.14.0",
     "rollup-plugin-commonjs": "^8.2.6",
     "rollup-plugin-node-resolve": "^3.0.0",
     "uglify-js": "^2.7.3",
