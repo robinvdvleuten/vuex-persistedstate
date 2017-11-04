@@ -48,10 +48,13 @@
       "threshold": "1.1kb"
     }
   ],
+  "dependencies": {
+    "deepmerge": "^2.0.1",
+    "shvl": "^1.0.0"
+  },
   "devDependencies": {
     "babel-jest": "^20.0.3",
     "babel-preset-env": "^1.5.2",
-    "deepmerge": "^2.0.1",
     "bundlesize": "^0.15.3",
     "dom-storage": "^2.0.2",
     "eslint": "^3.11.1",
@@ -64,7 +67,6 @@
     "rollup-plugin-buble": "^0.14.0",
     "rollup-plugin-commonjs": "^8.2.6",
     "rollup-plugin-node-resolve": "^3.0.0",
-    "shvl": "^1.0.0",
     "uglify-js": "^2.7.3",
     "vue": "^2.0.0",
     "vuex": "^2.0.0"
