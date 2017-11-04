@@ -32,7 +32,9 @@
     "build:umd": "rollup -c -f umd --no-strict | uglifyjs -cm -o $npm_package_browser",
     "precommit": "npm run build && lint-staged",
     "prepublish": "npm run build",
-    "test": "jest --env=jsdom"
+    "test": "npm-run-all test:**",
+    "test:jest": "jest --env=jsdom",
+    "test:size": "bundlesize"
   },
   "lint-staged": {
     "src/**/*.js": [
@@ -40,15 +42,23 @@
       "git add"
     ]
   },
+  "bundlesize": [
+    {
+      "path": "./dist/*.js",
+      "threshold": "1.1kb"
+    }
+  ],
   "devDependencies": {
     "babel-jest": "^20.0.3",
     "babel-preset-env": "^1.5.2",
     "deepmerge": "^2.0.1",
+    "bundlesize": "^0.15.3",
     "dom-storage": "^2.0.2",
     "eslint": "^3.11.1",
     "husky": "^0.13.3",
     "jest": "^20.0.4",
     "lint-staged": "^3.4.0",
+    "npm-run-all": "^4.1.1",
     "prettier": "^1.1.0",
     "rollup": "^0.36.0",
     "rollup-plugin-buble": "^0.14.0",
