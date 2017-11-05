@@ -66,7 +66,7 @@
     "rollup-plugin-node-resolve": "^3.0.0",
     "uglify-js": "^2.7.3",
     "vue": "^2.0.0",
-    "vuex": "^2.0.0"
+    "vuex": "^3.0.0"
   },
   "peerDependencies": {
     "vue": "^2.0.0",
