@@ -29,6 +29,8 @@ const store = new Vuex.Store({
 })
 ```
 
+Please try to use `[createPersistedState({})]` (pass empty object), if compatibility errors are encoutered with the new vuex release.
+
 ## API
 
 ### `createPersistedState([options])`
