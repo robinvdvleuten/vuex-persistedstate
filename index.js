@@ -2,6 +2,7 @@ const merge = require('deepmerge');
 const shvl = require('shvl');
 
 module.exports = function(options, storage, key) {
+  options = options || {};
   storage = options.storage || (window && window.localStorage);
   key = options.key || 'vuex';
 

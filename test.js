@@ -5,6 +5,11 @@ const createPersistedState = require('./index');
 
 Vue.use(Vuex);
 
+it('can be created with the default options', () => {
+  window.localStorage = new Storage();
+  expect(() => createPersistedState()).not.toThrow();
+});
+
 it("replaces store's state and subscribes to changes when initializing", () => {
   const storage = new Storage();
   storage.setItem('vuex', JSON.stringify({ persisted: 'json' }));
