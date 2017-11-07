@@ -5,6 +5,10 @@ Persist [Vuex](http://vuex.vuejs.org/) state with [localStorage](https://develop
 [![NPM version](https://img.shields.io/npm/v/vuex-persistedstate.svg)](https://www.npmjs.com/package/vuex-persistedstate)
 [![Build Status](https://img.shields.io/travis/robinvdvleuten/vuex-persistedstate.svg)](https://travis-ci.org/robinvdvleuten/vuex-persistedstate)
 
+<a target='_blank' rel='nofollow' href='https://app.codesponsor.io/link/NKcCZr6Txqx4AyFsJPdptL4T/robinvdvleuten/vuex-persistedstate'>
+  <img alt='Sponsor' width='888' height='68' src='https://app.codesponsor.io/embed/NKcCZr6Txqx4AyFsJPdptL4T/robinvdvleuten/vuex-persistedstate.svg' />
+</a>
+
 ## Requirements
 
 - [Vue.js](https://vuejs.org) (v2.0.0+)
