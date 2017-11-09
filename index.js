@@ -1,5 +1,5 @@
-const merge = require('deepmerge');
-const shvl = require('shvl');
+var merge = require('deepmerge');
+var shvl = require('shvl');
 
 module.exports = function(options, storage, key) {
   options = options || {};
@@ -53,7 +53,7 @@ module.exports = function(options, storage, key) {
   }
 
   return function(store) {
-    const savedState = shvl.get(options, 'getState', getState)(key, storage);
+    var savedState = shvl.get(options, 'getState', getState)(key, storage);
 
     if (typeof savedState === 'object' && savedState !== null) {
       store.replaceState(merge(store.state, savedState));
