@@ -153,6 +153,23 @@ it('not persist null values', () => {
   );
 });
 
+it('persist array values', () => {
+  const storage = new Storage();
+  storage.setItem('vuex', JSON.stringify({ persisted: ['json'] }));
+
+  const store = new Vuex.Store({ state: { persisted: ['state'] } });
+  store.replaceState = jest.fn();
+  store.subscribe = jest.fn();
+
+  const plugin = createPersistedState({ storage });
+  plugin(store);
+
+  expect(store.replaceState).toBeCalledWith({
+    persisted: ['json'],
+  });
+  expect(store.subscribe).toBeCalled();
+});
+
 it("rehydrates store's state through the configured getter", () => {
   const storage = new Storage();
 

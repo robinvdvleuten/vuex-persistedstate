@@ -56,7 +56,9 @@ module.exports = function(options, storage, key) {
     var savedState = shvl.get(options, 'getState', getState)(key, storage);
 
     if (typeof savedState === 'object' && savedState !== null) {
-      store.replaceState(merge(store.state, savedState));
+      store.replaceState(merge(store.state, savedState, {
+        arrayMerge: function (store, saved) { return saved }
+      }));
     }
 
     (options.subscriber || subscriber)(store)(function(mutation, state) {
