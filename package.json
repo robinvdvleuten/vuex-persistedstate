@@ -3,17 +3,14 @@
   "description": "Persist Vuex state with localStorage.",
   "version": "2.3.2",
   "license": "MIT",
-  "author": "Robin van der Vleuten <robin@webstronauts.co>",
+  "author": "Robin van der Vleuten <robin@webstronauts.co> (robinvdvleuten.nl)",
   "keywords": [
     "vue",
     "vuex",
     "plugin"
   ],
   "homepage": "https://github.com/robinvdvleuten/vuex-persistedstate#readme",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/robinvdvleuten/vuex-persistedstate.git"
-  },
+  "repository": "robinvdvleuten/vuex-persistedstate",
   "bugs": {
     "url": "https://github.com/robinvdvleuten/vuex-persistedstate/issues"
   },
