@@ -3594,9 +3594,9 @@ vue@^2.0.0:
   version "2.5.7"
   resolved "https://registry.yarnpkg.com/vue/-/vue-2.5.7.tgz#313ab26025915d9fdbc39db756548cb4bb50eb44"
 
-vuex@^2.0.0:
-  version "2.0.0"
-  resolved "https://registry.npmjs.org/vuex/-/vuex-2.0.0.tgz#26befa44de220f009e432d1027487bff29571cee"
+vuex@^3.0.0:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/vuex/-/vuex-3.0.1.tgz#e761352ebe0af537d4bb755a9b9dc4be3df7efd2"
 
 walker@~1.0.5:
   version "1.0.7"
