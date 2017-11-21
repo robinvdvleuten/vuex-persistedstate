@@ -22,9 +22,8 @@
   "jsnext:main": "index.js",
   "files": [
     "dist",
-    "src",
-    "LICENSE",
-    "README.md"
+    "index.js",
+    "vuex-persistedstate.d.ts"
   ],
   "scripts": {
     "build": "mkdir -p dist && npm run -s build:cjs && npm run -s build:umd",
@@ -36,6 +35,7 @@
     "test:jest": "jest --env=jsdom",
     "test:size": "bundlesize"
   },
+  "typings": "./vuex-persistedstate.d.ts",
   "lint-staged": {
     "src/**/*.js": [
       "prettier --single-quote --write",
