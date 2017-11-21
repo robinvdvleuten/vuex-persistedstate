@@ -22,9 +22,7 @@
   "jsnext:main": "index.js",
   "files": [
     "dist",
-    "src",
-    "LICENSE",
-    "README.md"
+    "index.js"
   ],
   "scripts": {
     "build": "mkdir -p dist && npm-run-all build:*",
