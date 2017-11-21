@@ -27,7 +27,7 @@
     "README.md"
   ],
   "scripts": {
-    "build": "mkdir -p dist && npm run -s build:cjs && npm run -s build:umd",
+    "build": "mkdir -p dist && npm-run-all build:*",
     "build:cjs": "rollup -c -i $npm_package_jsnext_main -f cjs --no-strict | uglifyjs -cm -o $npm_package_main",
     "build:umd": "rollup -c -i $npm_package_jsnext_main -f umd -n createPersistedState --no-strict | uglifyjs -cm -o $npm_package_browser",
     "precommit": "npm run build && lint-staged",
@@ -55,16 +55,16 @@
   "devDependencies": {
     "bundlesize": "^0.15.3",
     "dom-storage": "^2.0.2",
-    "eslint": "^3.11.1",
-    "husky": "^0.13.3",
-    "jest": "^20.0.4",
-    "lint-staged": "^3.4.0",
-    "npm-run-all": "^4.1.1",
-    "prettier": "^1.1.0",
-    "rollup": "^0.36.0",
+    "eslint": "^4.11.0",
+    "husky": "^0.14.3",
+    "jest": "^21.2.1",
+    "lint-staged": "^5.0.0",
+    "npm-run-all": "^4.1.2",
+    "prettier": "^1.8.2",
+    "rollup": "^0.51.8",
     "rollup-plugin-commonjs": "^8.2.6",
     "rollup-plugin-node-resolve": "^3.0.0",
-    "uglify-js": "^2.7.3",
+    "uglify-js": "^3.1.10",
     "vue": "^2.0.0",
     "vuex": "^2.0.0"
   },
