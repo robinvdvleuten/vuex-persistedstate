@@ -76,7 +76,7 @@ it("respects nested values when it replaces store's state on initializing", () =
   expect(store.subscribe).toBeCalled();
 });
 
-test('persist the changed parial state back to serialized JSON', () => {
+it('should persist the changed parial state back to serialized JSON', () => {
   const storage = new Storage();
   const store = new Vuex.Store({ state: {} });
 
@@ -133,7 +133,7 @@ it('persist the changed partial state back to serialized JSON under a nested pat
   );
 });
 
-it('not persist null values', () => {
+it('should not persist null values', () => {
   const storage = new Storage();
   const store = new Vuex.Store({
     state: { alpha: { name: null, bravo: { name: null } } }
@@ -153,7 +153,7 @@ it('not persist null values', () => {
   );
 });
 
-it('persist array values', () => {
+it('should not merge array values when rehydrating', () => {
   const storage = new Storage();
   storage.setItem('vuex', JSON.stringify({ persisted: ['json'] }));
 
@@ -167,6 +167,29 @@ it('persist array values', () => {
   expect(store.replaceState).toBeCalledWith({
     persisted: ['json'],
   });
+
+  expect(store.subscribe).toBeCalled();
+});
+
+it('should not clone circular objects when rehydrating', () => {
+  const circular = { foo: 'bar' };
+  circular.foo = circular;
+
+  const storage = new Storage();
+  storage.setItem('vuex', JSON.stringify({ persisted: 'baz' }));
+
+  const store = new Vuex.Store({ state: { circular } });
+  store.replaceState = jest.fn();
+  store.subscribe = jest.fn();
+
+  const plugin = createPersistedState({ storage });
+  plugin(store);
+
+  expect(store.replaceState).toBeCalledWith({
+    circular,
+    persisted: 'baz',
+  });
+
   expect(store.subscribe).toBeCalled();
 });
 
