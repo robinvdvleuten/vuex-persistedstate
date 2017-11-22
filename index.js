@@ -1,7 +1,7 @@
-var merge = require('deepmerge');
-var shvl = require('shvl');
+import merge from 'deepmerge';
+import shvl from 'shvl';
 
-module.exports = function(options, storage, key) {
+export default function(options, storage, key) {
   options = options || {};
   storage = options.storage || (window && window.localStorage);
   key = options.key || 'vuex';
@@ -53,7 +53,7 @@ module.exports = function(options, storage, key) {
   }
 
   return function(store) {
-    var savedState = shvl.get(options, 'getState', getState)(key, storage);
+    const savedState = shvl.get(options, 'getState', getState)(key, storage);
 
     if (typeof savedState === 'object' && savedState !== null) {
       store.replaceState(merge(store.state, savedState, {
