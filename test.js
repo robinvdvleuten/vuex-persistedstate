@@ -3,6 +3,9 @@ import Vuex from 'vuex';
 import Storage from 'dom-storage';
 import createPersistedState from './index';
 
+// Do not show the production tip while running tests.
+Vue.config.productionTip = false;
+
 Vue.use(Vuex);
 
 it('can be created with the default options', () => {
