@@ -1,4 +1,5 @@
 var merge = require('deepmerge');
+merge = merge.default || merge;
 var shvl = require('shvl');
 
 module.exports = function(options, storage, key) {
