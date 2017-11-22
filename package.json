@@ -15,16 +15,17 @@
     "url": "https://github.com/robinvdvleuten/vuex-persistedstate/issues"
   },
   "main": "dist/vuex-persistedstate.js",
-  "browser": "dist/vuex-persistedstate.umd.js",
+  "module": "index.js",
   "jsnext:main": "index.js",
+  "umd:main": "dist/vuex-persistedstate.umd.js",
   "files": [
     "dist",
     "index.js"
   ],
   "scripts": {
-    "build": "mkdir -p dist && npm-run-all build:*",
-    "build:cjs": "rollup -c -i $npm_package_jsnext_main -f cjs --no-strict | uglifyjs -cm -o $npm_package_main",
-    "build:umd": "rollup -c -i $npm_package_jsnext_main -f umd -n createPersistedState --no-strict | uglifyjs -cm -o $npm_package_browser",
+    "build": "rimraf dist && rollup -c && npm-run-all minify:* && bundlesize",
+    "minify:cjs": "uglifyjs $npm_package_main -cm toplevel -o $npm_package_main -p relative --in-source-map ${npm_package_main}.map --source-map ${npm_package_main}.map",
+    "minify:umd": "uglifyjs $npm_package_umd_main -cm -o $npm_package_umd_main -p relative --in-source-map ${npm_package_umd_main}.map --source-map ${npm_package_umd_main}.map",
     "precommit": "npm run build && lint-staged",
     "prepublish": "npm run build",
     "test": "npm-run-all test:**",
@@ -56,10 +57,11 @@
     "lint-staged": "^5.0.0",
     "npm-run-all": "^4.1.2",
     "prettier": "^1.8.2",
+    "rimraf": "^2.6.2",
     "rollup": "^0.51.8",
     "rollup-plugin-commonjs": "^8.2.6",
     "rollup-plugin-node-resolve": "^3.0.0",
-    "uglify-js": "^3.1.10",
+    "uglify-js": "^2.8.29",
     "vue": "^2.0.0",
     "vuex": "^2.0.0"
   },
