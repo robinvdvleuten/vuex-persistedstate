@@ -1,4 +1,5 @@
 import fs from 'fs';
+import buble from 'rollup-plugin-buble';
 import commonjs from 'rollup-plugin-commonjs';
 import resolve from 'rollup-plugin-node-resolve';
 
@@ -9,6 +10,7 @@ export default {
 	useStrict: false,
 	sourcemap: true,
 	plugins: [
+		buble(),
 		resolve({
 			jsnext: true,
       main: true

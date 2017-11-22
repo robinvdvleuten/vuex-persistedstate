@@ -44,11 +44,18 @@
       "threshold": "1.1kb"
     }
   ],
+  "babel": {
+    "presets": [
+      "env"
+    ]
+  },
   "dependencies": {
     "deepmerge": "^2.0.1",
     "shvl": "^1.1.1"
   },
   "devDependencies": {
+    "babel-jest": "^21.2.0",
+    "babel-preset-env": "^1.6.1",
     "bundlesize": "^0.15.3",
     "dom-storage": "^2.0.2",
     "eslint": "^4.11.0",
@@ -59,6 +66,7 @@
     "prettier": "^1.8.2",
     "rimraf": "^2.6.2",
     "rollup": "^0.51.8",
+    "rollup-plugin-buble": "^0.18.0",
     "rollup-plugin-commonjs": "^8.2.6",
     "rollup-plugin-node-resolve": "^3.0.0",
     "uglify-js": "^2.8.29",
