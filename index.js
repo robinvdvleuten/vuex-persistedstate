@@ -57,7 +57,8 @@ module.exports = function(options, storage, key) {
 
     if (typeof savedState === 'object' && savedState !== null) {
       store.replaceState(merge(store.state, savedState, {
-        arrayMerge: function (store, saved) { return saved }
+        arrayMerge: function (store, saved) { return saved },
+        clone: false,
       }));
     }
 
