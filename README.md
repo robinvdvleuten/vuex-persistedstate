@@ -22,7 +22,7 @@ $ npm install vuex-persistedstate
 
 ## Usage
 
-[**Real Example on JSFiddle**](https://jsfiddle.net/robinvdvleuten/wmf8zvf8/) ➡️
+[![Edit vuex-persistedstate](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/80k4m2598?autoresize=1)
 
 ```js
 import createPersistedState from 'vuex-persistedstate'
@@ -54,7 +54,7 @@ can be provided to configure the plugin for your specific needs:
 
 If it's not ideal to have the state of the Vuex store inside localstorage. One can easily implement the functionality to use [cookies](https://github.com/js-cookie/js-cookie) for that (or any other you can think of);
 
-[**Real Example on JSFiddle**](https://jsfiddle.net/robinvdvleuten/meoLa716/) ➡️
+[![Edit vuex-persistedstate with js-cookie](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/xl356qvvkz?autoresize=1)
 
 ```js
 import { Store } from 'vuex'
