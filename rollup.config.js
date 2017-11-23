@@ -19,6 +19,7 @@ export default {
 	],
 	output: [
 		{ file: pkg.main, format: 'cjs' },
+		{ file: pkg.module, format: 'es' },
 		{ file: pkg['umd:main'], format: 'umd', name: 'createPersistedState' }
 	]
 };
