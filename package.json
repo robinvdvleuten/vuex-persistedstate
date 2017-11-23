@@ -15,8 +15,8 @@
     "url": "https://github.com/robinvdvleuten/vuex-persistedstate/issues"
   },
   "main": "dist/vuex-persistedstate.js",
-  "module": "index.js",
-  "jsnext:main": "index.js",
+  "module": "dist/vuex-persistedstate.es.js",
+  "jsnext:main": "dist/vuex-persistedstate.es.js",
   "umd:main": "dist/vuex-persistedstate.umd.js",
   "files": [
     "dist",
