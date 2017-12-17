@@ -2,6 +2,8 @@ import merge from 'deepmerge';
 import shvl from 'shvl';
 
 export default function(options, storage, key) {
+  console.log("Trying to save");
+  
   options = options || {};
   storage = options.storage || (window && window.localStorage);
   key = options.key || 'vuex';
