@@ -45,6 +45,7 @@ can be provided to configure the plugin for your specific needs:
 - `getState <Function>`: A function that will be called to rehydrate a previously persisted state. Defaults to using `storage`.
 - `setState <Function>`: A function that will be called to persist the given state. Defaults to using `storage`.
 - `filter <Function>`: A function that will be called to filter any mutations which will trigger `setState` on storage eventually. Defaults to `() => true`
+- `blacklist <Array>`: A array that will be checked to see if the mutation type matches an item in the blacklist. If it matches it won't save that mutation. Defaults to `[]`
 
 ## Customize Storage
 
