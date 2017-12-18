@@ -30,7 +30,7 @@
     "test:size": "bundlesize"
   },
   "lint-staged": {
-    "src/**/*.js": [
+    "index.js": [
       "prettier --single-quote --write",
       "git add"
     ]
