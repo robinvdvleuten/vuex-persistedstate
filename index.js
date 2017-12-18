@@ -1,7 +1,7 @@
 import merge from 'deepmerge';
 import shvl from 'shvl';
 
-export default function (options, storage, key) {
+export default function(options, storage, key) {
   options = options || {};
   storage = options.storage || (window && window.localStorage);
   key = options.key || 'vuex';
@@ -11,7 +11,7 @@ export default function (options, storage, key) {
       storage.setItem('@@', 1);
       storage.removeItem('@@');
       return true;
-    } catch (e) { }
+    } catch (e) {}
 
     return false;
   }
@@ -21,7 +21,7 @@ export default function (options, storage, key) {
       return (value = storage.getItem(key)) && value !== 'undefined'
         ? JSON.parse(value)
         : undefined;
-    } catch (err) { }
+    } catch (err) {}
 
     return undefined;
   }
@@ -37,13 +37,13 @@ export default function (options, storage, key) {
   function reducer(state, paths) {
     return paths.length === 0
       ? state
-      : paths.reduce(function (substate, path) {
+      : paths.reduce(function(substate, path) {
         return shvl.set(substate, path, shvl.get(state, path));
       }, {});
   }
 
   function subscriber(store) {
-    return function (handler) {
+    return function(handler) {
       return store.subscribe(handler);
     };
   }
@@ -59,7 +59,7 @@ export default function (options, storage, key) {
     throw new Error('Invalid storage instance given');
   }
 
-  return function (store) {
+  return function(store) {
     const savedState = shvl.get(options, 'getState', getState)(key, storage);
 
     if (typeof savedState === 'object' && savedState !== null) {
@@ -69,7 +69,7 @@ export default function (options, storage, key) {
       }));
     }
 
-    (options.subscriber || subscriber)(store)(function (mutation, state) {
+    (options.subscriber || subscriber)(store)(function(mutation, state) {
       if ((options.filter || filter)(mutation)) {
         if (blacklist(mutation)) {
           (options.setState || setState)(
