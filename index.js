@@ -38,14 +38,21 @@ export default function(options, storage, key) {
     return paths.length === 0
       ? state
       : paths.reduce(function(substate, path) {
-          return shvl.set(substate, path, shvl.get(state, path));
-        }, {});
+        return shvl.set(substate, path, shvl.get(state, path));
+      }, {});
   }
 
   function subscriber(store) {
     return function(handler) {
       return store.subscribe(handler);
     };
+  }
+
+  function blacklist(mutation) {
+    return (!options.blacklist || !Array.isArray(options.blacklist)
+      ? true
+      : options.blacklist.indexOf(mutation.type) === -1 ? true : false
+    )
   }
 
   if (!canWriteStorage(storage)) {
@@ -64,11 +71,13 @@ export default function(options, storage, key) {
 
     (options.subscriber || subscriber)(store)(function(mutation, state) {
       if ((options.filter || filter)(mutation)) {
-        (options.setState || setState)(
-          key,
-          (options.reducer || reducer)(state, options.paths || []),
-          storage
-        );
+        if (blacklist(mutation)) {
+          (options.setState || setState)(
+            key,
+            (options.reducer || reducer)(state, options.paths || []),
+            storage
+          );
+        }
       }
     });
   };
