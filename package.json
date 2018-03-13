@@ -47,24 +47,24 @@
     ]
   },
   "dependencies": {
-    "deepmerge": "^2.0.1",
-    "shvl": "^1.1.1"
+    "deepmerge": "^2.1.0",
+    "shvl": "^1.2.0"
   },
   "devDependencies": {
-    "babel-jest": "^21.2.0",
+    "babel-jest": "^22.4.1",
     "babel-preset-env": "^1.6.1",
-    "bundlesize": "^0.15.3",
+    "bundlesize": "^0.16.0",
     "dom-storage": "^2.0.2",
     "eslint": "^4.11.0",
     "husky": "^0.14.3",
-    "jest": "^21.2.1",
-    "lint-staged": "^5.0.0",
-    "microbundle": "^0.2.4",
+    "jest": "^22.4.2",
+    "lint-staged": "^7.0.0",
+    "microbundle": "^0.4.4",
     "npm-run-all": "^4.1.2",
     "prettier": "^1.8.2",
     "rimraf": "^2.6.2",
-    "vue": "^2.0.0",
-    "vuex": "^2.0.0"
+    "vue": "^2.5.15",
+    "vuex": "^3.0.1"
   },
   "peerDependencies": {
     "vue": "^2.0.0",
