@@ -29,6 +29,32 @@ const store = new Vuex.Store({
 })
 ```
 
+### Nuxt.js
+It is possible to use vuex-persistedstate with Nuxt.js. Due to the order code is loaded in, vuex-persistedstate must be included as a NuxtJS plugin:
+
+```javascript
+// nuxt.config.js
+
+...
+plugins: [{ src: '~/plugins/localStorage.js', ssr: false }]
+...
+
+```
+```javascript
+// ~/plugins/localStorage.js
+
+import createPersistedState from 'vuex-persistedstate'
+
+export default ({store}) => {
+  createPersistedState({
+      key: 'yourkey',
+      paths: [...]
+      ...
+  })(store)
+}
+
+```
+
 ## API
 
 ### `createPersistedState([options])`
