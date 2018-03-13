@@ -156,7 +156,7 @@ it('should not persist null values', () => {
   );
 });
 
-it('should not merge array values when rehydrating', () => {
+it('should not merge array values when rehydrating by default', () => {
   const storage = new Storage();
   storage.setItem('vuex', JSON.stringify({ persisted: ['json'] }));
 
@@ -191,6 +191,27 @@ it('should not clone circular objects when rehydrating', () => {
   expect(store.replaceState).toBeCalledWith({
     circular,
     persisted: 'baz',
+  });
+
+  expect(store.subscribe).toBeCalled();
+});
+
+it('should apply a custom arrayMerger function', () => {
+  const storage = new Storage();
+  storage.setItem('vuex', JSON.stringify({ persisted: [1, 2] }));
+
+  const store = new Vuex.Store({ state: { persisted: [1, 2, 3] } });
+  store.replaceState = jest.fn();
+  store.subscribe = jest.fn();
+
+  const plugin = createPersistedState({ 
+    storage,
+    arrayMerger: function (store, saved) { return ['hello!'] },
+   });
+  plugin(store);
+
+  expect(store.replaceState).toBeCalledWith({
+    persisted: ['hello!'],
   });
 
   expect(store.subscribe).toBeCalled();
