@@ -18,7 +18,7 @@ export default function(options, storage, key) {
 
   function getState(key, storage, value) {
     try {
-      return (value = storage.getItem(key)) && value !== 'undefined'
+      return (value = storage.getItem(key)) && typeof value !== 'undefined'
         ? JSON.parse(value)
         : undefined;
     } catch (err) {}
