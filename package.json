@@ -1,7 +1,7 @@
 {
   "name": "vuex-persistedstate",
   "description": "Persist Vuex state with localStorage.",
-  "version": "2.5.0",
+  "version": "2.5.1",
   "license": "MIT",
   "author": "Robin van der Vleuten <robin@webstronauts.co> (robinvdvleuten.nl)",
   "keywords": [
