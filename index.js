@@ -1,5 +1,5 @@
 import merge from 'deepmerge';
-import shvl from 'shvl';
+import * as shvl from 'shvl';
 
 export default function(options, storage, key) {
   options = options || {};
