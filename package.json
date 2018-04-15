@@ -18,8 +18,11 @@
   "module": "dist/vuex-persistedstate.es.js",
   "jsnext:main": "dist/vuex-persistedstate.es.js",
   "umd:main": "dist/vuex-persistedstate.umd.js",
+  "typings": "./vuex-persistedstate.d.ts",
   "files": [
-    "dist"
+    "dist",
+    "index.d.ts",
+    "index.js"
   ],
   "scripts": {
     "build": "rimraf dist && microbundle --external all --name createPersistedState index.js",
