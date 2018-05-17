@@ -4,11 +4,12 @@ Persist [Vuex](http://vuex.vuejs.org/) state with [localStorage](https://develop
 
 [![NPM version](https://img.shields.io/npm/v/vuex-persistedstate.svg)](https://www.npmjs.com/package/vuex-persistedstate)
 [![Build Status](https://img.shields.io/travis/robinvdvleuten/vuex-persistedstate.svg)](https://travis-ci.org/robinvdvleuten/vuex-persistedstate)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](http://makeapullrequest.com)
 
 ## Requirements
 
-- [Vue.js](https://vuejs.org) (v2.0.0+)
-- [Vuex](http://vuex.vuejs.org) (v2.0.0+)
+* [Vue.js](https://vuejs.org) (v2.0.0+)
+* [Vuex](http://vuex.vuejs.org) (v2.0.0+)
 
 ## Installation
 
@@ -21,15 +22,16 @@ $ npm install vuex-persistedstate
 [![Edit vuex-persistedstate](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/80k4m2598?autoresize=1)
 
 ```js
-import createPersistedState from 'vuex-persistedstate'
+import createPersistedState from "vuex-persistedstate";
 
 const store = new Vuex.Store({
   // ...
   plugins: [createPersistedState()]
-})
+});
 ```
 
 ### Nuxt.js
+
 It is possible to use vuex-persistedstate with Nuxt.js. Due to the order code is loaded in, vuex-persistedstate must be included as a NuxtJS plugin:
 
 ```javascript
@@ -38,8 +40,8 @@ It is possible to use vuex-persistedstate with Nuxt.js. Due to the order code is
 ...
 plugins: [{ src: '~/plugins/localStorage.js', ssr: false }]
 ...
-
 ```
+
 ```javascript
 // ~/plugins/localStorage.js
 
@@ -52,7 +54,6 @@ export default ({store}) => {
       ...
   })(store)
 }
-
 ```
 
 ## API
@@ -62,16 +63,16 @@ export default ({store}) => {
 Creates a new instance of the plugin with the given options. The following options
 can be provided to configure the plugin for your specific needs:
 
-- `key <String>`: The key to store the persisted state under. (default: __vuex__)
-- `paths <Array>`: An array of any paths to partially persist the state. If no paths are given, the complete state is persisted. (default: __[]__)
-- `reducer <Function>`: A function that will be called to reduce the state to persist based on the given paths. Defaults to include the values.
-- `subscriber <Function>`: A function called to setup mutation subscription. Defaults to `store => handler => store.subscribe(handler)`
+* `key <String>`: The key to store the persisted state under. (default: **vuex**)
+* `paths <Array>`: An array of any paths to partially persist the state. If no paths are given, the complete state is persisted. (default: **[]**)
+* `reducer <Function>`: A function that will be called to reduce the state to persist based on the given paths. Defaults to include the values.
+* `subscriber <Function>`: A function called to setup mutation subscription. Defaults to `store => handler => store.subscribe(handler)`
 
-- `storage <Object>`: Instead for (or in combination with) `getState` and `setState`. Defaults to localStorage.
-- `getState <Function>`: A function that will be called to rehydrate a previously persisted state. Defaults to using `storage`.
-- `setState <Function>`: A function that will be called to persist the given state. Defaults to using `storage`.
-- `filter <Function>`: A function that will be called to filter any mutations which will trigger `setState` on storage eventually. Defaults to `() => true`
-- `arrayMerger <Function>`: A function for merging arrays when rehydrating state. Defaults to `function (store, saved) { return saved }` (saved state replaces supplied state).
+* `storage <Object>`: Instead for (or in combination with) `getState` and `setState`. Defaults to localStorage.
+* `getState <Function>`: A function that will be called to rehydrate a previously persisted state. Defaults to using `storage`.
+* `setState <Function>`: A function that will be called to persist the given state. Defaults to using `storage`.
+* `filter <Function>`: A function that will be called to filter any mutations which will trigger `setState` on storage eventually. Defaults to `() => true`
+* `arrayMerger <Function>`: A function for merging arrays when rehydrating state. Defaults to `function (store, saved) { return saved }` (saved state replaces supplied state).
 
 ## Customize Storage
 
@@ -80,9 +81,9 @@ If it's not ideal to have the state of the Vuex store inside localstorage. One c
 [![Edit vuex-persistedstate with js-cookie](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/xl356qvvkz?autoresize=1)
 
 ```js
-import { Store } from 'vuex'
-import createPersistedState from 'vuex-persistedstate'
-import * as Cookies from 'js-cookie'
+import { Store } from "vuex";
+import createPersistedState from "vuex-persistedstate";
+import * as Cookies from "js-cookie";
 
 const store = new Store({
   // ...
@@ -91,18 +92,19 @@ const store = new Store({
       storage: {
         getItem: key => Cookies.get(key),
         // Please see https://github.com/js-cookie/js-cookie#json, on how to handle JSON.
-        setItem: (key, value) => Cookies.set(key, value, { expires: 3, secure: true }),
+        setItem: (key, value) =>
+          Cookies.set(key, value, { expires: 3, secure: true }),
         removeItem: key => Cookies.remove(key)
       }
     })
   ]
-})
+});
 ```
 
 In fact, any object following the Storage protocol (getItem, setItem, removeItem, etc) could be passed:
 
 ```js
-createPersistedState({ storage: window.sessionStorage })
+createPersistedState({ storage: window.sessionStorage });
 ```
 
 This is especially useful when you are using this plugin in combination with server-side rendering, where one could pass an instance of [dom-storage](https://www.npmjs.com/package/dom-storage).
