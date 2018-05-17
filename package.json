@@ -27,7 +27,7 @@
   "scripts": {
     "build": "rimraf dist && microbundle --external all --name createPersistedState index.js",
     "precommit": "npm run build && lint-staged",
-    "prepublish": "npm run build",
+    "prepare": "npm run build",
     "test": "npm-run-all test:**",
     "test:jest": "jest --env=jsdom",
     "test:size": "bundlesize"
