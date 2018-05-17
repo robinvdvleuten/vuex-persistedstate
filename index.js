@@ -11,7 +11,9 @@ export default function(options, storage, key) {
       storage.setItem('@@', 1);
       storage.removeItem('@@');
       return true;
-    } catch (e) {}
+    } catch (e) {
+      console.error('vuex-persistedstate: localStorage is disable')
+    }
 
     return false;
   }
@@ -21,7 +23,9 @@ export default function(options, storage, key) {
       return (value = storage.getItem(key)) && typeof value !== 'undefined'
         ? JSON.parse(value)
         : undefined;
-    } catch (err) {}
+    } catch (err) {
+      console.error('vuex-persistedstate: can\'t correct get the state from localStorage')
+    }
 
     return undefined;
   }
