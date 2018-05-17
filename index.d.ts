@@ -1,5 +1,11 @@
 import { Store, MutationPayload } from 'vuex';
 
+interface Storage {
+    getItem: (key: string) => void;
+    setItem: (key: string, value: any) => void;
+    removeItem: (key: string) => void;
+}
+
 interface Options {
     key?: string;
     paths?: string[];
