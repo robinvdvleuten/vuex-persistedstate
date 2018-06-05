@@ -60,6 +60,9 @@ export default function(options, storage, key) {
         arrayMerge: options.arrayMerger || function (store, saved) { return saved },
         clone: false,
       }));
+      if(options.afterGetState && typeof options.afterGetState === 'function') {
+        options.afterGetState(store.state);
+      }
     }
 
     (options.subscriber || subscriber)(store)(function(mutation, state) {
