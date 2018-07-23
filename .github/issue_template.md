@@ -10,6 +10,9 @@
 <!--
   A great way to do this is to provide your Vuex setup via a runnable JSFiddle.
   You can use https://jsfiddle.net/robinvdvleuten/wmf8zvf8/ as a base for this.
+
+  If you try to report a bug but do not not provide a reproducible codesandbox or fiddle,
+  the issue will be closed without further notice.
 -->
 
 **What is the expected behavior?**
