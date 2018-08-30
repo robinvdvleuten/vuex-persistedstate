@@ -22,7 +22,7 @@ $ npm install vuex-persistedstate
 [![Edit vuex-persistedstate](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/80k4m2598?autoresize=1)
 
 ```js
-import createPersistedState from "vuex-persistedstate";
+import createPersistedState from 'vuex-persistedstate';
 
 const store = new Vuex.Store({
   // ...
@@ -81,9 +81,9 @@ If it's not ideal to have the state of the Vuex store inside localstorage. One c
 [![Edit vuex-persistedstate with js-cookie](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/xl356qvvkz?autoresize=1)
 
 ```js
-import { Store } from "vuex";
-import createPersistedState from "vuex-persistedstate";
-import * as Cookies from "js-cookie";
+import { Store } from 'vuex';
+import createPersistedState from 'vuex-persistedstate';
+import * as Cookies from 'js-cookie';
 
 const store = new Store({
   // ...
