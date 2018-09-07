@@ -1,5 +1,6 @@
 import merge from 'deepmerge';
 import * as shvl from 'shvl';
+import CircularJSON from 'circular-json';
 
 export default function(options, storage, key) {
   options = options || {};
@@ -19,7 +20,7 @@ export default function(options, storage, key) {
   function getState(key, storage, value) {
     try {
       return (value = storage.getItem(key)) && typeof value !== 'undefined'
-        ? JSON.parse(value)
+        ? CircularJSON.parse(value)
         : undefined;
     } catch (err) {}
 
@@ -31,7 +32,7 @@ export default function(options, storage, key) {
   }
 
   function setState(key, state, storage) {
-    return storage.setItem(key, JSON.stringify(state));
+    return storage.setItem(key, CircularJSON.stringify(state));
   }
 
   function reducer(state, paths) {
