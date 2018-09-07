@@ -1,6 +1,6 @@
-import merge from "deepmerge";
-import * as shvl from "shvl";
-import CircularJSON from "circular-json";
+import merge from 'deepmerge';
+import * as shvl from "shvl';
+import CircularJSON from 'circular-json';
 
 export default function(options, storage, key) {
   options = options || {};
