@@ -11,7 +11,7 @@ Persist and rehydrate your [Vuex](http://vuex.vuejs.org/) state between page rel
 [![MIT license](https://img.shields.io/github/license/robinvdvleuten/vuex-persistedstate.svg)](https://github.com/robinvdvleuten/vuex-persistedstate/blob/master/LICENSE)
 
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](http://makeapullrequest.com)
-[![Code Of Conduct](https://img.shields.io/badge/code%20of-conduct-ff69b4.svg)](https://github.com/kentcdodds/react-testing-library/blob/master/.github/code_of_conduct.md)
+[![Code Of Conduct](https://img.shields.io/badge/code%20of-conduct-ff69b4.svg)](https://github.com/robinvdvleuten/vuex-persistedstate/blob/master/.github/code_of_conduct.md)
 
 ## Requirements
 
