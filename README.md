@@ -1,10 +1,17 @@
 # vuex-persistedstate
 
-Persist [Vuex](http://vuex.vuejs.org/) state with [localStorage](https://developer.mozilla.org/nl/docs/Web/API/Window/localStorage).
+Persist and rehydrate your [Vuex](http://vuex.vuejs.org/) state between page reloads.
 
-[![NPM version](https://img.shields.io/npm/v/vuex-persistedstate.svg)](https://www.npmjs.com/package/vuex-persistedstate)
+<hr />
+
 [![Build Status](https://img.shields.io/travis/robinvdvleuten/vuex-persistedstate.svg)](https://travis-ci.org/robinvdvleuten/vuex-persistedstate)
+[![NPM version](https://img.shields.io/npm/v/vuex-persistedstate.svg)](https://www.npmjs.com/package/vuex-persistedstate)
+[![NPM downloads](https://img.shields.io/npm/dm/vuex-persistedstate.svg)](https://www.npmjs.com/package/vuex-persistedstate)
+[![Prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
+[![MIT license](https://img.shields.io/github/license/robinvdvleuten/vuex-persistedstate.svg)](https://github.com/robinvdvleuten/vuex-persistedstate/blob/master/LICENSE)
+
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](http://makeapullrequest.com)
+[![Code Of Conduct](https://img.shields.io/badge/code%20of-conduct-ff69b4.svg)](https://github.com/kentcdodds/react-testing-library/blob/master/.github/code_of_conduct.md)
 
 ## Requirements
 
@@ -22,12 +29,12 @@ $ npm install vuex-persistedstate
 [![Edit vuex-persistedstate](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/80k4m2598?autoresize=1)
 
 ```js
-import createPersistedState from 'vuex-persistedstate';
+import createPersistedState from 'vuex-persistedstate'
 
 const store = new Vuex.Store({
   // ...
-  plugins: [createPersistedState()]
-});
+  plugins: [createPersistedState()],
+})
 ```
 
 ### Nuxt.js
@@ -81,9 +88,9 @@ If it's not ideal to have the state of the Vuex store inside localstorage. One c
 [![Edit vuex-persistedstate with js-cookie](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/xl356qvvkz?autoresize=1)
 
 ```js
-import { Store } from 'vuex';
-import createPersistedState from 'vuex-persistedstate';
-import * as Cookies from 'js-cookie';
+import { Store } from 'vuex'
+import createPersistedState from 'vuex-persistedstate'
+import * as Cookies from 'js-cookie'
 
 const store = new Store({
   // ...
@@ -94,17 +101,17 @@ const store = new Store({
         // Please see https://github.com/js-cookie/js-cookie#json, on how to handle JSON.
         setItem: (key, value) =>
           Cookies.set(key, value, { expires: 3, secure: true }),
-        removeItem: key => Cookies.remove(key)
-      }
-    })
-  ]
-});
+        removeItem: key => Cookies.remove(key),
+      },
+    }),
+  ],
+})
 ```
 
 In fact, any object following the Storage protocol (getItem, setItem, removeItem, etc) could be passed:
 
 ```js
-createPersistedState({ storage: window.sessionStorage });
+createPersistedState({ storage: window.sessionStorage })
 ```
 
 This is especially useful when you are using this plugin in combination with server-side rendering, where one could pass an instance of [dom-storage](https://www.npmjs.com/package/dom-storage).
@@ -115,4 +122,4 @@ As it maybe seems at first sight, it's not possible to pass a [LocalForage](http
 
 ## License
 
-MIT © [Robin van der Vleuten](https://www.robinvdvleuten.nl)
+[MIT](https://github.com/robinvdvleuten/vuex-persistedstate/blob/master/LICENSE) © [Robin van der Vleuten](https://www.robinvdvleuten.nl)
