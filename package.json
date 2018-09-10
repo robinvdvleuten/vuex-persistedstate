@@ -4,7 +4,11 @@
   "version": "2.5.4",
   "license": "MIT",
   "author": "Robin van der Vleuten <robin@webstronauts.co> (robinvdvleuten.nl)",
-  "keywords": ["vue", "vuex", "plugin"],
+  "keywords": [
+    "vue",
+    "vuex",
+    "plugin"
+  ],
   "homepage": "https://github.com/robinvdvleuten/vuex-persistedstate#readme",
   "repository": "robinvdvleuten/vuex-persistedstate",
   "bugs": {
@@ -15,10 +19,13 @@
   "jsnext:main": "dist/vuex-persistedstate.es.js",
   "umd:main": "dist/vuex-persistedstate.umd.js",
   "typings": "./index.d.ts",
-  "files": ["dist", "index.d.ts", "index.js"],
+  "files": [
+    "dist",
+    "index.d.ts",
+    "index.js"
+  ],
   "scripts": {
-    "build":
-      "rimraf dist && microbundle --external all --name createPersistedState index.js",
+    "build": "rimraf dist && microbundle --external all --name createPersistedState index.js",
     "precommit": "npm run build && pretty-quick --staged",
     "prepare": "npm run build",
     "test": "npm-run-all test:**",
@@ -26,7 +33,9 @@
     "test:size": "bundlesize"
   },
   "babel": {
-    "presets": ["@babel/preset-env"]
+    "presets": [
+      "@babel/preset-env"
+    ]
   },
   "bundlesize": [
     {
