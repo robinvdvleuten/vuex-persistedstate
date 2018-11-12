@@ -55,11 +55,13 @@ plugins: [{ src: '~/plugins/localStorage.js', ssr: false }]
 import createPersistedState from 'vuex-persistedstate'
 
 export default ({store}) => {
-  createPersistedState({
-      key: 'yourkey',
-      paths: [...]
-      ...
-  })(store)
+  window.onNuxtReady(() => {
+    createPersistedState({
+        key: 'yourkey',
+        paths: [...]
+        ...
+    })(store)
+  })
 }
 ```
 
