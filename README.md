@@ -15,18 +15,24 @@ Persist and rehydrate your [Vuex](http://vuex.vuejs.org/) state between page rel
 
 ## Requirements
 
-* [Vue.js](https://vuejs.org) (v2.0.0+)
-* [Vuex](http://vuex.vuejs.org) (v2.0.0+)
+- [Vue.js](https://vuejs.org) (v2.0.0+)
+- [Vuex](http://vuex.vuejs.org) (v2.0.0+)
 
-## Installation
+## Install
 
 ```bash
-$ npm install vuex-persistedstate
+npm install --save unistore
 ```
 
-## Usage
+The [UMD](https://github.com/umdjs/umd) build is also available on [unpkg](https://unpkg.com):
 
-[![Edit vuex-persistedstate](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/80k4m2598?autoresize=1)
+```html
+<script src="https://unpkg.com/vuex-persistedstate/dist/vuex-persistedstate.umd.js"></script>
+```
+
+You can find the library on `window.createPersistedState`.
+
+## Usage
 
 ```js
 import createPersistedState from 'vuex-persistedstate'
@@ -36,6 +42,14 @@ const store = new Vuex.Store({
   plugins: [createPersistedState()],
 })
 ```
+
+Check out the example on [CodeSandbox](https://codesandbox.io).
+
+[![Edit vuex-persistedstate](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/80k4m2598)
+
+Or configured to use with [js-cookie](https://github.com/js-cookie/js-cookie).
+
+[![Edit vuex-persistedstate with js-cookie](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/xl356qvvkz)
 
 ### Nuxt.js
 
@@ -72,16 +86,16 @@ export default ({store}) => {
 Creates a new instance of the plugin with the given options. The following options
 can be provided to configure the plugin for your specific needs:
 
-* `key <String>`: The key to store the persisted state under. (default: **vuex**)
-* `paths <Array>`: An array of any paths to partially persist the state. If no paths are given, the complete state is persisted. (default: **[]**)
-* `reducer <Function>`: A function that will be called to reduce the state to persist based on the given paths. Defaults to include the values.
-* `subscriber <Function>`: A function called to setup mutation subscription. Defaults to `store => handler => store.subscribe(handler)`
+- `key <String>`: The key to store the persisted state under. (default: **vuex**)
+- `paths <Array>`: An array of any paths to partially persist the state. If no paths are given, the complete state is persisted. (default: **[]**)
+- `reducer <Function>`: A function that will be called to reduce the state to persist based on the given paths. Defaults to include the values.
+- `subscriber <Function>`: A function called to setup mutation subscription. Defaults to `store => handler => store.subscribe(handler)`
 
-* `storage <Object>`: Instead for (or in combination with) `getState` and `setState`. Defaults to localStorage.
-* `getState <Function>`: A function that will be called to rehydrate a previously persisted state. Defaults to using `storage`.
-* `setState <Function>`: A function that will be called to persist the given state. Defaults to using `storage`.
-* `filter <Function>`: A function that will be called to filter any mutations which will trigger `setState` on storage eventually. Defaults to `() => true`
-* `arrayMerger <Function>`: A function for merging arrays when rehydrating state. Defaults to `function (store, saved) { return saved }` (saved state replaces supplied state).
+- `storage <Object>`: Instead for (or in combination with) `getState` and `setState`. Defaults to localStorage.
+- `getState <Function>`: A function that will be called to rehydrate a previously persisted state. Defaults to using `storage`.
+- `setState <Function>`: A function that will be called to persist the given state. Defaults to using `storage`.
+- `filter <Function>`: A function that will be called to filter any mutations which will trigger `setState` on storage eventually. Defaults to `() => true`
+- `arrayMerger <Function>`: A function for merging arrays when rehydrating state. Defaults to `function (store, saved) { return saved }` (saved state replaces supplied state).
 
 ## Customize Storage
 
