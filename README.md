@@ -21,7 +21,7 @@ Persist and rehydrate your [Vuex](http://vuex.vuejs.org/) state between page rel
 ## Install
 
 ```bash
-npm install --save unistore
+npm install --save vuex-persistedstate
 ```
 
 The [UMD](https://github.com/umdjs/umd) build is also available on [unpkg](https://unpkg.com):
