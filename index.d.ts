@@ -15,6 +15,7 @@ interface Options {
     getState?: (key: string, storage: Storage) => any;
     setState?: (key: string, state: typeof Store, storage: Storage) => void;
     filter?: (mutation: MutationPayload) => boolean;
+    merger?: (state: any, saved: any) => any;
 }
 
 export default function createPersistedState(options?: Options): any;
