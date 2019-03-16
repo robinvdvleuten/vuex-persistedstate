@@ -196,7 +196,7 @@ it('should not clone circular objects when rehydrating', () => {
   expect(store.subscribe).toBeCalled();
 });
 
-it('should apply a custom arrayMerger function', () => {
+it('should apply a custom merger function', () => {
   const storage = new Storage();
   storage.setItem('vuex', JSON.stringify({ persisted: [1, 2] }));
 
@@ -206,7 +206,7 @@ it('should apply a custom arrayMerger function', () => {
 
   const plugin = createPersistedState({ 
     storage,
-    arrayMerger: function (store, saved) { return ['hello!'] },
+    merger: function (store, saved) { return ['hello!'] },
    });
   plugin(store);
 
