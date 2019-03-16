@@ -95,7 +95,7 @@ can be provided to configure the plugin for your specific needs:
 - `getState <Function>`: A function that will be called to rehydrate a previously persisted state. Defaults to using `storage`.
 - `setState <Function>`: A function that will be called to persist the given state. Defaults to using `storage`.
 - `filter <Function>`: A function that will be called to filter any mutations which will trigger `setState` on storage eventually. Defaults to `() => true`
-- `arrayMerger <Function>`: A function for merging arrays when rehydrating state. Defaults to `function (store, saved) { return saved }` (saved state replaces supplied state).
+- `merger <Function>`: A function for merging when rehydrating state. Defaults to `function (store, saved) { return saved }` (saved state replaces supplied state).
 
 ## Customize Storage
 
