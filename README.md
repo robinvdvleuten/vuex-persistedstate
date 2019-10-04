@@ -51,6 +51,10 @@ Or configured to use with [js-cookie](https://github.com/js-cookie/js-cookie).
 
 [![Edit vuex-persistedstate with js-cookie](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/xl356qvvkz)
 
+Or configured to use with [secure-ls]('https://github.com/softvar/secure-ls')
+
+[![Edit vuex-persistedstate with secure-ls (encrypted data)](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/vuex-persistedstate-with-secure-ls-encrypted-data-7l9wb?fontsize=14)
+
 ### Nuxt.js
 
 It is possible to use vuex-persistedstate with Nuxt.js. Due to the order code is loaded in, vuex-persistedstate must be included as a NuxtJS plugin:
