@@ -132,6 +132,34 @@ createPersistedState({ storage: window.sessionStorage })
 
 This is especially useful when you are using this plugin in combination with server-side rendering, where one could pass an instance of [dom-storage](https://www.npmjs.com/package/dom-storage).
 
+### 🔐Encrypted Local Storage
+
+If you needs to use **Local Storage** (or you want it) but needs to protect the content of the data, you can [encrypted]('https://github.com/softvar/secure-ls').
+
+[![Edit vuex-persistedstate with secure-ls (encrypted data)](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/vuex-persistedstate-with-secure-ls-encrypted-data-7l9wb?fontsize=14)
+
+```js
+import { Store } from 'vuex'
+import createPersistedState from 'vuex-persistedstate'
+import SecureLS from "secure-ls";
+var ls = new SecureLS({ isCompression: false });
+
+// https://github.com/softvar/secure-ls
+
+const store = new Store({
+  // ...
+  plugins: [
+    createPersistedState({
+      storage: {
+        getItem: key => ls.get(key),
+        setItem: (key, value) => ls.set(key, value),
+        removeItem: key => ls.remove(key)
+      }
+    })
+  ],
+})
+```
+
 ### ⚠️ LocalForage ⚠️
 
 As it maybe seems at first sight, it's not possible to pass a [LocalForage](https://github.com/localForage/localForage) instance as `storage` property. This is due the fact that all getters and setters must be synchronous and [LocalForage's methods](https://github.com/localForage/localForage#callbacks-vs-promises) are asynchronous.
