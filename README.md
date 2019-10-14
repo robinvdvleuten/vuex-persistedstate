@@ -138,7 +138,7 @@ This is especially useful when you are using this plugin in combination with ser
 
 ### 🔐Encrypted Local Storage
 
-If you needs to use **Local Storage** (or you want it) but needs to protect the content of the data, you can [encrypted]('https://github.com/softvar/secure-ls').
+If you need to use **Local Storage** (or you want to) but needs to protect the content of the data, you can [encrypt it]('https://github.com/softvar/secure-ls').
 
 [![Edit vuex-persistedstate with secure-ls (encrypted data)](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/vuex-persistedstate-with-secure-ls-encrypted-data-7l9wb?fontsize=14)
 
