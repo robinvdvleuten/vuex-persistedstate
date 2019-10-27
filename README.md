@@ -145,8 +145,8 @@ If you need to use **Local Storage** (or you want to) but needs to protect the c
 ```js
 import { Store } from 'vuex'
 import createPersistedState from 'vuex-persistedstate'
-import SecureLS from "secure-ls";
-var ls = new SecureLS({ isCompression: false });
+import SecureLS from 'secure-ls'
+var ls = new SecureLS({ isCompression: false })
 
 // https://github.com/softvar/secure-ls
 
@@ -157,9 +157,9 @@ const store = new Store({
       storage: {
         getItem: key => ls.get(key),
         setItem: (key, value) => ls.set(key, value),
-        removeItem: key => ls.remove(key)
-      }
-    })
+        removeItem: key => ls.remove(key),
+      },
+    }),
   ],
 })
 ```
@@ -168,6 +168,11 @@ const store = new Store({
 
 As it maybe seems at first sight, it's not possible to pass a [LocalForage](https://github.com/localForage/localForage) instance as `storage` property. This is due the fact that all getters and setters must be synchronous and [LocalForage's methods](https://github.com/localForage/localForage#callbacks-vs-promises) are asynchronous.
 
+## Credits
+
+- Robin van der Vleuten ([@robinvdvleuten](https://twitter.com/robinvdvleuten))
+- [All Contributors](../../contributors)
+
 ## License
 
-[MIT](https://github.com/robinvdvleuten/vuex-persistedstate/blob/master/LICENSE) © [Robin van der Vleuten](https://www.robinvdvleuten.nl)
+The MIT License (MIT). Please see [License File](LICENSE) for more information.
