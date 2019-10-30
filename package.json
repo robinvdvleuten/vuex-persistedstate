@@ -52,7 +52,7 @@
   },
   "dependencies": {
     "deepmerge": "^4.2.2",
-    "shvl": "^1.3.0"
+    "shvl": "^2.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.0.0",
