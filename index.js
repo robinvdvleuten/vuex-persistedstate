@@ -60,6 +60,7 @@ export default function(options, storage, key) {
         arrayMerge: options.arrayMerger || function (store, saved) { return saved },
         clone: false,
       }));
+      (options.rehydrated || function() {})(store);
     }
 
     (options.subscriber || subscriber)(store)(function(mutation, state) {

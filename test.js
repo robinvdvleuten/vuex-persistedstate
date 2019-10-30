@@ -286,3 +286,37 @@ it('filters to specific mutations', () => {
 
   expect(storage.getItem('vuex')).toBe(JSON.stringify({ changed: 'state' }));
 });
+
+it('should call rehydrated callback once the state is replaced', () => {
+  const storage = new Storage();
+  storage.setItem('vuex', JSON.stringify({ persisted: 'json' }));
+
+  const store = new Vuex.Store({ state: { original: 'state' } });
+  const rehydrated = jest.fn();
+
+  const plugin = createPersistedState({ storage, rehydrated });
+  plugin(store);
+
+  expect(rehydrated).toBeCalledWith(store);
+});
+
+it('should call rehydrated if the replacement executed asynchronously', () => {
+  jest.useFakeTimers();
+
+  const storage = new Storage();
+  storage.setItem('vuex', JSON.stringify({ persisted: 'json' }));
+
+  setTimeout(() => {
+    createPersistedState({ storage, rehydrated })(store);
+  }, 600);
+  const store = new Vuex.Store({ state: { original: 'state' } });
+  const rehydrated = jest.fn();
+
+  jest.runAllTimers();
+  const plugin = createPersistedState({ storage, rehydrated });
+  plugin(store);
+
+  expect(rehydrated).toBeCalled();
+  const rehydratedStore = rehydrated.mock.calls[0][0];
+  expect(rehydratedStore.state.persisted).toBe('json');
+});
