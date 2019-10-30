@@ -52,8 +52,9 @@ export default function(options, storage, key) {
     throw new Error('Invalid storage instance given');
   }
 
+  const savedState = shvl.get(options, 'getState', getState)(key, storage);
+
   return function(store) {
-    const savedState = shvl.get(options, 'getState', getState)(key, storage);
 
     if (typeof savedState === 'object' && savedState !== null) {
       store.replaceState(merge(store.state, savedState, {
