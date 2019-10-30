@@ -11,7 +11,7 @@ Persist and rehydrate your [Vuex](http://vuex.vuejs.org/) state between page rel
 [![MIT license](https://img.shields.io/github/license/robinvdvleuten/vuex-persistedstate.svg)](https://github.com/robinvdvleuten/vuex-persistedstate/blob/master/LICENSE)
 
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](http://makeapullrequest.com)
-[![Code Of Conduct](https://img.shields.io/badge/code%20of-conduct-ff69b4.svg)](https://github.com/robinvdvleuten/vuex-persistedstate/blob/master/.github/code_of_conduct.md)
+[![Code Of Conduct](https://img.shields.io/badge/code%20of-conduct-ff69b4.svg)](https://github.com/robinvdvleuten/vuex-persistedstate/blob/master/.github/CODE_OF_CONDUCT.md)
 
 ## Requirements
 
@@ -35,12 +35,12 @@ You can find the library on `window.createPersistedState`.
 ## Usage
 
 ```js
-import createPersistedState from 'vuex-persistedstate'
+import createPersistedState from "vuex-persistedstate";
 
 const store = new Vuex.Store({
   // ...
-  plugins: [createPersistedState()],
-})
+  plugins: [createPersistedState()]
+});
 ```
 
 Check out the example on [CodeSandbox](https://codesandbox.io).
@@ -109,9 +109,9 @@ If it's not ideal to have the state of the Vuex store inside localstorage. One c
 [![Edit vuex-persistedstate with js-cookie](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/xl356qvvkz?autoresize=1)
 
 ```js
-import { Store } from 'vuex'
-import createPersistedState from 'vuex-persistedstate'
-import * as Cookies from 'js-cookie'
+import { Store } from "vuex";
+import createPersistedState from "vuex-persistedstate";
+import * as Cookies from "js-cookie";
 
 const store = new Store({
   // ...
@@ -122,17 +122,17 @@ const store = new Store({
         // Please see https://github.com/js-cookie/js-cookie#json, on how to handle JSON.
         setItem: (key, value) =>
           Cookies.set(key, value, { expires: 3, secure: true }),
-        removeItem: key => Cookies.remove(key),
-      },
-    }),
-  ],
-})
+        removeItem: key => Cookies.remove(key)
+      }
+    })
+  ]
+});
 ```
 
 In fact, any object following the Storage protocol (getItem, setItem, removeItem, etc) could be passed:
 
 ```js
-createPersistedState({ storage: window.sessionStorage })
+createPersistedState({ storage: window.sessionStorage });
 ```
 
 This is especially useful when you are using this plugin in combination with server-side rendering, where one could pass an instance of [dom-storage](https://www.npmjs.com/package/dom-storage).
@@ -144,10 +144,10 @@ If you need to use **Local Storage** (or you want to) but needs to protect the c
 [![Edit vuex-persistedstate with secure-ls (encrypted data)](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/vuex-persistedstate-with-secure-ls-encrypted-data-7l9wb?fontsize=14)
 
 ```js
-import { Store } from 'vuex'
-import createPersistedState from 'vuex-persistedstate'
-import SecureLS from 'secure-ls'
-var ls = new SecureLS({ isCompression: false })
+import { Store } from "vuex";
+import createPersistedState from "vuex-persistedstate";
+import SecureLS from "secure-ls";
+var ls = new SecureLS({ isCompression: false });
 
 // https://github.com/softvar/secure-ls
 
@@ -158,11 +158,11 @@ const store = new Store({
       storage: {
         getItem: key => ls.get(key),
         setItem: (key, value) => ls.set(key, value),
-        removeItem: key => ls.remove(key),
-      },
-    }),
-  ],
-})
+        removeItem: key => ls.remove(key)
+      }
+    })
+  ]
+});
 ```
 
 ### ⚠️ LocalForage ⚠️
