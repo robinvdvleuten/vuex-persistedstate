@@ -31,7 +31,11 @@ export default function(options, storage, key) {
   }
 
   function setState(key, state, storage) {
-    return storage.setItem(key, JSON.stringify(state));
+    try {
+      return storage.setItem(key, JSON.stringify(state));
+    } catch (err) {}
+
+    return undefined;
   }
 
   function reducer(state, paths) {
