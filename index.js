@@ -11,7 +11,9 @@ export default function(options, storage, key) {
       storage.setItem("@@", 1);
       storage.removeItem("@@");
       return true;
-    } catch (e) {}
+    } catch (e) {
+      throw new Error(e)
+    }
 
     return false;
   }
