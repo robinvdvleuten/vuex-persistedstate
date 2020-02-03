@@ -99,6 +99,7 @@ can be provided to configure the plugin for your specific needs:
 - `getState <Function>`: A function that will be called to rehydrate a previously persisted state. Defaults to using `storage`.
 - `setState <Function>`: A function that will be called to persist the given state. Defaults to using `storage`.
 - `filter <Function>`: A function that will be called to filter any mutations which will trigger `setState` on storage eventually. Defaults to `() => true`
+- `overwrite <Boolean>`: When rehydrating, whether to overwrite the existing state with the output from `getState` directly, instead of merging the two objects with `deepmerge`. Defaults to false.
 - `arrayMerger <Function>`: A function for merging arrays when rehydrating state. Defaults to `function (store, saved) { return saved }` (saved state replaces supplied state).
 - `rehydrated <Function>`: A function that will be called when the rehydration is finished. Useful when you are using Nuxt.js, which the rehydration of the persisted state happens asynchronously. Defaults to `store => {}`
 
