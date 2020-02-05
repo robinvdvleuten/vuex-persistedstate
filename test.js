@@ -79,7 +79,7 @@ it("respects nested values when it replaces store's state on initializing", () =
   expect(store.subscribe).toBeCalled();
 });
 
-it("should persist the changed parial state back to serialized JSON", () => {
+it("should persist the changed partial state back to serialized JSON", () => {
   const storage = new Storage();
   const store = new Vuex.Store({ state: {} });
 
@@ -321,4 +321,40 @@ it("should call rehydrated if the replacement executed asynchronously", () => {
   expect(rehydrated).toBeCalled();
   const rehydratedStore = rehydrated.mock.calls[0][0];
   expect(rehydratedStore.state.persisted).toBe("json");
+});
+
+it("fetches state from storage when the plugin is used by default", () => {
+  const storage = new Storage();
+  storage.setItem("vuex", JSON.stringify({ persisted: "before" }));
+
+  const plugin = createPersistedState({ storage });
+
+  const store = new Vuex.Store();
+  store.replaceState = jest.fn();
+
+  storage.setItem("vuex", JSON.stringify({ persisted: "after" }));
+
+  plugin(store);
+
+  expect(store.replaceState).toBeCalledWith({
+    persisted: "after"
+  });
+});
+
+it("fetches state from storage before the plugin is used", () => {
+  const storage = new Storage();
+  storage.setItem("vuex", JSON.stringify({ persisted: "before" }));
+
+  const plugin = createPersistedState({ storage, fetchBeforeUse: true });
+
+  const store = new Vuex.Store();
+  store.replaceState = jest.fn();
+
+  storage.setItem("vuex", JSON.stringify({ persisted: "after" }));
+
+  plugin(store);
+
+  expect(store.replaceState).toBeCalledWith({
+    persisted: "before"
+  });
 });

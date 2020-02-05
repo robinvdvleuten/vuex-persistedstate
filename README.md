@@ -90,17 +90,18 @@ export default ({store}) => {
 Creates a new instance of the plugin with the given options. The following options
 can be provided to configure the plugin for your specific needs:
 
-- `key <String>`: The key to store the persisted state under. (default: **vuex**)
-- `paths <Array>`: An array of any paths to partially persist the state. If no paths are given, the complete state is persisted. Paths must be specified using dot notation. If using modules, include the module name. eg: "auth.user" (default: **[]**)
+- `key <String>`: The key to store the persisted state under. Defaults to `vuex`.
+- `paths <Array>`: An array of any paths to partially persist the state. If no paths are given, the complete state is persisted. Paths must be specified using dot notation. If using modules, include the module name. eg: "auth.user" Defaults to `[]`.
 - `reducer <Function>`: A function that will be called to reduce the state to persist based on the given paths. Defaults to include the values.
-- `subscriber <Function>`: A function called to setup mutation subscription. Defaults to `store => handler => store.subscribe(handler)`
+- `subscriber <Function>`: A function called to setup mutation subscription. Defaults to `store => handler => store.subscribe(handler)`.
 
 - `storage <Object>`: Instead for (or in combination with) `getState` and `setState`. Defaults to localStorage.
 - `getState <Function>`: A function that will be called to rehydrate a previously persisted state. Defaults to using `storage`.
 - `setState <Function>`: A function that will be called to persist the given state. Defaults to using `storage`.
-- `filter <Function>`: A function that will be called to filter any mutations which will trigger `setState` on storage eventually. Defaults to `() => true`
+- `filter <Function>`: A function that will be called to filter any mutations which will trigger `setState` on storage eventually. Defaults to `() => true`.
 - `arrayMerger <Function>`: A function for merging arrays when rehydrating state. Defaults to `function (store, saved) { return saved }` (saved state replaces supplied state).
 - `rehydrated <Function>`: A function that will be called when the rehydration is finished. Useful when you are using Nuxt.js, which the rehydration of the persisted state happens asynchronously. Defaults to `store => {}`
+- `fetchBeforeUse <Boolean>`: A boolean indicating if the state should be fetched from storage before the plugin is used. Defaults to `false`.
 
 ## Customize Storage
 
