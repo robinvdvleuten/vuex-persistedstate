@@ -52,8 +52,7 @@ export default function(options, storage, key) {
     throw new Error("Invalid storage instance given");
   }
 
-  const fetchSavedState = () =>
-    shvl.get(options, "getState", getState)(key, storage);
+  const fetchSavedState = () => (options.getState || getState)(key, storage);
 
   let savedState;
 
