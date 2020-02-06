@@ -17,6 +17,7 @@ interface Options {
     filter?: (mutation: MutationPayload) => boolean;
     arrayMerger?: (state: any, saved: any) => any;
     rehydrated?: (store: typeof Store) => void;
+    fetchBeforeUse?: boolean; 
 }
 
 export default function createPersistedState(options?: Options): any;
