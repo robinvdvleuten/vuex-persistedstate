@@ -67,7 +67,7 @@ export default function(options, storage, key) {
 
     if (typeof savedState === "object" && savedState !== null) {
       store.replaceState(
-        merge(store.state, savedState, {
+        options.overwrite ? savedState : merge(store.state, savedState, {
           arrayMerge:
             options.arrayMerger ||
             function(store, saved) {
