@@ -35,7 +35,7 @@ export default function(options, storage, key) {
   }
 
   function reducer(state, paths) {
-    return paths.length === 0
+    return paths === null || paths === undefined
       ? state
       : paths.reduce(function(substate, path) {
           return shvl.set(substate, path, shvl.get(state, path));
@@ -67,14 +67,16 @@ export default function(options, storage, key) {
 
     if (typeof savedState === "object" && savedState !== null) {
       store.replaceState(
-        options.overwrite ? savedState : merge(store.state, savedState, {
-          arrayMerge:
-            options.arrayMerger ||
-            function(store, saved) {
-              return saved;
-            },
-          clone: false
-        })
+        options.overwrite
+          ? savedState
+          : merge(store.state, savedState, {
+              arrayMerge:
+                options.arrayMerger ||
+                function(store, saved) {
+                  return saved;
+                },
+              clone: false
+            })
       );
       (options.rehydrated || function() {})(store);
     }
@@ -83,7 +85,7 @@ export default function(options, storage, key) {
       if ((options.filter || filter)(mutation)) {
         (options.setState || setState)(
           key,
-          (options.reducer || reducer)(state, options.paths || []),
+          (options.reducer || reducer)(state, options.paths),
           storage
         );
       }

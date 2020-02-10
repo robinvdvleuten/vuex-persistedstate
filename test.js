@@ -358,3 +358,17 @@ it("fetches state from storage before the plugin is used", () => {
     persisted: "before"
   });
 });
+
+it("should not persist whole store if paths array is empty", () => {
+  const storage = new Storage();
+  const store = new Vuex.Store({
+    state: { original: "state" }
+  });
+
+  const plugin = createPersistedState({ storage, paths: [] });
+  plugin(store);
+
+  store._subscribers[0]("mutation", { changed: "state" });
+
+  expect(storage.getItem("vuex")).toBe(JSON.stringify({}));
+});
