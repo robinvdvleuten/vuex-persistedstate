@@ -19,6 +19,7 @@ interface Options {
   rehydrated?: (store: typeof Store) => void;
   fetchBeforeUse?: boolean;
   overwrite?: boolean;
+  assertStorage: (Storage) => void | DOMException;
 }
 
 export default function createPersistedState(options?: Options): any;
