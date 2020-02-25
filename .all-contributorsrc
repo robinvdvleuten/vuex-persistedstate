@@ -225,6 +225,17 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "gangsthub",
+      "name": "Paul Melero",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/6775220?s=460&v=4",
+      "profile": "https://github.com/gangsthub",
+      "contributions": [
+        "doc",
+        "code",
+        "test"
+      ]
     }
   ],
   "contributorsPerLine": 7,
