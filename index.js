@@ -6,15 +6,18 @@ export default function(options, storage, key) {
   storage = options.storage || (window && window.localStorage);
   key = options.key || "vuex";
 
-  function canWriteStorage(storage) {
-    try {
-      storage.setItem("@@", 1);
-      storage.removeItem("@@");
-      return true;
-    } catch (e) {}
-
-    return false;
+  function assertStorageDefaultFunction(storage) {
+    storage.setItem("@@", 1);
+    storage.removeItem("@@");
   }
+
+  const assertStorage = shvl.get(
+    options,
+    "assertStorage",
+    assertStorageDefaultFunction
+  );
+
+  assertStorage(storage);
 
   function getState(key, storage, value) {
     try {
@@ -48,10 +51,6 @@ export default function(options, storage, key) {
     };
   }
 
-  if (!canWriteStorage(storage)) {
-    throw new Error("Invalid storage instance given");
-  }
-
   const fetchSavedState = () => (options.getState || getState)(key, storage);
 
   let savedState;
@@ -67,14 +66,16 @@ export default function(options, storage, key) {
 
     if (typeof savedState === "object" && savedState !== null) {
       store.replaceState(
-        options.overwrite ? savedState : merge(store.state, savedState, {
-          arrayMerge:
-            options.arrayMerger ||
-            function(store, saved) {
-              return saved;
-            },
-          clone: false
-        })
+        options.overwrite
+          ? savedState
+          : merge(store.state, savedState, {
+              arrayMerge:
+                options.arrayMerger ||
+                function(store, saved) {
+                  return saved;
+                },
+              clone: false
+            })
       );
       (options.rehydrated || function() {})(store);
     }
