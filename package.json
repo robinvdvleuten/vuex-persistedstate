@@ -14,18 +14,17 @@
   "bugs": {
     "url": "https://github.com/robinvdvleuten/vuex-persistedstate/issues"
   },
+  "source": "src/index.ts",
   "main": "dist/vuex-persistedstate.js",
   "module": "dist/vuex-persistedstate.es.js",
-  "jsnext:main": "dist/vuex-persistedstate.es.js",
-  "umd:main": "dist/vuex-persistedstate.umd.js",
-  "typings": "./index.d.ts",
+  "unpkg": "dist/vuex-persistedstate.umd.js",
+  "types": "dist/index.d.ts",
   "files": [
     "dist",
-    "index.d.ts",
-    "index.js"
+    "src"
   ],
   "scripts": {
-    "build": "rimraf dist && microbundle --external all --name createPersistedState index.js",
+    "build": "rimraf dist && microbundle --external all --name createPersistedState",
     "prepare": "npm run build",
     "test": "npm-run-all test:**",
     "test:jest": "jest --env=jsdom",

@@ -1,25 +1,43 @@
+import { Store, MutationPayload } from "vuex";
 import merge from "deepmerge";
 import * as shvl from "shvl";
 
-export default function(options, storage, key) {
+interface Storage {
+  getItem: (key: string) => any;
+  setItem: (key: string, value: any) => void;
+  removeItem: (key: string) => void;
+}
+
+interface Options {
+  key?: string;
+  paths?: string[];
+  reducer?: (state: any, paths: string[]) => object;
+  subscriber?: (
+    store: typeof Store
+  ) => (handler: (mutation: any, state: any) => void) => void;
+  storage?: Storage;
+  getState?: (key: string, storage: Storage) => any;
+  setState?: (key: string, state: typeof Store, storage: Storage) => void;
+  filter?: (mutation: MutationPayload) => boolean;
+  arrayMerger?: (state: any, saved: any) => any;
+  rehydrated?: (store: typeof Store) => void;
+  fetchBeforeUse?: boolean;
+  overwrite?: boolean;
+  assertStorage?: (storage: Storage) => void | Error;
+}
+
+export default function (
+  options: Options | null,
+  storage: Storage | null,
+  key: string | null
+) {
   options = options || {};
   storage = options.storage || (window && window.localStorage);
   key = options.key || "vuex";
 
-  function assertStorageDefaultFunction(storage) {
-    storage.setItem("@@", 1);
-    storage.removeItem("@@");
-  }
+  function getState(key, storage) {
+    let value;
 
-  const assertStorage = shvl.get(
-    options,
-    "assertStorage",
-    assertStorageDefaultFunction
-  );
-
-  assertStorage(storage);
-
-  function getState(key, storage, value) {
     try {
       return (value = storage.getItem(key)) && typeof value !== "undefined"
         ? JSON.parse(value)
@@ -40,16 +58,25 @@ export default function(options, storage, key) {
   function reducer(state, paths) {
     return paths.length === 0
       ? state
-      : paths.reduce(function(substate, path) {
+      : paths.reduce(function (substate, path) {
           return shvl.set(substate, path, shvl.get(state, path));
         }, {});
   }
 
   function subscriber(store) {
-    return function(handler) {
+    return function (handler) {
       return store.subscribe(handler);
     };
   }
+
+  const assertStorage =
+    options.assertStorage ||
+    (() => {
+      storage.setItem("@@", 1);
+      storage.removeItem("@@");
+    });
+
+  assertStorage(storage);
 
   const fetchSavedState = () => (options.getState || getState)(key, storage);
 
@@ -59,7 +86,7 @@ export default function(options, storage, key) {
     savedState = fetchSavedState();
   }
 
-  return function(store) {
+  return function (store) {
     if (!options.fetchBeforeUse) {
       savedState = fetchSavedState();
     }
@@ -71,16 +98,16 @@ export default function(options, storage, key) {
           : merge(store.state, savedState, {
               arrayMerge:
                 options.arrayMerger ||
-                function(store, saved) {
+                function (store, saved) {
                   return saved;
                 },
-              clone: false
+              clone: false,
             })
       );
-      (options.rehydrated || function() {})(store);
+      (options.rehydrated || function () {})(store);
     }
 
-    (options.subscriber || subscriber)(store)(function(mutation, state) {
+    (options.subscriber || subscriber)(store)(function (mutation, state) {
       if ((options.filter || filter)(mutation)) {
         (options.setState || setState)(
           key,
