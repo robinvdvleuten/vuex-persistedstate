@@ -91,7 +91,7 @@ Creates a new instance of the plugin with the given options. The following optio
 can be provided to configure the plugin for your specific needs:
 
 - `key <String>`: The key to store the persisted state under. Defaults to `vuex`.
-- `paths <Array>`: An array of any paths to partially persist the state. If no paths are given, the complete state is persisted. Paths must be specified using dot notation. If using modules, include the module name. eg: "auth.user" Defaults to `[]`.
+- `paths <Array>`: An array of any paths to partially persist the state. If no paths are given, the complete state is persisted. If an empty array is given, no state is persisted. Paths must be specified using dot notation. If using modules, include the module name. eg: "auth.user" Defaults to `undefined`.
 - `reducer <Function>`: A function that will be called to reduce the state to persist based on the given paths. Defaults to include the values.
 - `subscriber <Function>`: A function called to setup mutation subscription. Defaults to `store => handler => store.subscribe(handler)`.
 

@@ -56,11 +56,11 @@ export default function (
   }
 
   function reducer(state, paths) {
-    return paths.length === 0
-      ? state
-      : paths.reduce(function (substate, path) {
+    return Array.isArray(paths)
+      ? paths.reduce(function (substate, path) {
           return shvl.set(substate, path, shvl.get(state, path));
-        }, {});
+        }, {})
+      : state;
   }
 
   function subscriber(store) {
@@ -111,7 +111,7 @@ export default function (
       if ((options.filter || filter)(mutation)) {
         (options.setState || setState)(
           key,
-          (options.reducer || reducer)(state, options.paths || []),
+          (options.reducer || reducer)(state, options.paths),
           storage
         );
       }

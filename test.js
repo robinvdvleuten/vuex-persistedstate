@@ -136,6 +136,20 @@ it("persist the changed partial state back to serialized JSON under a nested pat
   );
 });
 
+it("should not persist whole store if paths array is empty", () => {
+  const storage = new Storage();
+  const store = new Vuex.Store({
+    state: { original: "state" },
+  });
+
+  const plugin = createPersistedState({ storage, paths: [] });
+  plugin(store);
+
+  store._subscribers[0]("mutation", { changed: "state" });
+
+  expect(storage.getItem("vuex")).toBe(JSON.stringify({}));
+});
+
 it("should not persist null values", () => {
   const storage = new Storage();
   const store = new Vuex.Store({
