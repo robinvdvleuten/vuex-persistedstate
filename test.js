@@ -1,7 +1,7 @@
 import Vue from "vue";
 import Vuex from "vuex";
 import Storage from "dom-storage";
-import createPersistedState from "./index";
+import createPersistedState from "./";
 
 // Do not show the production tip while running tests.
 Vue.config.productionTip = false;
@@ -26,7 +26,7 @@ it("replaces store's state and subscribes to changes when initializing", () => {
 
   expect(store.replaceState).toBeCalledWith({
     original: "state",
-    persisted: "json"
+    persisted: "json",
   });
   expect(store.subscribe).toBeCalled();
 });
@@ -74,7 +74,7 @@ it("respects nested values when it replaces store's state on initializing", () =
 
   expect(store.replaceState).toBeCalledWith({
     original: "state",
-    persisted: "json"
+    persisted: "json",
   });
   expect(store.subscribe).toBeCalled();
 });
@@ -98,7 +98,7 @@ it("persist the changed partial state back to serialized JSON under a configured
   const plugin = createPersistedState({
     storage,
     key: "custom",
-    paths: ["changed"]
+    paths: ["changed"],
   });
   plugin(store);
 
@@ -125,7 +125,7 @@ it("persist the changed partial state back to serialized JSON under a nested pat
 
   const plugin = createPersistedState({
     storage,
-    paths: ["foo.bar", "bar"]
+    paths: ["foo.bar", "bar"],
   });
   plugin(store);
 
@@ -139,12 +139,12 @@ it("persist the changed partial state back to serialized JSON under a nested pat
 it("should not persist null values", () => {
   const storage = new Storage();
   const store = new Vuex.Store({
-    state: { alpha: { name: null, bravo: { name: null } } }
+    state: { alpha: { name: null, bravo: { name: null } } },
   });
 
   const plugin = createPersistedState({
     storage,
-    paths: ["alpha.name", "alpha.bravo.name"]
+    paths: ["alpha.name", "alpha.bravo.name"],
   });
 
   plugin(store);
@@ -168,7 +168,7 @@ it("should not merge array values when rehydrating by default", () => {
   plugin(store);
 
   expect(store.replaceState).toBeCalledWith({
-    persisted: ["json"]
+    persisted: ["json"],
   });
 
   expect(store.subscribe).toBeCalled();
@@ -190,7 +190,7 @@ it("should not clone circular objects when rehydrating", () => {
 
   expect(store.replaceState).toBeCalledWith({
     circular,
-    persisted: "baz"
+    persisted: "baz",
   });
 
   expect(store.subscribe).toBeCalled();
@@ -206,14 +206,14 @@ it("should apply a custom arrayMerger function", () => {
 
   const plugin = createPersistedState({
     storage,
-    arrayMerger: function(store, saved) {
+    arrayMerger: function (store, saved) {
       return ["hello!"];
-    }
+    },
   });
   plugin(store);
 
   expect(store.replaceState).toBeCalledWith({
-    persisted: ["hello!"]
+    persisted: ["hello!"],
   });
 
   expect(store.subscribe).toBeCalled();
@@ -227,7 +227,7 @@ it("rehydrates store's state through the configured getter", () => {
 
   const plugin = createPersistedState({
     storage,
-    getState: () => ({ getter: "item" })
+    getState: () => ({ getter: "item" }),
   });
   plugin(store);
 
@@ -244,7 +244,7 @@ it("persist the changed state back through the configured setter", () => {
     storage,
     setState: (key, state) => {
       expect(state).toEqual({ setter: "item" });
-    }
+    },
   });
 
   plugin(store);
@@ -261,7 +261,7 @@ it("uses the configured reducer when persisting the state", () => {
   const plugin = createPersistedState({
     storage,
     paths: ["custom"],
-    reducer: customReducer
+    reducer: customReducer,
   });
   plugin(store);
 
@@ -276,7 +276,7 @@ it("filters to specific mutations", () => {
 
   const plugin = createPersistedState({
     storage,
-    filter: mutation => ["filter"].indexOf(mutation) !== -1
+    filter: (mutation) => ["filter"].indexOf(mutation) !== -1,
   });
   plugin(store);
 
@@ -337,7 +337,7 @@ it("fetches state from storage when the plugin is used by default", () => {
   plugin(store);
 
   expect(store.replaceState).toBeCalledWith({
-    persisted: "after"
+    persisted: "after",
   });
 });
 
@@ -355,7 +355,7 @@ it("fetches state from storage before the plugin is used", () => {
   plugin(store);
 
   expect(store.replaceState).toBeCalledWith({
-    persisted: "before"
+    persisted: "before",
   });
 });
 
