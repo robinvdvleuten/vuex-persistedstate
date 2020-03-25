@@ -39,7 +39,7 @@ import createPersistedState from "vuex-persistedstate";
 
 const store = new Vuex.Store({
   // ...
-  plugins: [createPersistedState()]
+  plugins: [createPersistedState()],
 });
 ```
 
@@ -121,14 +121,14 @@ const store = new Store({
   plugins: [
     createPersistedState({
       storage: {
-        getItem: key => Cookies.get(key),
+        getItem: (key) => Cookies.get(key),
         // Please see https://github.com/js-cookie/js-cookie#json, on how to handle JSON.
         setItem: (key, value) =>
           Cookies.set(key, value, { expires: 3, secure: true }),
-        removeItem: key => Cookies.remove(key)
-      }
-    })
-  ]
+        removeItem: (key) => Cookies.remove(key),
+      },
+    }),
+  ],
 });
 ```
 
@@ -159,12 +159,12 @@ const store = new Store({
   plugins: [
     createPersistedState({
       storage: {
-        getItem: key => ls.get(key),
+        getItem: (key) => ls.get(key),
         setItem: (key, value) => ls.set(key, value),
-        removeItem: key => ls.remove(key)
-      }
-    })
-  ]
+        removeItem: (key) => ls.remove(key),
+      },
+    }),
+  ],
 });
 ```
 
