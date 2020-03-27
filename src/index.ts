@@ -26,14 +26,11 @@ interface Options {
   assertStorage?: (storage: Storage) => void | Error;
 }
 
-export default function (
-  options?: Options | null,
-  storage?: Storage | null,
-  key?: string | null
-) {
+export default function (options?: Options) {
   options = options || {};
-  storage = options.storage || storage || (window && window.localStorage);
-  key = options.key || key || "vuex";
+
+  const storage = options.storage || (window && window.localStorage);
+  const key = options.key || "vuex";
 
   function getState(key, storage) {
     let value;
