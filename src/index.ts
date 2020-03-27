@@ -27,13 +27,13 @@ interface Options {
 }
 
 export default function (
-  options: Options | null,
-  storage: Storage | null,
-  key: string | null
+  options?: Options | null,
+  storage?: Storage | null,
+  key?: string | null
 ) {
   options = options || {};
-  storage = options.storage || (window && window.localStorage);
-  key = options.key || "vuex";
+  storage = options.storage || storage || (window && window.localStorage);
+  key = options.key || key || "vuex";
 
   function getState(key, storage) {
     let value;
