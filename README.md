@@ -95,7 +95,7 @@ can be provided to configure the plugin for your specific needs:
 - `reducer <Function>`: A function that will be called to reduce the state to persist based on the given paths. Defaults to include the values.
 - `subscriber <Function>`: A function called to setup mutation subscription. Defaults to `store => handler => store.subscribe(handler)`.
 
-- `storage <Object>`: Instead for (or in combination with) `getState` and `setState`. Defaults to localStorage.
+- `storage <Object>`: Instead of (or in combination with) `getState` and `setState`. Defaults to localStorage.
 - `getState <Function>`: A function that will be called to rehydrate a previously persisted state. Defaults to using `storage`.
 - `setState <Function>`: A function that will be called to persist the given state. Defaults to using `storage`.
 - `filter <Function>`: A function that will be called to filter any mutations which will trigger `setState` on storage eventually. Defaults to `() => true`.
