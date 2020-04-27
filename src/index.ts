@@ -26,7 +26,9 @@ interface Options<State> {
   assertStorage?: (storage: Storage) => void | Error;
 }
 
-export default function <State>(options?: Options<State>) {
+export default function <State>(
+  options?: Options<State>
+): (store: Store<State>) => void {
   options = options || {};
 
   const storage = options.storage || (window && window.localStorage);
