@@ -57,7 +57,7 @@ Or configured to use with [secure-ls](https://github.com/softvar/secure-ls)
 
 ### Nuxt.js
 
-It is possible to use vuex-persistedstate with Nuxt.js. Due to the order code is loaded in, vuex-persistedstate must be included as a NuxtJS plugin:
+It is possible to use vuex-persistedstate with Nuxt.js. It must be included as a NuxtJS plugin:
 
 ```javascript
 // nuxt.config.js
@@ -73,13 +73,11 @@ plugins: [{ src: '~/plugins/localStorage.js', ssr: false }]
 import createPersistedState from 'vuex-persistedstate'
 
 export default ({store}) => {
-  window.onNuxtReady(() => {
-    createPersistedState({
-        key: 'yourkey',
-        paths: [...]
-        ...
-    })(store)
-  })
+  createPersistedState({
+    key: 'yourkey',
+    paths: [...]
+    ...
+  })(store)
 }
 ```
 
