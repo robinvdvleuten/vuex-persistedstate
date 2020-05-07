@@ -8,25 +8,27 @@ interface Storage {
   removeItem: (key: string) => void;
 }
 
-interface Options {
+interface Options<State> {
   key?: string;
   paths?: string[];
   reducer?: (state: any, paths: string[]) => object;
   subscriber?: (
-    store: typeof Store
+    store: Store<State>
   ) => (handler: (mutation: any, state: any) => void) => void;
   storage?: Storage;
   getState?: (key: string, storage: Storage) => any;
-  setState?: (key: string, state: typeof Store, storage: Storage) => void;
+  setState?: (key: string, state: Store<State>, storage: Storage) => void;
   filter?: (mutation: MutationPayload) => boolean;
   arrayMerger?: (state: any, saved: any) => any;
-  rehydrated?: (store: typeof Store) => void;
+  rehydrated?: (store: Store<State>) => void;
   fetchBeforeUse?: boolean;
   overwrite?: boolean;
   assertStorage?: (storage: Storage) => void | Error;
 }
 
-export default function (options?: Options) {
+export default function <State>(
+  options?: Options<State>
+): (store: Store<State>) => void {
   options = options || {};
 
   const storage = options.storage || (window && window.localStorage);
