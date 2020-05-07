@@ -198,24 +198,23 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
   </tr>
   <tr>
     <td align="center"><a href="https://github.com/NLNicoo"><img src="https://avatars2.githubusercontent.com/u/6526666?v=4" width="100px;" alt=""/><br /><sub><b>Nico</b></sub></a><br /><a href="https://github.com/robinvdvleuten/vuex-persistedstate/commits?author=NLNicoo" title="Code">💻</a> <a href="https://github.com/robinvdvleuten/vuex-persistedstate/commits?author=NLNicoo" title="Tests">⚠️</a></td>
-    <td align="center"><a href="https://graficos.net"><img src="https://avatars2.githubusercontent.com/u/6775220?v=4" width="100px;" alt=""/><br /><sub><b>Paul Melero</b></sub></a><br /><a href="https://github.com/robinvdvleuten/vuex-persistedstate/commits?author=gangsthub" title="Documentation">📖</a></td>
     <td align="center"><a href="https://www.qkdreyer.dev"><img src="https://avatars3.githubusercontent.com/u/717869?v=4" width="100px;" alt=""/><br /><sub><b>Quentin Dreyer</b></sub></a><br /><a href="https://github.com/robinvdvleuten/vuex-persistedstate/commits?author=qkdreyer" title="Code">💻</a></td>
     <td align="center"><a href="http://raphaelsaunier.com"><img src="https://avatars2.githubusercontent.com/u/170256?v=4" width="100px;" alt=""/><br /><sub><b>Raphael Saunier</b></sub></a><br /><a href="https://github.com/robinvdvleuten/vuex-persistedstate/commits?author=raphaelsaunier" title="Code">💻</a></td>
     <td align="center"><a href="http://rodneyrehm.de"><img src="https://avatars3.githubusercontent.com/u/186837?v=4" width="100px;" alt=""/><br /><sub><b>Rodney Rehm</b></sub></a><br /><a href="https://github.com/robinvdvleuten/vuex-persistedstate/commits?author=rodneyrehm" title="Code">💻</a> <a href="https://github.com/robinvdvleuten/vuex-persistedstate/commits?author=rodneyrehm" title="Tests">⚠️</a></td>
     <td align="center"><a href="http://wongyouth.github.io"><img src="https://avatars1.githubusercontent.com/u/944583?v=4" width="100px;" alt=""/><br /><sub><b>Ryan Wang</b></sub></a><br /><a href="https://github.com/robinvdvleuten/vuex-persistedstate/commits?author=wongyouth" title="Code">💻</a> <a href="https://github.com/robinvdvleuten/vuex-persistedstate/commits?author=wongyouth" title="Documentation">📖</a> <a href="https://github.com/robinvdvleuten/vuex-persistedstate/commits?author=wongyouth" title="Tests">⚠️</a></td>
     <td align="center"><a href="https://atinux.com"><img src="https://avatars2.githubusercontent.com/u/904724?v=4" width="100px;" alt=""/><br /><sub><b>Sébastien Chopin</b></sub></a><br /><a href="https://github.com/robinvdvleuten/vuex-persistedstate/commits?author=Atinux" title="Documentation">📖</a></td>
+    <td align="center"><a href="https://github.com/zgayjjf"><img src="https://avatars1.githubusercontent.com/u/24718872?v=4" width="100px;" alt=""/><br /><sub><b>jeffjing</b></sub></a><br /><a href="https://github.com/robinvdvleuten/vuex-persistedstate/commits?author=zgayjjf" title="Code">💻</a></td>
   </tr>
   <tr>
-    <td align="center"><a href="https://github.com/zgayjjf"><img src="https://avatars1.githubusercontent.com/u/24718872?v=4" width="100px;" alt=""/><br /><sub><b>jeffjing</b></sub></a><br /><a href="https://github.com/robinvdvleuten/vuex-persistedstate/commits?author=zgayjjf" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/macarthuror"><img src="https://avatars0.githubusercontent.com/u/24395219?v=4" width="100px;" alt=""/><br /><sub><b>macarthuror</b></sub></a><br /><a href="https://github.com/robinvdvleuten/vuex-persistedstate/commits?author=macarthuror" title="Documentation">📖</a></td>
     <td align="center"><a href="https://github.com/gangsthub"><img src="https://avatars2.githubusercontent.com/u/6775220?s=460&v=4" width="100px;" alt=""/><br /><sub><b>Paul Melero</b></sub></a><br /><a href="https://github.com/robinvdvleuten/vuex-persistedstate/commits?author=gangsthub" title="Documentation">📖</a> <a href="https://github.com/robinvdvleuten/vuex-persistedstate/commits?author=gangsthub" title="Code">💻</a> <a href="https://github.com/robinvdvleuten/vuex-persistedstate/commits?author=gangsthub" title="Tests">⚠️</a></td>
     <td align="center"><a href="https://github.com/WTDuck"><img src="https://avatars0.githubusercontent.com/u/16686729?v=4" width="100px;" alt=""/><br /><sub><b>Guillaume da Silva</b></sub></a><br /><a href="https://github.com/robinvdvleuten/vuex-persistedstate/commits?author=WTDuck" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/SanterreJo"><img src="https://avatars2.githubusercontent.com/u/6465769?v=4" width="100px;" alt=""/><br /><sub><b>Jonathan Santerre</b></sub></a><br /><a href="https://github.com/robinvdvleuten/vuex-persistedstate/commits?author=SanterreJo" title="Code">💻</a></td>
   </tr>
 </table>
 
 <!-- markdownlint-enable -->
 <!-- prettier-ignore-end -->
-
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
 This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
