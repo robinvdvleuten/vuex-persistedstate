@@ -245,6 +245,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "fabiofdsantos",
+      "name": "Fábio Santos",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/8303937?v=4",
+      "profile": "https://www.linkedin.com/in/fabiofdsantos/",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 7,
