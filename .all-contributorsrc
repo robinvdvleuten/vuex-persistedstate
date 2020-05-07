@@ -236,8 +236,19 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "SanterreJo",
+      "name": "Jonathan Santerre",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/6465769?v=4",
+      "profile": "https://github.com/SanterreJo",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,
-  "commitConvention": "none"
+  "commitConvention": "none",
+  "repoHost": "https://github.com",
+  "skipCi": true
 }
