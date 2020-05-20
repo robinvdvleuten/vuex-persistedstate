@@ -11,15 +11,15 @@ interface Storage {
 interface Options<State> {
   key?: string;
   paths?: string[];
-  reducer?: (state: any, paths: string[]) => object;
+  reducer?: (state: State, paths: string[]) => object;
   subscriber?: (
     store: Store<State>
-  ) => (handler: (mutation: any, state: any) => void) => void;
+    ) => (handler: (mutation: any, state: State) => void) => void;
   storage?: Storage;
   getState?: (key: string, storage: Storage) => any;
-  setState?: (key: string, state: Store<State>, storage: Storage) => void;
+  setState?: (key: string, state: any, storage: Storage) => void;
   filter?: (mutation: MutationPayload) => boolean;
-  arrayMerger?: (state: any, saved: any) => any;
+  arrayMerger?: (state: any[], saved: any[]) => any;
   rehydrated?: (store: Store<State>) => void;
   fetchBeforeUse?: boolean;
   overwrite?: boolean;
@@ -85,7 +85,7 @@ export default function <State>(
     savedState = fetchSavedState();
   }
 
-  return function (store) {
+  return function (store: Store<State>) {
     if (!options.fetchBeforeUse) {
       savedState = fetchSavedState();
     }
