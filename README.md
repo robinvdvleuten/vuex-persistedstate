@@ -211,6 +211,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="https://github.com/WTDuck"><img src="https://avatars0.githubusercontent.com/u/16686729?v=4" width="100px;" alt=""/><br /><sub><b>Guillaume da Silva</b></sub></a><br /><a href="https://github.com/robinvdvleuten/vuex-persistedstate/commits?author=WTDuck" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/SanterreJo"><img src="https://avatars2.githubusercontent.com/u/6465769?v=4" width="100px;" alt=""/><br /><sub><b>Jonathan Santerre</b></sub></a><br /><a href="https://github.com/robinvdvleuten/vuex-persistedstate/commits?author=SanterreJo" title="Code">💻</a></td>
     <td align="center"><a href="https://www.linkedin.com/in/fabiofdsantos/"><img src="https://avatars3.githubusercontent.com/u/8303937?v=4" width="100px;" alt=""/><br /><sub><b>Fábio Santos</b></sub></a><br /><a href="https://github.com/robinvdvleuten/vuex-persistedstate/commits?author=fabiofdsantos" title="Documentation">📖</a></td>
+    <td align="center"><a href="https://github.com/robertgr991"><img src="https://avatars0.githubusercontent.com/u/36689800?v=4" width="100px;" alt=""/><br /><sub><b>robertgr991</b></sub></a><br /><a href="https://github.com/robinvdvleuten/vuex-persistedstate/commits?author=robertgr991" title="Code">💻</a></td>
   </tr>
 </table>
 
