@@ -263,6 +263,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "YuraKolesnikov",
+      "name": "JurijsKolesnikovs",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/28485518?v=4",
+      "profile": "https://github.com/YuraKolesnikov",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 7,
