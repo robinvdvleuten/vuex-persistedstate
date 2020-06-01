@@ -43,6 +43,61 @@ const store = new Vuex.Store({
 });
 ```
 
+## Usage with Vuex modules
+
+New plugin instances can be created in separate files, but must  be imported and added to plugins object in the main vuex file.
+
+
+### Wrong
+
+```js
+/* module.js */
+const dataState = new createPersistedState({
+  paths: 'data'
+})
+export const dataStore = {
+  state: {
+    data: []
+  },
+  plugins: [dataState]
+}
+
+/* store.js */
+import { dataStore } from './module'
+
+export new Vuex.Store({
+  modules: {
+    dataStore
+  }
+})
+
+```
+
+
+### Correct
+
+```js
+/* module.js */
+export const dataStore = {
+  state: {
+    data: []
+  }
+}
+
+/* store.js */
+import { dataStore } from './module'
+const dataState = new createPersistedState({
+  paths: 'data'
+})
+
+export new Vuex.Store({
+  modules: {
+    dataStore
+  },
+  plugins: [dataState]
+})
+```
+
 Check out the example on [CodeSandbox](https://codesandbox.io).
 
 [![Edit vuex-persistedstate](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/80k4m2598)
