@@ -71,7 +71,7 @@ export const dataStore = {
 import { dataStore } from './module'
 
 const dataState = new createPersistedState({
-  paths: 'data'
+  paths: ['data']
 })
 
 export new Vuex.Store({
