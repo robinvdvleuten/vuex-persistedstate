@@ -272,6 +272,15 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "davidsbond",
+      "name": "David Bond",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/6227720?v=4",
+      "profile": "https://davidsbond.github.io",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 7,
