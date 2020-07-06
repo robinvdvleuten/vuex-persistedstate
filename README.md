@@ -74,7 +74,7 @@ export const dataStore = {
 /* store.js */
 import { dataStore } from './module'
 
-const dataState = new createPersistedState({
+const dataState = createPersistedState({
   paths: ['data']
 })
 
