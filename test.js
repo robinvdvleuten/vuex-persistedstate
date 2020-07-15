@@ -1,3 +1,5 @@
+/// <reference types="jest" />
+
 import Vue from "vue";
 import Vuex from "vuex";
 import Storage from "dom-storage";

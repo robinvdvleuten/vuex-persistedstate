@@ -14,7 +14,7 @@ interface Options<State> {
   reducer?: (state: State, paths: string[]) => object;
   subscriber?: (
     store: Store<State>
-    ) => (handler: (mutation: any, state: State) => void) => void;
+  ) => (handler: (mutation: any, state: State) => void) => void;
   storage?: Storage;
   getState?: (key: string, storage: Storage) => any;
   setState?: (key: string, state: any, storage: Storage) => void;
@@ -24,6 +24,7 @@ interface Options<State> {
   fetchBeforeUse?: boolean;
   overwrite?: boolean;
   assertStorage?: (storage: Storage) => void | Error;
+  syncTabs?: boolean;
 }
 
 export default function <State>(
@@ -31,6 +32,7 @@ export default function <State>(
 ): (store: Store<State>) => void {
   options = options || {};
 
+  const isBrowserContext = typeof window !== "undefined";
   const storage = options.storage || (window && window.localStorage);
   const key = options.key || "vuex";
 
@@ -104,6 +106,14 @@ export default function <State>(
             })
       );
       (options.rehydrated || function () {})(store);
+    }
+
+    if (isBrowserContext && options.syncTabs) {
+      window.addEventListener("storage", (storageEvent: StorageEvent) => {
+        if (storageEvent.key === key) {
+          setState(key, JSON.parse(storageEvent.newValue), storage);
+        }
+      });
     }
 
     (options.subscriber || subscriber)(store)(function (mutation, state) {

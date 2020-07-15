@@ -124,7 +124,7 @@ can be provided to configure the plugin for your specific needs:
 - `reducer <Function>`: A function that will be called to reduce the state to persist based on the given paths. Defaults to include the values.
 - `subscriber <Function>`: A function called to setup mutation subscription. Defaults to `store => handler => store.subscribe(handler)`.
 
-- `storage <Object>`: Instead of (or in combination with) `getState` and `setState`. Defaults to localStorage.
+- `storage <Object>`: Instead of (or in combination with) `getState` and `setState`. Defaults to `localStorage`.
 - `getState <Function>`: A function that will be called to rehydrate a previously persisted state. Defaults to using `storage`.
 - `setState <Function>`: A function that will be called to persist the given state. Defaults to using `storage`.
 - `filter <Function>`: A function that will be called to filter any mutations which will trigger `setState` on storage eventually. Defaults to `() => true`.
@@ -133,6 +133,7 @@ can be provided to configure the plugin for your specific needs:
 - `rehydrated <Function>`: A function that will be called when the rehydration is finished. Useful when you are using Nuxt.js, which the rehydration of the persisted state happens asynchronously. Defaults to `store => {}`
 - `fetchBeforeUse <Boolean>`: A boolean indicating if the state should be fetched from storage before the plugin is used. Defaults to `false`.
 - `assertStorage <Function>`: An overridable function to ensure storage is available, fired on plugins's initialization. Default one is performing a Write-Delete operation on the given Storage instance. Note, default behaviour could throw an error (like `DOMException: QuotaExceededError`).
+- `syncTabs <Boolean>`: Whether or not to sync state across tabs, by listening to `window`'s `storage` Event and triggering a new `setState` with the recieved event value (meaning the state was changed in other window). Defaults to `false` for backwards compatibility with custom `storage` instances.
 
 ## Customize Storage
 
