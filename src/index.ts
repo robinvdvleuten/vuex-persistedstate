@@ -24,7 +24,7 @@ interface Options<State> {
   fetchBeforeUse?: boolean;
   overwrite?: boolean;
   assertStorage?: (storage: Storage) => void | Error;
-	merge?: (object1: Object, object2: Object, options: Object) => object;
+	merge?: (object1: Object | Array, object2: Object | Array, options: Object) => object | any[];
 }
 
 export default function <State>(
