@@ -24,6 +24,7 @@ interface Options<State> {
   fetchBeforeUse?: boolean;
   overwrite?: boolean;
   assertStorage?: (storage: Storage) => void | Error;
+	merge?: (object1: Object, object2: Object, options: Object) => object;
 }
 
 export default function <State>(
@@ -94,7 +95,7 @@ export default function <State>(
       store.replaceState(
         options.overwrite
           ? savedState
-          : merge(store.state, savedState, {
+          : (options.merge || merge)(store.state, savedState, {
               arrayMerge:
                 options.arrayMerger ||
                 function (store, saved) {
