@@ -58,7 +58,7 @@
     "@babel/preset-env": "^7.0.0",
     "all-contributors-cli": "^6.9.3",
     "babel-core": "^7.0.0-bridge.0",
-    "babel-jest": "^25.1.0",
+    "babel-jest": "^26.2.2",
     "bundlesize": "^0.18.0",
     "dom-storage": "^2.0.2",
     "eslint": "^6.6.0",
