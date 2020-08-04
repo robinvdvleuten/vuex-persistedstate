@@ -4,7 +4,7 @@ Persist and rehydrate your [Vuex](http://vuex.vuejs.org/) state between page rel
 
 <hr />
 
-[![Build Status](https://img.shields.io/travis/robinvdvleuten/vuex-persistedstate.svg)](https://travis-ci.org/robinvdvleuten/vuex-persistedstate)
+[![Build Status](https://img.shields.io/github/workflow/status/robinvdvleuten/vuex-persistedstate/test.svg)](https://github.com/robinvdvleuten/vuex-persistedstate/actions?query=workflow%3Atest)
 [![NPM version](https://img.shields.io/npm/v/vuex-persistedstate.svg)](https://www.npmjs.com/package/vuex-persistedstate)
 [![NPM downloads](https://img.shields.io/npm/dm/vuex-persistedstate.svg)](https://www.npmjs.com/package/vuex-persistedstate)
 [![Prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
