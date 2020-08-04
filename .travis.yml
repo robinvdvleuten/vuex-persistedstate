@@ -1,6 +1,0 @@
-language: node_js
-node_js: "12"
-cache: yarn
-script:
-  - npm run build
-  - npm run test

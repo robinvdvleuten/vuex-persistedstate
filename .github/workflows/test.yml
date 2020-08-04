@@ -1,0 +1,35 @@
+name: test
+
+on:
+  push: { branches: master }
+  pull_request: { branches: master }
+
+jobs:
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v1
+
+      - name: Setup Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12.18.3
+
+      - name: Cache NPM dependencies
+        uses: actions/cache@v2
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-npm-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-npm-
+
+      - name: Install NPM dependencies
+        run: npm ci
+
+      - name: Run tests
+        run: |
+          npm run build
+          npm run test
