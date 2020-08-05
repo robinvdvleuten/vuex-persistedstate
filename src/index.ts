@@ -35,10 +35,10 @@ export default function <State>(
   const key = options.key || "vuex";
 
   function getState(key, storage) {
-    let value;
+    const value = storage.getItem(key);
 
     try {
-      return (value = storage.getItem(key)) && typeof value !== "undefined"
+      return (typeof value !== "undefined")
         ? JSON.parse(value)
         : undefined;
     } catch (err) {}
