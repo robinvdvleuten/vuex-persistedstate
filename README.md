@@ -95,6 +95,10 @@ It is possible to use vuex-persistedstate with Nuxt.js. It must be included as a
 // nuxt.config.js
 
 ...
+/*
+ * Naming your plugin 'xxx.client.js' will make it execute only on the client-side. 
+ * https://nuxtjs.org/guide/plugins/#name-conventional-plugin
+ */
 plugins: [{ src: '~/plugins/persistedState.client.js']
 ...
 ```
@@ -120,6 +124,7 @@ Add `cookie` and `js-cookie`:
 or `yarn add cookie js-cookie`
 
 ```javascript
+// nuxt.config.js
 ...
 plugins: [{ src: '~/plugins/persistedState.js']
 ...
@@ -137,6 +142,7 @@ export default ({ store, req }) => {
         paths: [...],
         storage: {
             getItem: (key) => {
+                // See https://nuxtjs.org/guide/plugins/#using-process-flags
                 if (process.server) {
                     const parsedCookies = cookie.parse(req.headers.cookie);
                     return parsedCookies[key];
