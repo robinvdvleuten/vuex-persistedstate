@@ -281,6 +281,15 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "FreekVR",
+      "name": "Freek van Rijt",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/417416?v=4",
+      "profile": "http://www.freekvanrijt.nl",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 7,
