@@ -299,6 +299,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "peschee",
+      "name": "Peter Siska",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/63866?v=4",
+      "profile": "http://www.inventage.com",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 7,
