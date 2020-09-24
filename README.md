@@ -90,16 +90,21 @@ export new Vuex.Store({
 
 It is possible to use vuex-persistedstate with Nuxt.js. It must be included as a NuxtJS plugin:
 
+#### With local storage (client-side only)
 ```javascript
 // nuxt.config.js
 
 ...
-plugins: [{ src: '~/plugins/localStorage.js', ssr: false }]
+/*
+ * Naming your plugin 'xxx.client.js' will make it execute only on the client-side. 
+ * https://nuxtjs.org/guide/plugins/#name-conventional-plugin
+ */
+plugins: [{ src: '~/plugins/persistedState.client.js']
 ...
 ```
 
 ```javascript
-// ~/plugins/localStorage.js
+// ~/plugins/persistedState.client.js
 
 import createPersistedState from 'vuex-persistedstate'
 
@@ -112,6 +117,47 @@ export default ({store}) => {
 }
 ```
 
+#### Using cookies (universal client + server-side)
+Add `cookie` and `js-cookie`:
+
+`npm install --save cookie js-cookie`
+or `yarn add cookie js-cookie`
+
+```javascript
+// nuxt.config.js
+...
+plugins: [{ src: '~/plugins/persistedState.js']
+...
+```
+
+```javascript
+// ~/plugins/persistedState.js
+
+import createPersistedState from 'vuex-persistedstate';
+import * as Cookies from 'js-cookie';
+import cookie from 'cookie';
+
+export default ({ store, req }) => {
+    createPersistedState({
+        paths: [...],
+        storage: {
+            getItem: (key) => {
+                // See https://nuxtjs.org/guide/plugins/#using-process-flags
+                if (process.server) {
+                    const parsedCookies = cookie.parse(req.headers.cookie);
+                    return parsedCookies[key];
+                } else {
+                    return Cookies.get(key);
+                }
+            },
+            // Please see https://github.com/js-cookie/js-cookie#json, on how to handle JSON.
+            setItem: (key, value) =>
+                Cookies.set(key, value, { expires: 365, secure: false }),
+            removeItem: key => Cookies.remove(key)
+        }
+    })(store);
+};
+```
 ## API
 
 ### `createPersistedState([options])`
