@@ -299,6 +299,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="https://davidsbond.github.io"><img src="https://avatars3.githubusercontent.com/u/6227720?v=4" width="100px;" alt=""/><br /><sub><b>David Bond</b></sub></a><br /><a href="https://github.com/robinvdvleuten/vuex-persistedstate/commits?author=davidsbond" title="Documentation">📖</a></td>
     <td align="center"><a href="http://www.freekvanrijt.nl"><img src="https://avatars1.githubusercontent.com/u/417416?v=4" width="100px;" alt=""/><br /><sub><b>Freek van Rijt</b></sub></a><br /><a href="https://github.com/robinvdvleuten/vuex-persistedstate/commits?author=FreekVR" title="Documentation">📖</a></td>
     <td align="center"><a href="https://github.com/yachaka"><img src="https://avatars2.githubusercontent.com/u/8074336?v=4" width="100px;" alt=""/><br /><sub><b>Ilyes Hermellin</b></sub></a><br /><a href="https://github.com/robinvdvleuten/vuex-persistedstate/commits?author=yachaka" title="Code">💻</a></td>
+    <td align="center"><a href="http://www.inventage.com"><img src="https://avatars1.githubusercontent.com/u/63866?v=4" width="100px;" alt=""/><br /><sub><b>Peter Siska</b></sub></a><br /><a href="https://github.com/robinvdvleuten/vuex-persistedstate/commits?author=peschee" title="Documentation">📖</a></td>
   </tr>
 </table>
 
