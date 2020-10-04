@@ -99,7 +99,7 @@ It is possible to use vuex-persistedstate with Nuxt.js. It must be included as a
  * Naming your plugin 'xxx.client.js' will make it execute only on the client-side. 
  * https://nuxtjs.org/guide/plugins/#name-conventional-plugin
  */
-plugins: [{ src: '~/plugins/persistedState.client.js']
+plugins: [{ src: '~/plugins/persistedState.client.js' }]
 ...
 ```
 
