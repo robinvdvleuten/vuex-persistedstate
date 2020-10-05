@@ -308,6 +308,15 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "adm1t",
+      "name": "Dmitry Filippov",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/26100455?v=4",
+      "profile": "http://adm1t.github.io",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 7,
