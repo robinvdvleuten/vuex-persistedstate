@@ -17,11 +17,6 @@ Persist and rehydrate your [Vuex](http://vuex.vuejs.org/) state between page rel
     <img src="https://webstronauts.com/badges/sponsored-by-webstronauts.svg" alt="Sponsored by The Webstronauts" width="200" height="65">
 </a>
 
-## Requirements
-
-- [Vue.js](https://vuejs.org) (v2.0.0+)
-- [Vuex](http://vuex.vuejs.org) (v2.0.0+)
-
 ## Install
 
 ```bash
@@ -38,7 +33,10 @@ You can find the library on `window.createPersistedState`.
 
 ## Usage
 
+### vuex-persistedstate 3.x (for Vuex 3 and Vue 2)
+
 ```js
+import Vuex from "vuex";
 import createPersistedState from "vuex-persistedstate";
 
 const store = new Vuex.Store({
@@ -47,7 +45,21 @@ const store = new Vuex.Store({
 });
 ```
 
-Check out the example on [CodeSandbox](https://codesandbox.io).
+### vuex-persistedstate 4.x (for Vuex 4 and Vue 3)
+
+```js
+import { createStore } from "vuex";
+import createPersistedState from "vuex-persistedstate";
+
+const store = createStore({
+  // ...
+  plugins: [createPersistedState()],
+});
+```
+
+## Examples
+
+Check out a basic example on [CodeSandbox](https://codesandbox.io).
 
 [![Edit vuex-persistedstate](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/80k4m2598)
 
@@ -59,7 +71,7 @@ Or configured to use with [secure-ls](https://github.com/softvar/secure-ls)
 
 [![Edit vuex-persistedstate with secure-ls (encrypted data)](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/vuex-persistedstate-with-secure-ls-encrypted-data-7l9wb?fontsize=14)
 
-## Usage with Vuex modules
+### Example with Vuex modules
 
 New plugin instances can be created in separate files, but must be imported and added to plugins object in the main Vuex file.
 
@@ -86,17 +98,18 @@ export new Vuex.Store({
 })
 ```
 
-### Nuxt.js
+### Example with Nuxt.js
 
 It is possible to use vuex-persistedstate with Nuxt.js. It must be included as a NuxtJS plugin:
 
 #### With local storage (client-side only)
+
 ```javascript
 // nuxt.config.js
 
 ...
 /*
- * Naming your plugin 'xxx.client.js' will make it execute only on the client-side. 
+ * Naming your plugin 'xxx.client.js' will make it execute only on the client-side.
  * https://nuxtjs.org/guide/plugins/#name-conventional-plugin
  */
 plugins: [{ src: '~/plugins/persistedState.client.js' }]
@@ -118,6 +131,7 @@ export default ({store}) => {
 ```
 
 #### Using cookies (universal client + server-side)
+
 Add `cookie` and `js-cookie`:
 
 `npm install --save cookie js-cookie`
@@ -158,6 +172,7 @@ export default ({ store, req }) => {
     })(store);
 };
 ```
+
 ## API
 
 ### `createPersistedState([options])`
@@ -306,6 +321,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 
 <!-- markdownlint-enable -->
 <!-- prettier-ignore-end -->
+
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
 This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
