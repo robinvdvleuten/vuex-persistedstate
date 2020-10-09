@@ -17,11 +17,6 @@ Persist and rehydrate your [Vuex](http://vuex.vuejs.org/) state between page rel
     <img src="https://webstronauts.com/badges/sponsored-by-webstronauts.svg" alt="Sponsored by The Webstronauts" width="200" height="65">
 </a>
 
-## Requirements
-
-- [Vue.js](https://vuejs.org) (v2.0.0+)
-- [Vuex](http://vuex.vuejs.org) (v2.0.0+)
-
 ## Install
 
 ```bash
@@ -38,10 +33,25 @@ You can find the library on `window.createPersistedState`.
 
 ## Usage
 
+### vuex-persistedstate 3.x (for Vuex 3 and Vue 2)
+
 ```js
+import Vuex from "vuex";
 import createPersistedState from "vuex-persistedstate";
 
 const store = new Vuex.Store({
+  // ...
+  plugins: [createPersistedState()],
+});
+```
+
+### vuex-persistedstate 4.x (for Vuex 4 and Vue 3)
+
+```js
+import { createStore } from "vuex";
+import createPersistedState from "vuex-persistedstate";
+
+const store = createStore({
   // ...
   plugins: [createPersistedState()],
 });
@@ -91,12 +101,13 @@ export new Vuex.Store({
 It is possible to use vuex-persistedstate with Nuxt.js. It must be included as a NuxtJS plugin:
 
 #### With local storage (client-side only)
+
 ```javascript
 // nuxt.config.js
 
 ...
 /*
- * Naming your plugin 'xxx.client.js' will make it execute only on the client-side. 
+ * Naming your plugin 'xxx.client.js' will make it execute only on the client-side.
  * https://nuxtjs.org/guide/plugins/#name-conventional-plugin
  */
 plugins: [{ src: '~/plugins/persistedState.client.js' }]
@@ -118,6 +129,7 @@ export default ({store}) => {
 ```
 
 #### Using cookies (universal client + server-side)
+
 Add `cookie` and `js-cookie`:
 
 `npm install --save cookie js-cookie`
@@ -158,6 +170,7 @@ export default ({ store, req }) => {
     })(store);
 };
 ```
+
 ## API
 
 ### `createPersistedState([options])`
@@ -306,6 +319,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 
 <!-- markdownlint-enable -->
 <!-- prettier-ignore-end -->
+
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
 This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
