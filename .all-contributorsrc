@@ -317,6 +317,15 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "retailify",
+      "name": "Thomas Meitz",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/5236353?v=4",
+      "profile": "https://retailify.de",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 7,
