@@ -140,7 +140,7 @@ or `yarn add cookie js-cookie`
 ```javascript
 // nuxt.config.js
 ...
-plugins: [{ src: '~/plugins/persistedState.js']
+plugins: [{ src: '~/plugins/persistedState.js'}]
 ...
 ```
 
