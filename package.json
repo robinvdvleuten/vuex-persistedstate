@@ -73,6 +73,6 @@
     "vuex": "^4.0.0-rc"
   },
   "peerDependencies": {
-    "vuex": "^3.0 || ^4.0"
+    "vuex": "^3.0 || ^4.0.0-rc"
   }
 }
