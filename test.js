@@ -1,12 +1,6 @@
-import Vue from "vue";
-import Vuex from "vuex";
+import { createStore } from "vuex";
 import Storage from "dom-storage";
 import createPersistedState from "./";
-
-// Do not show the production tip while running tests.
-Vue.config.productionTip = false;
-
-Vue.use(Vuex);
 
 it("can be created with the default options", () => {
   window.localStorage = new Storage();
@@ -17,7 +11,7 @@ it("replaces store's state and subscribes to changes when initializing", () => {
   const storage = new Storage();
   storage.setItem("vuex", JSON.stringify({ persisted: "json" }));
 
-  const store = new Vuex.Store({ state: { original: "state" } });
+  const store = createStore({ state: { original: "state" } });
   store.replaceState = jest.fn();
   store.subscribe = jest.fn();
 
@@ -35,7 +29,7 @@ it("does not replaces store's state when receiving invalid JSON", () => {
   const storage = new Storage();
   storage.setItem("vuex", "<invalid JSON>");
 
-  const store = new Vuex.Store({ state: { nested: { original: "state" } } });
+  const store = createStore({ state: { nested: { original: "state" } } });
   store.replaceState = jest.fn();
   store.subscribe = jest.fn();
 
@@ -50,7 +44,7 @@ it("does not replaces store's state when receiving null", () => {
   const storage = new Storage();
   storage.setItem("vuex", JSON.stringify(null));
 
-  const store = new Vuex.Store({ state: { nested: { original: "state" } } });
+  const store = createStore({ state: { nested: { original: "state" } } });
   store.replaceState = jest.fn();
   store.subscribe = jest.fn();
 
@@ -65,7 +59,7 @@ it("respects nested values when it replaces store's state on initializing", () =
   const storage = new Storage();
   storage.setItem("vuex", JSON.stringify({ persisted: "json" }));
 
-  const store = new Vuex.Store({ state: { original: "state" } });
+  const store = createStore({ state: { original: "state" } });
   store.replaceState = jest.fn();
   store.subscribe = jest.fn();
 
@@ -81,7 +75,7 @@ it("respects nested values when it replaces store's state on initializing", () =
 
 it("should persist the changed partial state back to serialized JSON", () => {
   const storage = new Storage();
-  const store = new Vuex.Store({ state: {} });
+  const store = createStore({ state: {} });
 
   const plugin = createPersistedState({ storage, paths: ["changed"] });
   plugin(store);
@@ -93,7 +87,7 @@ it("should persist the changed partial state back to serialized JSON", () => {
 
 it("persist the changed partial state back to serialized JSON under a configured key", () => {
   const storage = new Storage();
-  const store = new Vuex.Store({ state: {} });
+  const store = createStore({ state: {} });
 
   const plugin = createPersistedState({
     storage,
@@ -109,7 +103,7 @@ it("persist the changed partial state back to serialized JSON under a configured
 
 it("persist the changed full state back to serialized JSON when no paths are given", () => {
   const storage = new Storage();
-  const store = new Vuex.Store({ state: {} });
+  const store = createStore({ state: {} });
 
   const plugin = createPersistedState({ storage });
   plugin(store);
@@ -121,7 +115,7 @@ it("persist the changed full state back to serialized JSON when no paths are giv
 
 it("persist the changed partial state back to serialized JSON under a nested path", () => {
   const storage = new Storage();
-  const store = new Vuex.Store({ state: {} });
+  const store = createStore({ state: {} });
 
   const plugin = createPersistedState({
     storage,
@@ -138,7 +132,7 @@ it("persist the changed partial state back to serialized JSON under a nested pat
 
 it("should not persist whole store if paths array is empty", () => {
   const storage = new Storage();
-  const store = new Vuex.Store({
+  const store = createStore({
     state: { original: "state" },
   });
 
@@ -152,7 +146,7 @@ it("should not persist whole store if paths array is empty", () => {
 
 it("should not persist null values", () => {
   const storage = new Storage();
-  const store = new Vuex.Store({
+  const store = createStore({
     state: { alpha: { name: null, bravo: { name: null } } },
   });
 
@@ -174,7 +168,7 @@ it("should not merge array values when rehydrating by default", () => {
   const storage = new Storage();
   storage.setItem("vuex", JSON.stringify({ persisted: ["json"] }));
 
-  const store = new Vuex.Store({ state: { persisted: ["state"] } });
+  const store = createStore({ state: { persisted: ["state"] } });
   store.replaceState = jest.fn();
   store.subscribe = jest.fn();
 
@@ -195,7 +189,7 @@ it("should not clone circular objects when rehydrating", () => {
   const storage = new Storage();
   storage.setItem("vuex", JSON.stringify({ persisted: "baz" }));
 
-  const store = new Vuex.Store({ state: { circular } });
+  const store = createStore({ state: { circular } });
   store.replaceState = jest.fn();
   store.subscribe = jest.fn();
 
@@ -214,7 +208,7 @@ it("should apply a custom arrayMerger function", () => {
   const storage = new Storage();
   storage.setItem("vuex", JSON.stringify({ persisted: [1, 2] }));
 
-  const store = new Vuex.Store({ state: { persisted: [1, 2, 3] } });
+  const store = createStore({ state: { persisted: [1, 2, 3] } });
   store.replaceState = jest.fn();
   store.subscribe = jest.fn();
 
@@ -236,7 +230,7 @@ it("should apply a custom arrayMerger function", () => {
 it("rehydrates store's state through the configured getter", () => {
   const storage = new Storage();
 
-  const store = new Vuex.Store({ state: {} });
+  const store = createStore({ state: {} });
   store.replaceState = jest.fn();
 
   const plugin = createPersistedState({
@@ -252,7 +246,7 @@ it("persist the changed state back through the configured setter", () => {
   expect.assertions(1);
 
   const storage = new Storage();
-  const store = new Vuex.Store({ state: {} });
+  const store = createStore({ state: {} });
 
   const plugin = createPersistedState({
     storage,
@@ -268,7 +262,7 @@ it("persist the changed state back through the configured setter", () => {
 
 it("uses the configured reducer when persisting the state", () => {
   const storage = new Storage();
-  const store = new Vuex.Store({ state: {} });
+  const store = createStore({ state: {} });
 
   const customReducer = jest.fn();
 
@@ -286,7 +280,7 @@ it("uses the configured reducer when persisting the state", () => {
 
 it("filters to specific mutations", () => {
   const storage = new Storage();
-  const store = new Vuex.Store({ state: {} });
+  const store = createStore({ state: {} });
 
   const plugin = createPersistedState({
     storage,
@@ -307,7 +301,7 @@ it("should call rehydrated callback once the state is replaced", () => {
   const storage = new Storage();
   storage.setItem("vuex", JSON.stringify({ persisted: "json" }));
 
-  const store = new Vuex.Store({ state: { original: "state" } });
+  const store = createStore({ state: { original: "state" } });
   const rehydrated = jest.fn();
 
   const plugin = createPersistedState({ storage, rehydrated });
@@ -325,7 +319,7 @@ it("should call rehydrated if the replacement executed asynchronously", () => {
   setTimeout(() => {
     createPersistedState({ storage, rehydrated })(store);
   }, 600);
-  const store = new Vuex.Store({ state: { original: "state" } });
+  const store = createStore({ state: { original: "state" } });
   const rehydrated = jest.fn();
 
   jest.runAllTimers();
@@ -343,7 +337,7 @@ it("fetches state from storage when the plugin is used by default", () => {
 
   const plugin = createPersistedState({ storage });
 
-  const store = new Vuex.Store();
+  const store = createStore();
   store.replaceState = jest.fn();
 
   storage.setItem("vuex", JSON.stringify({ persisted: "after" }));
@@ -361,7 +355,7 @@ it("fetches state from storage before the plugin is used", () => {
 
   const plugin = createPersistedState({ storage, fetchBeforeUse: true });
 
-  const store = new Vuex.Store();
+  const store = createStore();
   store.replaceState = jest.fn();
 
   storage.setItem("vuex", JSON.stringify({ persisted: "after" }));
