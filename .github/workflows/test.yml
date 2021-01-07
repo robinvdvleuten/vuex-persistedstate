@@ -1,35 +1,46 @@
 name: test
 
 on:
-  push: { branches: master }
-  pull_request: { branches: master }
+  push:
+    branches:
+      - "+([0-9])?(.{+([0-9]),x}).x"
+      - "master"
+      - "next"
+      - "next-major"
+      - "beta"
+      - "alpha"
+      - "!all-contributors/**"
+  pull_request: {}
 
 jobs:
   test:
+    # ignore all-contributors PRs
+    if: ${{ !contains(github.head_ref, 'all-contributors') }}
+
     name: Test
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v1
+      - name: 🛑 Cancel Previous Runs
+        uses: styfle/cancel-workflow-action@0.6.0
+        with:
+          access_token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Setup Node
+      - name: ⬇️ Checkout repo
+        uses: actions/checkout@v2
+
+      - name: ⎔ Setup node
         uses: actions/setup-node@v1
         with:
-          node-version: 12.18.3
+          node-version: 14
 
-      - name: Cache NPM dependencies
-        uses: actions/cache@v2
+      - name: 📥 Download deps
+        uses: bahmutov/npm-install@v1
         with:
-          path: ~/.npm
-          key: ${{ runner.os }}-npm-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-npm-
+          useLockFile: false
 
-      - name: Install NPM dependencies
-        run: npm ci
+      - name: 🏗 Run build script
+        run: npm run build
 
-      - name: Run tests
-        run: |
-          npm run build
-          npm run test
+      - name: ▶️ Run test script
+        run: npm run test
