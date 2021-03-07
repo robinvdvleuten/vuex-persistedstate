@@ -158,7 +158,11 @@ export default ({ store, req }) => {
             getItem: (key) => {
                 // See https://nuxtjs.org/guide/plugins/#using-process-flags
                 if (process.server) {
-                    const parsedCookies = cookie.parse(req.headers.cookie);
+                    let cookieHeader = cookie.parse(req.headers.cookie);
+                    if (typeof cookieHeader !== 'string') {
+                        cookieHeader = '';
+                    }
+                    const parsedCookies = cookie.parse(cookieHeader);
                     return parsedCookies[key];
                 } else {
                     return Cookies.get(key);
@@ -322,6 +326,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 
 <!-- markdownlint-enable -->
 <!-- prettier-ignore-end -->
+
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
 This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
