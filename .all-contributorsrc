@@ -327,6 +327,15 @@
         "doc",
         "test"
       ]
+    },
+    {
+      "login": "NeuronButter",
+      "name": "Neeron Bhatta",
+      "avatar_url": "https://avatars.githubusercontent.com/u/33238007?v=4",
+      "profile": "http://neeron.me",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 7,
