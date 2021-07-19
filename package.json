@@ -27,7 +27,7 @@
     "build": "rimraf dist && microbundle --external all --name createPersistedState",
     "prepare": "npm run build",
     "test": "npm-run-all test:**",
-    "test:jest": "jest",
+    "test:jest": "jest --env=jsdom",
     "test:size": "bundlesize"
   },
   "babel": {
