@@ -33,20 +33,6 @@ You can find the library on `window.createPersistedState`.
 
 ## Usage
 
-### vuex-persistedstate 3.x (for Vuex 3 and Vue 2)
-
-```js
-import Vuex from "vuex";
-import createPersistedState from "vuex-persistedstate";
-
-const store = new Vuex.Store({
-  // ...
-  plugins: [createPersistedState()],
-});
-```
-
-### vuex-persistedstate 4.x (for Vuex 4 and Vue 3)
-
 ```js
 import { createStore } from "vuex";
 import createPersistedState from "vuex-persistedstate";
@@ -56,6 +42,8 @@ const store = createStore({
   plugins: [createPersistedState()],
 });
 ```
+
+For usage with for Vuex 3 and Vue 2, please see [3.x.x branch](https://github.com/robinvdvleuten/vuex-persistedstate/tree/3.x.x).
 
 ## Examples
 
