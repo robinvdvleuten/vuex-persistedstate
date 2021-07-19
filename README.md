@@ -232,11 +232,11 @@ This is especially useful when you are using this plugin in combination with ser
 
 ### 🔐Obfuscate Local Storage
 
-If you need to use **Local Storage** (or you want to) but want to prevent attackers from easily stealing data, you can [obfuscate it]('https://github.com/softvar/secure-ls').
+If you need to use **Local Storage** (or you want to) but want to prevent attackers from easily inspecting the stored data, you can [obfuscate it]('https://github.com/softvar/secure-ls').
 
+**Important ⚠️** Obfuscating the Vuex store means to prevent attackers from easily gaining access to the data. This is not a secure way of storing sensitive data (like passwords, personal information, etc.), and always needs to be used in conjunction with some other authentication method of keeping the data (such as Firebase or your own server).
 
-
-[![Edit vuex-persistedstate with secure-ls (encrypted data)](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/vuex-persistedstate-with-secure-ls-encrypted-data-7l9wb?fontsize=14)
+[![Edit vuex-persistedstate with secure-ls (obfuscated data)](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/vuex-persistedstate-with-secure-ls-encrypted-data-7l9wb?fontsize=14)
 
 ```js
 import { Store } from "vuex";
@@ -259,9 +259,6 @@ const store = new Store({
   ],
 });
 ```
-
-#### 🚧 Important
-Obfuscating the Vuex store means to prevent attackers from easily gaining access to the data. This is not a secure way of storing sensitive data (like passwords, personal information etc), and needs to be used in conjunction with some other authentication method of keeping the data (such as Firebase or your own server).
 
 ### ⚠️ LocalForage ⚠️
 
