@@ -38,9 +38,9 @@ export default function <State>(
     const value = storage.getItem(key);
 
     try {
-      return (typeof value !== "undefined")
-        ? JSON.parse(value)
-        : undefined;
+      return (typeof value === "string")
+        ? JSON.parse(value) : (typeof value === "object")
+        ? value : undefined;
     } catch (err) {}
 
     return undefined;
