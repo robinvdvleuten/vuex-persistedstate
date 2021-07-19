@@ -317,6 +317,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="http://www.inventage.com"><img src="https://avatars1.githubusercontent.com/u/63866?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Peter Siska</b></sub></a><br /><a href="https://github.com/robinvdvleuten/vuex-persistedstate/commits?author=peschee" title="Documentation">📖</a></td>
     <td align="center"><a href="http://adm1t.github.io"><img src="https://avatars2.githubusercontent.com/u/26100455?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Dmitry Filippov</b></sub></a><br /><a href="https://github.com/robinvdvleuten/vuex-persistedstate/commits?author=adm1t" title="Documentation">📖</a></td>
     <td align="center"><a href="https://retailify.de"><img src="https://avatars0.githubusercontent.com/u/5236353?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Thomas Meitz</b></sub></a><br /><a href="https://github.com/robinvdvleuten/vuex-persistedstate/commits?author=retailify" title="Documentation">📖</a> <a href="https://github.com/robinvdvleuten/vuex-persistedstate/commits?author=retailify" title="Tests">⚠️</a></td>
+    <td align="center"><a href="http://neeron.me"><img src="https://avatars.githubusercontent.com/u/33238007?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Neeron Bhatta</b></sub></a><br /><a href="https://github.com/robinvdvleuten/vuex-persistedstate/commits?author=NeuronButter" title="Documentation">📖</a></td>
   </tr>
 </table>
 
