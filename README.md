@@ -309,6 +309,9 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="https://retailify.de"><img src="https://avatars0.githubusercontent.com/u/5236353?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Thomas Meitz</b></sub></a><br /><a href="https://github.com/robinvdvleuten/vuex-persistedstate/commits?author=retailify" title="Documentation">📖</a> <a href="https://github.com/robinvdvleuten/vuex-persistedstate/commits?author=retailify" title="Tests">⚠️</a></td>
     <td align="center"><a href="http://neeron.me"><img src="https://avatars.githubusercontent.com/u/33238007?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Neeron Bhatta</b></sub></a><br /><a href="https://github.com/robinvdvleuten/vuex-persistedstate/commits?author=NeuronButter" title="Documentation">📖</a></td>
   </tr>
+  <tr>
+    <td align="center"><a href="https://github.com/joaoaraujo-hotmart"><img src="https://avatars.githubusercontent.com/u/15874735?v=4?s=100" width="100px;" alt=""/><br /><sub><b>joaoaraujo-hotmart</b></sub></a><br /><a href="https://github.com/robinvdvleuten/vuex-persistedstate/commits?author=joaoaraujo-hotmart" title="Code">💻</a></td>
+  </tr>
 </table>
 
 <!-- markdownlint-restore -->
