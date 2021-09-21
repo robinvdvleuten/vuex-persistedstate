@@ -7,7 +7,7 @@ it("can be created with the default options", () => {
   expect(() => createPersistedState()).not.toThrow();
 });
 
-it("replaces store's state and subscribes to changes when initializing", () => {
+it("replaces store's state and subscribes to changes when initializing with JSON", () => {
   const storage = new Storage();
   storage.setItem("vuex", JSON.stringify({ persisted: "json" }));
 
@@ -21,6 +21,23 @@ it("replaces store's state and subscribes to changes when initializing", () => {
   expect(store.replaceState).toBeCalledWith({
     original: "state",
     persisted: "json",
+  });
+  expect(store.subscribe).toBeCalled();
+});
+
+it("replaces store's state and subscribes to changes when initializing with object", () => {
+  const storage = { getItem: () => ({ persisted: "object" }) }
+
+  const store = createStore({ state: { original: "state" } });
+  store.replaceState = jest.fn();
+  store.subscribe = jest.fn();
+
+  const plugin = createPersistedState({ storage, assertStorage: () => true });
+  plugin(store);
+
+  expect(store.replaceState).toBeCalledWith({
+    original: "state",
+    persisted: "object",
   });
   expect(store.subscribe).toBeCalled();
 });
