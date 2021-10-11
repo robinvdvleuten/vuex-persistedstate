@@ -61,7 +61,7 @@
     "babel-jest": "^27.0.2",
     "bundlesize": "^0.18.1",
     "dom-storage": "^2.0.2",
-    "eslint": "^7.17.0",
+    "eslint": "^8.0.0",
     "husky": "^7.0.0",
     "jest": "^27.0.6",
     "microbundle": "^0.13.0",
