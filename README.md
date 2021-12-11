@@ -161,6 +161,47 @@ export default ({ store, req }) => {
 };
 ```
 
+#### Using Nuxt Bridge with cookies (universal client + server-side)
+
+Add `cookie`:
+
+`npm install --save cookie`
+or `yarn add cookie`
+
+```typescript
+// nuxt.config.ts
+...
+plugins: ['~/plugins/persistedState.js']
+...
+```
+
+```typescript
+// ~/plugins/persistedState.ts
+
+import { Context } from '@nuxt/types'
+import createPersistedState from 'vuex-persistedstate'
+import Cookies from 'js-cookie'
+import { useCookie } from 'h3'
+
+export default ({ store, req }: Context) => {
+  createPersistedState({
+    paths: ['participationData'],
+    storage: {
+      getItem: (key) => {
+        if (process.server) {
+          return useCookie(req, key)
+        } else {
+          return Cookies.get(key)
+        }
+      },
+      setItem: (key, value) =>
+        Cookies.set(key, value, { expires: 365, secure: true }),
+      removeItem: (key) => Cookies.remove(key),
+    },
+  })(store)
+}
+```
+
 ## API
 
 ### `createPersistedState([options])`
