@@ -4,6 +4,10 @@ Persist and rehydrate your [Vuex](http://vuex.vuejs.org/) state between page rel
 
 <hr />
 
+> 🚨 Not maintained anymore! As I don't use Vue in my day to day work, it becomes very hard to stay up to date with any changes with things like Vuex, Nuxt.js and other tools used by the community. That's why I decided to stop spending my spare time to this repository. Feel free to reach out if you would like to take over ownership of the package on NPM. Thank you for any contribution any of you had made to this project 🙏.
+
+<hr />
+
 [![Build Status](https://img.shields.io/github/workflow/status/robinvdvleuten/vuex-persistedstate/test.svg)](https://github.com/robinvdvleuten/vuex-persistedstate/actions?query=workflow%3Atest)
 [![NPM version](https://img.shields.io/npm/v/vuex-persistedstate.svg)](https://www.npmjs.com/package/vuex-persistedstate)
 [![NPM downloads](https://img.shields.io/npm/dm/vuex-persistedstate.svg)](https://www.npmjs.com/package/vuex-persistedstate)
